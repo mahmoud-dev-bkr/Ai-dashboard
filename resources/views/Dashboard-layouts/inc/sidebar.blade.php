@@ -5,9 +5,12 @@
     </div>
 
     <div class="flex flex-col my-5 text-lg font-bold">
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-blue-500/50 
-            {{ Request::path() == '/admin' ? 'dashboard-item-active' : '' }}" href="/admin">
-            Home</a>
+
+        @if (Auth::user() && Auth::user()->hasRole('super_admin'))
+            <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-blue-500/50 
+        {{ Request::path() == '/admin/users' ? 'dashboard-item-active' : '' }}" href="/admin/users">
+                Users</a>
+        @endif
 
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-blue-500/50 
             {{ Request::path() == '/admin' ? 'dashboard-item-active' : '' }}" href="/admin">
@@ -16,6 +19,12 @@
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-blue-500/50 
             {{ Request::path() == '/admin' ? 'dashboard-item-active' : '' }}" href="/admin">
             Home</a>
+
+        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-blue-500/50 
+            {{ Request::path() == '/admin' ? 'dashboard-item-active' : '' }}" href="/admin">
+            Home</a>
+
+
 
     </div>
 
