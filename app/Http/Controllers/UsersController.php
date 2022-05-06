@@ -9,7 +9,7 @@ class UsersController extends Controller
 {
     public function usersPage()
     {
-        return view("dashboard-pages.users");
+        return view("dashboard-pages.users.users");
     }
 
     public function getUsersData()
@@ -17,6 +17,13 @@ class UsersController extends Controller
         $query = User::query();
         $data = Datatables()
             ->eloquent($query->latest())
+            ->addColumn("roles", function (User $user) {
+                $roles = $user->roles;
+                return view("dashboard-layouts.actions", [
+                    "type" => "roles",
+                    "roles" => $roles,
+                ]);
+            })
             ->toJson();
         return $data;
     }

@@ -8,7 +8,61 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
     <link rel="stylesheet" href="/css/app.css" />
+
+    {{-- inline styles --}}
     <style>
+        .dataTables_empty {
+            background-color: rgb(189, 61, 61);
+            color: white;
+            padding: 5px 10px;
+            display: inline;
+            text-align: center;
+        }
+
+        .dataTables_paginate {
+            float: right;
+            display: flex;
+            align-items: center;
+        }
+
+        .dataTables_processing {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            transform: translateX(50%);
+            background: rgb(213, 213, 235);
+            font-weight: bold;
+            font-size: 1.3rem;
+            padding: 7px 1rem;
+            z-index: 9999;
+            border-radius: 15px;
+        }
+
+
+        .dataTables_filter input {
+            padding: 10px 5px;
+            margin: 0 1rem;
+            border-radius: 7px;
+            border: 1px solid #eeee;
+            outline: 0;
+            background-color: rgba(218, 222, 236, 0.933)
+        }
+
+
+        .dataTables_paginate>* {
+            margin: 0 7px;
+        }
+
+        .dataTables_paginate span>* {
+            margin: 0 7px;
+            font-weight: bolder
+        }
+
+        .dataTables_paginate span>*:hover {}
+
+        .dataTables_paginate span>*.current {}
+
+
         .dashboard-item-active {
             border-right: 6px solid white;
             border-top-right-radius: 4px;
