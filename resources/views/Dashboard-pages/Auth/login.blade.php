@@ -94,8 +94,10 @@
                     
                     else if(error.status == 500){
                         $('.error-msg').css("display","block")
-                        $("#error-msg").text("Login will be canceled for five minutes");
-                        
+                        $("#error-msg").text("Login will be Pending for five minutes");
+                        $("#email").prop('disabled', true);
+                        $("#password").prop('disabled', true);
+                    
                     }
                 },
             });

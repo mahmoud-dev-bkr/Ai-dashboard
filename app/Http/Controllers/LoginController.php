@@ -22,7 +22,7 @@ class LoginController extends Controller
     public function sign_in(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
         $this->checkTooManyFailedAttempts();
