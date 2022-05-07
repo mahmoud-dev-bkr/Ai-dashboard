@@ -64,12 +64,19 @@
 
 
         .dashboard-item-active {
-            border-right: 6px solid white;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
+            border-right: 3px solid white;
+            border-bo-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        .input {
+            outline-offset: 0px !important;
+            outline-color: #f8f8f8
         }
 
     </style>
+    <link rel="stylesheet" href="{{ asset('/css/notyf.min.css') }}">
+
     @yield('cdnStyle')
     @yield('styles')
 
@@ -95,7 +102,14 @@
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
     </script>
+    {{-- nofty --}}
+    <script src="{{ asset('/js/notyf.min.js') }}"></script>
+    <script type="application/javascript">
+        var notyf = new Notyf({
+            duration: 5000 // Set your global Notyf configuration here
+        });
 
+    </script>
     @yield('scripts')
 </body>
 

@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="overflow-x-auto p-7">
+        <div class="my-10">
+            <a href="{{ LaravelLocalization::localizeUrl(route('insertUserPage')) }}" class="rounded-full btn btn-info"><i
+                    class="fa fa-plus"></i></a>
+            <span class="mx-3 text-lg font-bold">create a new User</span>
+        </div>
 
         <table class="table w-full my-4 table-zebra" id="usersDT">
             <thead>

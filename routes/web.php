@@ -28,6 +28,21 @@ Route::group(
                     Route::get("/", [UsersController::class, "usersPage"]);
                     ///////////////////////////////////////////
 
+                    ////////////////////page for inserting a new user////////////////////////////
+                    Route::get("/insert", [
+                        UsersController::class,
+                        "insertPage",
+                    ])->name("insertUserPage");
+
+                    ////////////////////////////////////////////////////////
+
+                    ////////////////////////////////////////////////////////////////////////////
+                    Route::post("/insert", [
+                        UsersController::class,
+                        "createUser",
+                    ])->name("addNewUser");
+                    ////////////////////////////////////////////////////////////////////////////
+
                     ////////////get users data for the datatable
                     Route::get("/data", [
                         UsersController::class,
