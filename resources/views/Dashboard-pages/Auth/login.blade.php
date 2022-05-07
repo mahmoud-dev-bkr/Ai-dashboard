@@ -21,6 +21,14 @@
               color: #D8000C;
               background-color: #FFBABA;
             }
+            .btn{
+                background: #283862;
+                color: #fff;
+            }
+            .btn:hover{
+                color:#e0e0e0;
+                transition: ease-in-out 0.3s
+            }
     </style>
 </head>
 <body class=" bg-light">
@@ -46,7 +54,7 @@
                 <span id="error-msg"></span>
             </div>
             <div class="text-center">
-                <input type="submit" class=" w-100 btn btn-primary">
+                <input type="submit" class=" w-100 btn">
             </div>
         </form>
     </div>

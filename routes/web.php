@@ -4,6 +4,7 @@ use App\Http\Controllers\LandpageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -35,9 +36,7 @@ Route::group(
                 ]);
             }
         );
-
         ///////////////////////////////////////////////////
-
         // dashboard pages
         Route::group(
             ["prefix" => "admin", "middleware" => ["user.auth"]],
@@ -72,6 +71,28 @@ Route::group(
                     ///////////////////////////////////////////////
                 });
                 //end of users routes------------------------------------------------
+                // ---------------payment menthods
+                Route::group(
+                    [
+                        "prefix" => "paymentsmethods",
+                        "middleware" => ["user.auth"],
+                    ],
+                    function () {
+                        Route::get("/", [
+                            PaymentMethodController::class,
+                            "PaymentMethodpage",
+                        ]);
+                        Route::get("/data", [
+                            PaymentMethodController::class,
+                            "getpaymentmethoddata",
+                        ])->name("getPaymentData");
+                        Route::post("/toggleactivate", [
+                            PaymentMethodController::class,
+                            "toggleactivate",
+                        ])->name("toggleactivate");
+                    }
+                );
+
                 // start of roles routes
                 Route::group(["prefix" => "roles"], function () {
                     Route::get("/", [RolesController::class, "viewRoles"]);
@@ -86,6 +107,7 @@ Route::group(
                     ])->name("insertRolePage");
                 });
                 // end of roles routes
+
                 // logout user
                 Route::delete("/logout", [
                     LoginController::class,
