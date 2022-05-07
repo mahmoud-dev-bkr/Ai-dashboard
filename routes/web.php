@@ -3,9 +3,15 @@
 use App\Http\Controllers\LandpageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\UsersController;
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 Route::group(
     [
@@ -34,9 +40,7 @@ Route::group(
                 ]);
             }
         );
-
         ///////////////////////////////////////////////////
-
         // dashboard pages
         Route::group(
             ["prefix" => "admin", "middleware" => ["user.auth"]],
@@ -75,6 +79,16 @@ Route::group(
                         ///////////////////////////////////////////////
                     }
                 );
+                Route::group(
+                    ["prefix" => "paymentsmethods", "middleware" => ["user.auth"]],
+                    function () {
+                        Route::get('/', [PaymentMethodController::class, 'PaymentMethodpage']);
+                        Route::get('/data', [PaymentMethodController::class, 'getpaymentmethoddata'])->name("getPaymentData");
+                        Route::post('/toggleactivate', [PaymentMethodController::class, "toggleactivate"])->name("toggleactivate");
+                    }
+                );
+
+
                 //end of users routes------------------------------------------------
                 // logout user
                 Route::delete("/logout", [
