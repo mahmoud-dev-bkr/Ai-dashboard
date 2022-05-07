@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LandpageController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -18,11 +19,18 @@ Route::group(
         // landpage
         Route::get("/", [LandpageController::class, "HomePage"]);
         Route::get("/terms", [LandpageController::class, "TermsPage"]);
+
+        //login routes //
+        Route::get('Dashboard/login', [LoginController::class, 'index'])->name('login');
+        Route::post('Dashboard/login_request', [LoginController::class, 'sign_in']);
+        Route::get('Dashboard/logout', [LoginController::class, 'sign_out']);
+        ///////////////////////////////////////////////////
+
         // dashboard routes
-        Route::group(["prefix" => "admin", "middleware" => []], function () {
+        Route::group(["prefix" => "admin", "middleware" => ['auth']], function () {
             //start of users routes--------------------------------------------
             Route::group(
-                ["prefix" => "users", "middleware" => []],
+                ["prefix" => "users", "middleware" => ['auth']],
                 function () {
                     ///////////////////////////////////////// users page
                     Route::get("/", [UsersController::class, "usersPage"]);
