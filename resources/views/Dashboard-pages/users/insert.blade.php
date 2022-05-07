@@ -4,54 +4,52 @@
     <div class="p-7">
         <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">Create a new admin user</h1>
         {!! Form::open(['route' => 'addNewUser', 'class' => 'form-user']) !!}
-        <div class="flex my-2 space-x-3">
-            <div>
-                <label>Name (en)</label>
-                <input type="text" class="input bg-base-300/50" name="name_en" />
-            </div>
-
-            <div>
-                <label>Name (ar)</label>
-                <input type="text" class="input bg-base-300/50" name="name_ar" />
-            </div>
+        <div class="items-center my-2 input-group">
+            <label class="w-40">Name (en)</label>
+            <input type="text" class="input bg-base-300/50" name="name_en" />
         </div>
 
-        <div class="my-2">
-            <label>Email</label>
-            <input type="email" class="w-full input bg-base-300/50" name="email" />
+        <div class="items-center my-2 input-group">
+            <label class="w-40">Name (ar)</label>
+            <input type="text" class="input bg-base-300/50" name="name_ar" />
         </div>
 
-        <div class="my-2">
-            <label>Initial password</label>
-            <input type="text" class="w-full input bg-base-300/50" name="password" value="123456" />
+        <div class="items-center my-2 input-group">
+            <label class="w-40">Email</label>
+            <input type="email" class="input bg-base-300/50" name="email" />
         </div>
 
-        <div class="my-2">
-            <label>Telephone 1</label>
-            <input type="text" class="w-full input bg-base-300/50" name="tel1" />
+        <div class="items-center my-2 input-group">
+            <label class="w-40">Initial password</label>
+            <input type="text" class="input bg-base-300/50" name="password" value="123456" />
         </div>
 
-
-        <div class="my-2">
-            <label>Telephone 2 <span class="text-gray-400">(optional)</span></label>
-            <input type="text" class="w-full input bg-base-300/50" name="tel2" />
+        <div class="items-center my-2 input-group">
+            <label class="w-40">Telephone 1</label>
+            <input type="text" class="input bg-base-300/50" name="tel1" />
         </div>
 
 
-        <div class="my-2">
-            <label>Telephone 3 <span class="text-gray-400">(optional)</span></label>
-            <input type="text" class="w-full input bg-base-300/50" name="tel3" />
+        <div class="items-center my-2 input-group">
+            <label class="w-40">Telephone 2</label>
+            <input type="text" class="input bg-base-300/50" name="tel2" />
         </div>
 
 
-        <div class="my-2">
-            <label>Address <span class="text-gray-400">(optional)</span></label>
-            <input type="text" class="w-full input bg-base-300/50" name="address" />
+        <div class="items-center my-2 input-group">
+            <label class="w-40">Telephone 3</label>
+            <input type="text" class="input bg-base-300/50" name="tel3" />
         </div>
 
-        <div class="my-4">
-            <label class="block">Role</label>
-            <select name="role" class="w-full max-w-xs select select-bordered bg-base-300/50">
+
+        <div class="items-center my-2 input-group">
+            <label class="w-40">Address</label>
+            <input type="text" class="input bg-base-300/50" name="address" />
+        </div>
+
+        <div class="items-center my-2 input-group">
+            <label class="block w-40">Role</label>
+            <select name="role" class=" select select-bordered bg-base-300/50">
                 <option disabled selected>Pick a role</option>
                 @foreach ($roles as $r)
                     <option value="{{ $r->name }}">{{ $r->display_name }}</option>
