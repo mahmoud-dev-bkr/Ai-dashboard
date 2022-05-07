@@ -3,6 +3,7 @@
 use App\Http\Controllers\LandpageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -45,37 +46,46 @@ Route::group(
                 Route::get("/", [PagesController::class, "mainAdminPage"]);
 
                 //start of users routes--------------------------------------------
-                Route::group(
-                    ["prefix" => "users", "middleware" => ["auth"]],
-                    function () {
-                        ///////////////////////////////////////// users page
-                        Route::get("/", [UsersController::class, "usersPage"]);
-                        ///////////////////////////////////////////
+                Route::group(["prefix" => "users"], function () {
+                    ///////////////////////////////////////// users page
+                    Route::get("/", [UsersController::class, "usersPage"]);
+                    ///////////////////////////////////////////
 
-                        ////////////////////page for inserting a new user////////////////////////////
-                        Route::get("/insert", [
-                            UsersController::class,
-                            "insertPage",
-                        ])->name("insertUserPage");
+                    ////////////////////page for inserting a new user////////////////////////////
+                    Route::get("/insert", [
+                        UsersController::class,
+                        "insertPage",
+                    ])->name("insertUserPage");
 
-                        ////////////////////////////////////////////////////////
+                    ////////////////////////////////////////////////////////
+                    ////////////////////////////////////////////////////////////////////////////
+                    Route::post("/insert", [
+                        UsersController::class,
+                        "createUser",
+                    ])->name("addNewUser");
 
-                        ////////////////////////////////////////////////////////////////////////////
-                        Route::post("/insert", [
-                            UsersController::class,
-                            "createUser",
-                        ])->name("addNewUser");
-                        ////////////////////////////////////////////////////////////////////////////
-
-                        ////////////get users data for the datatable
-                        Route::get("/data", [
-                            UsersController::class,
-                            "getUsersData",
-                        ])->name("getUsersData");
-                        ///////////////////////////////////////////////
-                    }
-                );
+                    ////////////get users data for the datatable
+                    Route::get("/data", [
+                        UsersController::class,
+                        "getUsersData",
+                    ])->name("getUsersData");
+                    ///////////////////////////////////////////////
+                });
                 //end of users routes------------------------------------------------
+                // start of roles routes
+                Route::group(["prefix" => "roles"], function () {
+                    Route::get("/", [RolesController::class, "viewRoles"]);
+                    Route::get("/data", [
+                        RolesController::class,
+                        "getRulesData",
+                    ])->name("getRulesData");
+                    // view for creating a new role
+                    Route::get("/insert", [
+                        RolesController::class,
+                        "insertPage",
+                    ])->name("insertRolePage");
+                });
+                // end of roles routes
                 // logout user
                 Route::delete("/logout", [
                     LoginController::class,

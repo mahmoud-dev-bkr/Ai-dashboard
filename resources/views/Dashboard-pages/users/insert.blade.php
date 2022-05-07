@@ -86,19 +86,20 @@
                     contentType: false,
                     success: function(data) {
                         console.log(data);
+
+                        let msg = data.msg;
+                        notyf.success(msg);
                     },
                     error: function(err) {
+                        console.log(err);
                         if (err.status == 422) {
                             // validation error
                             let message = err.responseJSON.message.split('.')[0]
                             notyf.error(message);
-
                         }
                     }
                 });
             });
-
-
 
         });
 

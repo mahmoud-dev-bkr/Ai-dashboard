@@ -25,6 +25,18 @@
 
 
 
+
+
+
+
+
+
+
+        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/roles') ? 'dashboard-item-active' : '' }}
+        " href=" /admin/roles">
+            Roles</a>
+
     </div>
 
 

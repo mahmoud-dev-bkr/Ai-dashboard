@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -24,15 +26,31 @@ class UsersController extends Controller
 
     public function createUser(Request $req)
     {
-        $req->validate([
+        $validator = $req->validate([
             "name_en" => "required",
             "name_ar" => "required",
-            "email" => "email|required",
+            "email" => "email|required|unique:users",
             "password" => "required",
             "tel1" => "required",
             "role" => "required",
+            "tel2" => "",
+            "tel3" => "",
+            "address" => "",
         ]);
-        return "success";
+        $user = new User();
+        $user->name_en = $validator["name_en"];
+        $user->name_ar = $validator["name_ar"];
+        $user->email = $validator["email"];
+        $user->password = Hash::make($validator["password"]);
+        $user->Tel_1 = $validator["tel1"];
+        $user->Tel_2 = $validator["tel2"];
+        $user->Tel_3 = $validator["tel3"];
+        $user->address = $validator["address"];
+        $user->save();
+        $user->attachRole($validator["role"]);
+        return response()->json([
+            "msg" => "user created successfully",
+        ]);
     }
 
     public function getUsersData()
