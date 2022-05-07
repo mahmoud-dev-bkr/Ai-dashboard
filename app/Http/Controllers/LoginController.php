@@ -22,53 +22,55 @@ class LoginController extends Controller
     public function sign_in(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            "email" => "required|email",
+            "password" => "required",
         ]);
         $this->checkTooManyFailedAttempts();
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where("email", $request->email)->first();
 
         try {
-            $credentials = request(['email', 'password']);
+            $credentials = request(["email", "password"]);
 
             if (!Auth::attempt($credentials)) {
                 RateLimiter::hit($this->throttleKey(), $seconds = 300);
 
-                return response()->json([
-                    'status_code' => 401,
-                    'message' => 'Invalid Email and Password',
-                ], 401);
+                return response()->json(
+                    [
+                        "status_code" => 401,
+                        "message" => "Invalid Email and Password",
+                    ],
+                    401
+                );
             }
             if (!Hash::check($request->password, $user->password, [])) {
-                throw new Exception('Error occured while logging in.');
+                throw new Exception("Error occured while logging in.");
             }
 
-            $token = $user->createToken('authToken')->plainTextToken;
+            $token = $user->createToken("authToken")->plainTextToken;
 
             RateLimiter::clear($this->throttleKey());
 
             return response()->json([
-                'status_code' => 200,
-                'message' => 'Success',
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'user' => $user,
+                "status_code" => 200,
+                "message" => "Success",
+                "access_token" => $token,
+                "token_type" => "Bearer",
+                "user" => $user,
             ]);
             // return redirect("admin/users");
         } catch (Exception $error) {
             return response()->json([
-                'status_code' => 500,
-                'message' => 'Error occured while loggin in.',
-                'error' => $error,
+                "status_code" => 500,
+                "message" => "Error occured while loggin in.",
+                "error" => $error,
             ]);
         }
     }
 
-
     public function throttleKey()
     {
-        return Str::lower(request('email')) . '|' . request()->ip();
+        return Str::lower(request("email")) . "|" . request()->ip();
     }
 
     /**
@@ -81,12 +83,14 @@ class LoginController extends Controller
         if (!RateLimiter::tooManyAttempts($this->throttleKey(), 2)) {
             return;
         }
-        throw new Exception('IP address banned. Too many login attempts.');
+        throw new Exception("IP address banned. Too many login attempts.");
     }
 
-    public function sign_out()
+    public function sign_out(Request $req)
     {
         Auth::logout();
-        return redirect('Dashboard/login');
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return redirect("admin/login");
     }
 }

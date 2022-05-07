@@ -6,12 +6,20 @@
 
     <div class="flex flex-col my-5 text-lg font-bold">
 
-        {{-- @if (Auth::user() && Auth::user()->hasRole('super_admin')) --}}
+
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-        {{ Request::path() == '/en/admin/users' || '/ar/admin/users' ? 'dashboard-item-active' : '' }}"
-            href="/admin/users">
-            Users</a>
-        {{-- @endif --}}
+        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin') ? 'dashboard-item-active' : '' }}
+        " href=" /admin">
+            Home</a>
+
+
+
+        @if (Auth::user() && Auth::user()->hasRole('super_admin'))
+            <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/users') ? 'dashboard-item-active' : '' }}
+            " href=" /admin/users">
+                Users</a>
+        @endif
 
 
 

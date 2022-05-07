@@ -24,8 +24,8 @@
     </style>
 </head>
 <body class=" bg-light">
-    <div class="w-50 pt-5 m-auto">  
-        <form id="user-form" class="bg-white p-4  border rounded-1 shadow-sm mt-5" >
+    <div class="pt-5 m-auto w-50">  
+        <form id="user-form" class="p-4 mt-5 bg-white border shadow-sm rounded-1" >
             @csrf
             <div class="text-center fs-4 text-dark ">Login</div>
        
@@ -76,7 +76,7 @@
                 success: function(response){  
                     // console.log(response);
                     if(response.status_code == 200){
-                        window.location.href = "/admin/users";
+                        window.location.href = "/admin";
                     }
                     
                 },

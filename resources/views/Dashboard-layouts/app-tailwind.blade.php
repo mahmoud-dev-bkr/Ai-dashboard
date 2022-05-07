@@ -64,8 +64,8 @@
 
 
         .dashboard-item-active {
-            border-right: 3px solid white;
-            border-bo-radius: 2px;
+            border-right: 5px solid white;
+            border-bo-radius: 4px;
             border-bottom-right-radius: 2px;
         }
 
