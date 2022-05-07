@@ -105,6 +105,11 @@ Route::group(
                         RolesController::class,
                         "insertPage",
                     ])->name("insertRolePage");
+
+                    Route::post("/insert", [
+                        RolesController::class,
+                        "createRole",
+                    ])->name("createRole");
                 });
                 // end of roles routes
 
