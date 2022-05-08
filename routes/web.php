@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\LandpageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
@@ -44,6 +45,27 @@ Route::group(
             function () {
                 // main admin page
                 Route::get("/", [PagesController::class, "mainAdminPage"]);
+
+                // companies routes
+                Route::group(["prefix" => "company"], function () {
+                    Route::get("/insert", [
+                        CompaniesController::class,
+                        "inserPage",
+                    ]);
+                    Route::get("/", [
+                        CompaniesController::class,
+                        "companyPage",
+                    ])->name("indexPage");
+
+                    Route::get("/data", [
+                        CompaniesController::class,
+                        "getCompaniesData",
+                    ])->name("getCompaniesData");
+                    Route::post("/insert", [
+                        CompaniesController::class,
+                        "addCompany",
+                    ])->name("addCompany");
+                });
 
                 //start of users routes--------------------------------------------
                 Route::group(["prefix" => "users"], function () {

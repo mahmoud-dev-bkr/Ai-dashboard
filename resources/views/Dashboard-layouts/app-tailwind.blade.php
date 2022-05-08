@@ -98,6 +98,14 @@
             outline-color: #f8f8f8
         }
 
+        .table thead th:first-child {
+            position: relative !important;
+        }
+
+        .table td {
+            border: 1px solid rgb(209, 209, 209) !important;
+        }
+
     </style>
     <link rel="stylesheet" href="{{ asset('/css/notyf.min.css') }}">
 
@@ -109,16 +117,14 @@
 <body>
     <div class="flex flex-col md:flex-row">
         @include('dashboard-layouts.inc.sidebar')
-        {{-- <div class="w-full h-auto md:h-screen md:overflow-auto"> --}}
-        {{-- navbar --}}
-        <div class="flex-col w-full h-auto m-0 overflow-y-auto md:h-screen">
+        <div class="w-full h-auto md:h-screen md:overflow-auto">
+            {{-- navbar --}}
             @include('dashboard-layouts.inc.navbar')
             <div class="h-auto overflow-y-auto md:flex-1">
                 @yield('content')
             </div>
-        </div>
 
-        {{-- </div> --}}
+        </div>
     </div>
 
 

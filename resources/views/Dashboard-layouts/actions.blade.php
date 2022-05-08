@@ -31,4 +31,8 @@
         <a href="{{ route('updateRolePage', $id) }}" class="link"><i class="fa text-cyan-500 fa-edit"></i></a>
         <a class="link"><i class="text-red-500 fa fa-trash"></i></a>
     </div>
+
+@elseif($type == 'file')
+    {{-- <a class="link"><i class="text-blue-500 fa fa-eye"></i></a> --}}
+    <a target="_blank" href="{{ $link }}" class="link"><i class="mx-auto text-blue-800 fa fa-file"></i></a>
 @endif
