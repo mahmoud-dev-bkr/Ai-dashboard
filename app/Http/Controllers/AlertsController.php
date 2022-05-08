@@ -18,24 +18,26 @@ class AlertsController extends Controller
         return view("Dashboard-pages.Alerts.Alert");
     }
 
-
     public function getalertdata()
     {
         $query = Alert::query();
-        $data =  Datatables()
+        $data = Datatables()
             ->eloquent($query->latest())
-            ->addColumn('username', function (Alert $alert) {
-                $name = DB::table('alerts')->select("users.name")->join("users", "users.id", "=", "alerts.user_id")->get();
+            ->addColumn("username", function (Alert $alert) {
+                $name = DB::table("alerts")
+                    ->select("users.name")
+                    ->join("users", "users.id", "=", "alerts.user_id")
+                    ->get();
                 return $name;
             })
-            ->addColumn('message_type', function (Alert $alert) {
+            ->addColumn("message_type", function (Alert $alert) {
                 $msgtype = $alert->type;
                 return view("Dashboard-pages.Alerts.action", [
-                    'type' => 'alert',
-                    "msg_type" => $msgtype
+                    "type" => "alert",
+                    "msg_type" => $msgtype,
                 ]);
             })
-            ->addColumn('isActive', function (Alert $alert) {
+            ->addColumn("isActive", function (Alert $alert) {
                 $active = $alert->is_activate;
                 $id = $alert->id;
                 return view("Dashboard-pages.Alerts.action", [
@@ -44,7 +46,7 @@ class AlertsController extends Controller
                     "id" => $id,
                 ]);
             })
-            ->addColumn('action', function (Alert $alert) {
+            ->addColumn("action", function (Alert $alert) {
                 $id = $alert->id;
                 return view("Dashboard-pages.Alerts.action", [
                     "type" => "action",
@@ -64,9 +66,9 @@ class AlertsController extends Controller
 
         $payment_method->is_activate = $state ? false : true;
         $payment_method->save();
-        $state_text = $state ? 'not active any more' : 'active now';
+        $state_text = $state ? "not active any more" : "active now";
         return response()->json([
-            'msg' => 'Alert is ' .  $state_text
+            "msg" => "Alert is " . $state_text,
         ]);
     }
 
@@ -77,17 +79,18 @@ class AlertsController extends Controller
     }
     public function addalert()
     {
-        $users = DB::table("users")->select("id", "users.name")->get();
-        return view("Dashboard-pages.Alerts.insert", compact('users'));
+        // $users = DB::table("users")
+        // ->select("id", "users.name")
+        // ->get();
+        return view("Dashboard-pages.Alerts.insert");
     }
     public function storealert(Request $req)
     {
         $req->validate([
-            'msg_en' => "required",
-            'msg_ar' => 'required',
+            "msg_en" => "required",
+            "msg_ar" => "required",
             "start_date" => "required",
             "end_date" => "required",
-
         ]);
         $alert = new Alert();
         $alert->message_en = $req->msg_en;
@@ -97,5 +100,6 @@ class AlertsController extends Controller
         $alert->type = $req->type;
         $alert->user_id = Auth::id();
         $alert->save();
+        return response(["msg" => "inserted"]);
     }
 }

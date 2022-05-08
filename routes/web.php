@@ -136,6 +136,10 @@ Route::group(
                         AlertsController::class,
                         "addalert",
                     ])->name("insertalertPage");
+                     Route::post("storealert", [
+                         AlertsController::class, 
+                         "storealert"
+                    ])->name("storealert");
                 });
 
                 // start of roles routes
@@ -198,6 +202,7 @@ Route::group(
                             PlanController::class,
                             "insertPage",
                         ])->name("insertPlanPage");
+                        
                         // Create Post Route A new Plan
                         Route::post("/insert", [
                             PlanController::class,
