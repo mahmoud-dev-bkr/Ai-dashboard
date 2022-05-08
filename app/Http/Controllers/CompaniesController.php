@@ -91,6 +91,7 @@ class CompaniesController extends Controller
         $company->user_id = Auth::id();
         if ($req->active) {
             $company->isActive = true;
+            // create a payment details for the company
         }
 
         $company->save();
