@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AlertsController;
+use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\LandpageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\TermsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -44,6 +46,27 @@ Route::group(
             function () {
                 // main admin page
                 Route::get("/", [PagesController::class, "mainAdminPage"]);
+
+                // companies routes
+                Route::group(["prefix" => "company"], function () {
+                    Route::get("/insert", [
+                        CompaniesController::class,
+                        "inserPage",
+                    ]);
+                    Route::get("/", [
+                        CompaniesController::class,
+                        "companyPage",
+                    ])->name("indexPage");
+
+                    Route::get("/data", [
+                        CompaniesController::class,
+                        "getCompaniesData",
+                    ])->name("getCompaniesData");
+                    Route::post("/insert", [
+                        CompaniesController::class,
+                        "addCompany",
+                    ])->name("addCompany");
+                });
 
                 //start of users routes--------------------------------------------
                 Route::group(["prefix" => "users"], function () {
@@ -130,7 +153,19 @@ Route::group(
                     ])->name("createRole");
                 });
                 // end of roles routes
-
+                // start of terms routes
+                Route::group(["prefix" => "terms"], function () {
+                    Route::get("/", [TermsController::class, "termspage"]);
+                    Route::get("/isnert", [
+                        TermsController::class,
+                        "insertTermPage",
+                    ])->name("insertTermPage");
+                    Route::post("/isnert", [
+                        TermsController::class,
+                        "insert",
+                    ])->name("insertTerm");
+                });
+                // end of terms routes
                 // logout user
                 Route::delete("/logout", [
                     LoginController::class,

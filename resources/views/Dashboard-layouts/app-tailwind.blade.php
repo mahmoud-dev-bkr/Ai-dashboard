@@ -11,6 +11,30 @@
 
     {{-- inline styles --}}
     <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+        .arabic {
+            font-family: 'Droid Arabic Kufi', serif;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #ebebeb;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: #10326e;
+        }
+
         .dataTables_empty {
             background-color: rgb(189, 61, 61);
             color: white;
@@ -74,6 +98,14 @@
             outline-color: #f8f8f8
         }
 
+        .table thead th:first-child {
+            position: relative !important;
+        }
+
+        .table td {
+            border: 1px solid rgb(209, 209, 209) !important;
+        }
+
     </style>
     <link rel="stylesheet" href="{{ asset('/css/notyf.min.css') }}">
 
@@ -88,7 +120,10 @@
         <div class="w-full h-auto md:h-screen md:overflow-auto">
             {{-- navbar --}}
             @include('dashboard-layouts.inc.navbar')
-            @yield('content')
+            <div class="h-auto overflow-y-auto md:flex-1">
+                @yield('content')
+            </div>
+
         </div>
     </div>
 
