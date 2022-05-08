@@ -136,6 +136,7 @@ Route::group(
                         AlertsController::class,
                         "addalert",
                     ])->name("insertalertPage");
+                    Route::post("storealert", [AlertsController::class, "storealert"])->name("storealert");
                 });
 
                 // start of roles routes

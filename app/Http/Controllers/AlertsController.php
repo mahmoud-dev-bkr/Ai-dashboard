@@ -97,5 +97,6 @@ class AlertsController extends Controller
         $alert->type = $req->type;
         $alert->user_id = Auth::id();
         $alert->save();
+        return response(['msg' => "inserted"]);
     }
 }
