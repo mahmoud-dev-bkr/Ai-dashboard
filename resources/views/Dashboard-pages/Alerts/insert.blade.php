@@ -2,7 +2,7 @@
 @section('content')
 <div class="p-7">
     <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">Create a new Message Alert</h1>
-    {!! Form::open(['route' => 'addNewUser', 'class' => 'form-user']) !!}
+    {!! Form::open(['route' => 'storealert', 'class' => 'form-user']) !!}
    
     <div class="items-center my-2 input-group">
         <label class="w-40">Message (en)</label>
@@ -13,7 +13,7 @@
 
     <div class="items-center my-2 input-group">
         <label class="w-40">Message (ar)</label>
-        <input type="text" class="input bg-base-300/50 w-full" name="msg_en" />
+        <input type="text" class="input bg-base-300/50 w-full" name="msg_ar" />
         <span id="msgar-error" class="text-red-700"></span>
     
     </div>

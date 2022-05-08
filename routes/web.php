@@ -151,6 +151,10 @@ Route::group(
                         AlertsController::class,
                         "addalert",
                     ])->name("insertalertPage");
+                     Route::post("storealert", [
+                         AlertsController::class, 
+                         "storealert"
+                    ])->name("storealert");
                 });
 
                 // start of roles routes
@@ -195,6 +199,45 @@ Route::group(
                     ])->name("insertTerm");
                 });
                 // end of terms routes
+                // ----------------------------------< Palne >----------------------------------
+                Route::group(
+                    [
+                        "prefix" => "Plan",
+                        "middleware" => ["user.auth"],
+                    ],
+                    function () {
+                        Route::get("/", [PlanController::class, "index"]);
+                        // DataTable Get  Plans
+                        Route::get("/data", [
+                            PlanController::class,
+                            "getPlansData",
+                        ])->name("getPlansData");
+                        // Insert A new Plan
+                        Route::get("/insert", [
+                            PlanController::class,
+                            "insertPage",
+                        ])->name("insertPlanPage");
+                        
+                        // Create Post Route A new Plan
+                        Route::post("/insert", [
+                            PlanController::class,
+                            "createPlan",
+                        ])->name("insertPlan");
+                        // Edit view Plan
+                        Route::get("/update/{plan_id}", [
+                            PlanController::class,
+                            "EditPage",
+                        ])->name("EditPage");
+                        // Edit Post Route A OLD Plan
+                        Route::post("/update", [
+                            PlanController::class,
+                            "EditPlan",
+                        ])->name("EditPlan");
+                    }
+                );
+
+                // ----------------------------------< End Plan >--------------------------------
+
                 // logout user
                 Route::delete("/logout", [
                     LoginController::class,
