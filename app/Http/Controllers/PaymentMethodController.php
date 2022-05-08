@@ -10,7 +10,7 @@ class PaymentMethodController extends Controller
     //
     public function PaymentMethodpage()
     {
-        return view('Dashboard-pages.PaymentMethod.Payment_method');
+        return view("Dashboard-pages.PaymentMethod.Payment_method");
     }
 
     public function getpaymentmethoddata()
@@ -18,7 +18,7 @@ class PaymentMethodController extends Controller
         $query = PaymentMethod::query();
         $data = Datatables()
             ->eloquent($query->latest())
-            ->addColumn('isActive', function (PaymentMethod $pay) {
+            ->addColumn("isActive", function (PaymentMethod $pay) {
                 $active = $pay->isActive;
                 $id = $pay->id;
                 return view("Dashboard-pages.PaymentMethod.action", [
@@ -40,10 +40,15 @@ class PaymentMethodController extends Controller
 
         $payment_method->isActive = $state ? false : true;
         $payment_method->save();
-        $state_text = $state ? 'not active any more' : 'active now';
-        return response()->json([
-            'msg' => 'payment method is ' .  $state_text
-        ]);
+        if ($state) {
+            return response()->json([
+                "error" => "payment method is not active any more",
+            ]);
+        } else {
+            return response()->json([
+                "msg" => "payment method is active now",
+            ]);
+        }
     }
 
     // public function changeStatus(Request $request)

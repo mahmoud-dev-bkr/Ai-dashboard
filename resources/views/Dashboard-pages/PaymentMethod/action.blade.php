@@ -1,7 +1,8 @@
 @if ($type == 'togglePMethodsActive')
-    @if ($active_state)
-        <button onclick="toggleactivate('{{$id}}','{{$active_state}}')" class="btn btn-error">Disactive</button>    
-    @else
-        <button onclick="toggleactivate('{{$id}}', '{{$active_state}}')" class="btn btn-primary">Active</button>
-    @endif
+
+
+    <input type="checkbox" onchange="toggleactivate('{{ $id }}','{{ $active_state }}')" class="toggle"
+        name="active" {{ $active_state ? 'checked' : '' }} />
+
+
 @endif

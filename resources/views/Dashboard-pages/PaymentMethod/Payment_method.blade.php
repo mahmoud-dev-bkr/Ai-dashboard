@@ -87,8 +87,12 @@
                         })
                     });
                     const content = await rawResponse.json();
-                    console.log(content);
-                    notyf.success(content.msg);
+                    // console.log(content);
+                    if (content.error) {
+                        notyf.error(content.error);
+                    } else {
+                        notyf.success(content.msg);
+                    }
                     paymentDT.ajax.reload()
                 } catch (err) {
                     console.log(err);
