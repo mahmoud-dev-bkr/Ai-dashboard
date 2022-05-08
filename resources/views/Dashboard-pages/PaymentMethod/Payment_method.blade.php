@@ -29,9 +29,8 @@
 @section('scripts')
     <script>
         let paymentDT = null;
-
         function setusersDT() {
-            var url = "{{ route('getPaymentData') }}";
+            var url = "{{route('getPaymentData')}}";
             paymentDT = $("#paymentDT").DataTable({
                 processing: true,
                 serverSide: true,
@@ -40,14 +39,12 @@
                 buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
                 // sorting: [0, "DESC"],
                 ajax: url,
-
                 language: {
                     paginate: {
                         "previous": "<i class='text-lg cursor-pointer fa text-secondary fa-caret-left'></i>",
                         "next": "<i class='text-lg cursor-pointer fa text-secondary fa-caret-right'></i>",
                     },
                 },
-
                 columns: [
                     {
                         data: "name"
@@ -67,7 +64,6 @@
                     {
                         data: "isActive"
                     },
-
                 ],
             });
         }

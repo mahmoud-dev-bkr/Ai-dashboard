@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlertsController;
 use App\Http\Controllers\LandpageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
@@ -92,6 +93,13 @@ Route::group(
                         ])->name("toggleactivate");
                     }
                 );
+                Route::group(["prefix" => "alerts"], function () {
+                    Route::get("/", [AlertsController::class, "alertpage"]);
+                    Route::get("/data", [AlertsController::class, "getalertdata"])->name("getalertdata");
+                    Route::patch("togglealertactivate", [AlertsController::class, "toggleactivate"])->name("togglealertactivate");
+                    Route::get("deletealert/{id}", [AlertsController::class, "deletealert"]);
+                    Route::get("insertalert", [AlertsController::class, "addalert"])->name("insertalertPage");
+                });
 
                 // start of roles routes
                 Route::group(["prefix" => "roles"], function () {

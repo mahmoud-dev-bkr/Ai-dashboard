@@ -29,6 +29,13 @@
         {{-- @endif --}}
 
 
+        {{-- @if (Auth::user() && Auth::user()->hasRole('super_admin')) --}}
+        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/alerts') ? 'dashboard-item-active' : '' }}
+        " href="{{url('admin/alerts')}}">
+            Alert Messages</a>
+        {{-- @endif --}}
+        
 
 
 
