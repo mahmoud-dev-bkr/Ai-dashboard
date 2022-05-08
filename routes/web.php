@@ -67,8 +67,10 @@ Route::group(
                         "addCompany",
                     ])->name("addCompany");
                 });
+                // start of plans routes-------------------------------------------
 
-                //start of users routes--------------------------------------------
+                // end of plans routes-------------------------------------------
+                //start of users routes---------------------------------------------
                 Route::group(["prefix" => "users"], function () {
                     ///////////////////////////////////////// users page
                     Route::get("/", [UsersController::class, "usersPage"]);
@@ -118,10 +120,22 @@ Route::group(
                 );
                 Route::group(["prefix" => "alerts"], function () {
                     Route::get("/", [AlertsController::class, "alertpage"]);
-                    Route::get("/data", [AlertsController::class, "getalertdata"])->name("getalertdata");
-                    Route::patch("togglealertactivate", [AlertsController::class, "toggleactivate"])->name("togglealertactivate");
-                    Route::get("deletealert/{id}", [AlertsController::class, "deletealert"]);
-                    Route::get("insertalert", [AlertsController::class, "addalert"])->name("insertalertPage");
+                    Route::get("/data", [
+                        AlertsController::class,
+                        "getalertdata",
+                    ])->name("getalertdata");
+                    Route::patch("togglealertactivate", [
+                        AlertsController::class,
+                        "toggleactivate",
+                    ])->name("togglealertactivate");
+                    Route::get("deletealert/{id}", [
+                        AlertsController::class,
+                        "deletealert",
+                    ]);
+                    Route::get("insertalert", [
+                        AlertsController::class,
+                        "addalert",
+                    ])->name("insertalertPage");
                 });
 
                 // start of roles routes
