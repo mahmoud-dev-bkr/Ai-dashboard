@@ -50,12 +50,4 @@ class PaymentMethodController extends Controller
             ]);
         }
     }
-
-    // public function changeStatus(Request $request)
-    // {
-    //     $paymentmethod = PaymentMethod::find($request->user_id);
-    //     $$paymentmethod->isActive = $request->status;
-    //     $$paymentmethod->save();
-    //     return response()->json(['success' => 'Status change successfully.']);
-    // }
 }
