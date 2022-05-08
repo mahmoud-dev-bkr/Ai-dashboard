@@ -106,6 +106,16 @@ Route::group(
                         "insertPage",
                     ])->name("insertRolePage");
 
+                    Route::get("/update/{id}", [
+                        RolesController::class,
+                        "updatePage",
+                    ])->name("updateRolePage");
+
+                    Route::put("/update/{id}", [
+                        RolesController::class,
+                        "update",
+                    ])->name("updateRole");
+
                     Route::post("/insert", [
                         RolesController::class,
                         "createRole",

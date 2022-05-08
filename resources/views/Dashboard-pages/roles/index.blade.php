@@ -18,6 +18,7 @@
                 <tr>
                     <th>Role</th>
                     <th>users</th>
+                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,7 +52,10 @@
                         data: "display_name"
                     },
                     {
-                        data: "usersNo"
+                        data: "users"
+                    },
+                    {
+                        data: "actions"
                     }
                 ],
             });

@@ -19,11 +19,18 @@ class RolesController extends Controller
         $query = Role::query();
         $data = Datatables()
             ->eloquent($query->latest())
-            ->addColumn("usersNo", function (Role $role) {
+            ->addColumn("users", function (Role $role) {
                 $users = $role->users;
                 return view("dashboard-layouts.actions", [
                     "users" => $users,
                     "type" => "roles_users",
+                ]);
+            })
+            ->addColumn("actions", function (Role $role) {
+                $roleId = $role->id;
+                return view("dashboard-layouts.actions", [
+                    "id" => $roleId,
+                    "type" => "roles_actions",
                 ]);
             })
             ->toJson();
@@ -63,5 +70,37 @@ class RolesController extends Controller
             $role->attachPermission($p);
         }
         return response()->json(["msg" => "role is created successfully"]);
+    }
+
+    public function updatePage($id)
+    {
+        $permissions = Permission::all();
+        $role = Role::find($id);
+        return view(
+            "dashboard-pages.roles.update",
+            compact("permissions", "role")
+        );
+    }
+    public function update(Request $req, $id)
+    {
+        $validator = $req->validate(
+            [
+                "name" => "required|alpha_dash|unique:roles,name," . $id,
+                "display_name" => "required",
+                "permissions" => "required",
+                "note" => "",
+            ],
+            [
+                "permissions.required" =>
+                    "you should select at least on permission",
+            ]
+        );
+        $role = Role::find($id);
+        $role->name = $validator["name"];
+        $role->display_name = $validator["display_name"];
+        $role->note = $validator["note"];
+        $role->syncPermissions($req->permissions);
+        $role->save();
+        return response()->json(["msg" => "role is updated successfully"]);
     }
 }
