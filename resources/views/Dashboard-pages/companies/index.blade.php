@@ -10,7 +10,7 @@
     <div class="overflow-x-auto p-7">
 
 
-        <table class="table w-full my-4 table-zebra table-compact" id="companiesDt">
+        <table class="table w-full my-4 table-zebra" id="companiesDt">
             <thead>
                 <tr>
 

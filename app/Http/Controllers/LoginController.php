@@ -32,6 +32,17 @@ class LoginController extends Controller
         try {
             $credentials = request(["email", "password"]);
 
+            if (!$user->isActive) {
+                return response()->json(
+                    [
+                        "status_code" => 401,
+                        "message" =>
+                            "sorry there is a problem with your account try again later",
+                    ],
+                    401
+                );
+            }
+
             if (!Auth::attempt($credentials)) {
                 RateLimiter::hit($this->throttleKey(), $seconds = 300);
 

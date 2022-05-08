@@ -2,49 +2,45 @@
 
 @section('content')
     <div class="p-7">
-        <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">Create a new admin user</h1>
-        {!! Form::open(['route' => 'addNewUser', 'class' => 'form-user']) !!}
+        <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">update user</h1>
+        {!! Form::open(['route' => ['updateUser', 'id' => $user->id], 'class' => 'form-user', 'method' => 'POST']) !!}
         <div class="items-center my-2 input-group">
             <label class="w-40">Name (en)</label>
-            <input type="text" class="input bg-base-300/50" name="name_en" />
+            <input type="text" class="input bg-base-300/50" value="{{ $user->name_en }}" name="name_en" />
         </div>
 
         <div class="items-center my-2 input-group">
             <label class="w-40">Name (ar)</label>
-            <input type="text" class="input bg-base-300/50" name="name_ar" />
+            <input type="text" class="input bg-base-300/50" value="{{ $user->name_ar }}" name="name_ar" />
         </div>
 
         <div class="items-center my-2 input-group">
             <label class="w-40">Email</label>
-            <input type="email" class="input bg-base-300/50" name="email" />
+            <input type="email" class="input bg-base-300/50" value="{{ $user->email }}" name="email" />
         </div>
 
-        <div class="items-center my-2 input-group">
-            <label class="w-40">Initial password</label>
-            <input type="text" class="input bg-base-300/50" name="password" value="123456" />
-        </div>
 
         <div class="items-center my-2 input-group">
             <label class="w-40">Telephone 1</label>
-            <input type="text" class="input bg-base-300/50" name="tel1" />
+            <input type="text" class="input bg-base-300/50" value="{{ $user->Tel_1 }}" name="tel1" />
         </div>
 
 
         <div class="items-center my-2 input-group">
             <label class="w-40">Telephone 2</label>
-            <input type="text" class="input bg-base-300/50" name="tel2" />
+            <input type="text" class="input bg-base-300/50" value="{{ $user->Tel_2 }}" name="tel2" />
         </div>
 
 
         <div class="items-center my-2 input-group">
             <label class="w-40">Telephone 3</label>
-            <input type="text" class="input bg-base-300/50" name="tel3" />
+            <input type="text" class="input bg-base-300/50" value="{{ $user->Tel_3 }}" name="tel3" />
         </div>
 
 
         <div class="items-center my-2 input-group">
             <label class="w-40">Address</label>
-            <input type="text" class="input bg-base-300/50" name="address" />
+            <input type="text" class="input bg-base-300/50" value="{{ $user->address }}" name="address" />
         </div>
 
         <div class="items-center my-2 input-group">
@@ -52,14 +48,15 @@
             <select name="role" class=" select select-bordered bg-base-300/50">
                 <option disabled selected>Pick a role</option>
                 @foreach ($roles as $r)
-                    <option value="{{ $r->name }}">{{ $r->display_name }}</option>
+                    <option {{ $user->role->first()->id == $r->id ? 'selected' : '' }} value="{{ $r->name }}">
+                        {{ $r->display_name }}</option>
                 @endforeach
             </select>
         </div>
 
 
         <button type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light"
-            class="block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Add
+            class="block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Update
             user</button>
 
         <svg role="status" id="loader"
@@ -81,30 +78,29 @@
     <script type="module">
         $(document).ready(function() {
             // ////////////////////////////
-
             $(".form-user").submit(function(e) {
-                e.preventDefault();
                 $('#loader').removeClass('hidden')
+                e.preventDefault();
                 $.ajax({
-                    url: "{{ route('addNewUser') }}",
+                    url: "{{ route('updateUser', ['id' => $user->id]) }}",
                     headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                        // "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+
                     },
                     type: "POST",
                     data: new FormData(this),
                     processData: false,
                     contentType: false,
                     success: function(data) {
-                        // console.log(data);
+                        console.log(data);
                         $('#loader').addClass('hidden')
-
                         let msg = data.msg;
                         notyf.success(msg);
                     },
                     error: function(err) {
                         $('#loader').addClass('hidden')
 
-                        // console.log(err);
+                        console.log(err);
                         if (err.status == 422) {
                             // validation error
                             let message = err.responseJSON.message.split('.')[0]

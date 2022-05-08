@@ -16,8 +16,8 @@
                     <th>Account number</th>
                     <th>Note</th>
                     <th>Added date</th>
-                    <th>Modified date</th>                    
-                    <th>Activate</th>                    
+                    <th>Modified date</th>
+                    <th>Activate</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,8 +29,9 @@
 @section('scripts')
     <script>
         let paymentDT = null;
+
         function setusersDT() {
-            var url = "{{route('getPaymentData')}}";
+            var url = "{{ route('getPaymentData') }}";
             paymentDT = $("#paymentDT").DataTable({
                 processing: true,
                 serverSide: true,
@@ -45,8 +46,7 @@
                         "next": "<i class='text-lg cursor-pointer fa text-secondary fa-caret-right'></i>",
                     },
                 },
-                columns: [
-                    {
+                columns: [{
                         data: "name"
                     },
                     {
@@ -70,31 +70,32 @@
         $(function() {
             setusersDT();
         });
-      
+
         const toggleactivate = (id, activeState) => {
-    (async () => {
-        try{const rawResponse = await fetch('{{ route("toggleactivate") }}', {
-            method: 'PATCH',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{csrf_token()}}'
-            },
-            body: JSON.stringify({
-                id,
-                active_state: activeState
+            (async () => {
+                try {
+                    const rawResponse = await fetch('{{ route('toggleactivate') }}', {
+                        method: 'PATCH',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            id,
+                            active_state: activeState
+                        })
+                    });
+                    const content = await rawResponse.json();
+                    console.log(content);
+                    notyf.success(content.msg);
+                    paymentDT.ajax.reload()
+                } catch (err) {
+                    console.log(err);
+                }
             })
-        });
-        const content = await rawResponse.json();
-        console.log(content);
-        notyf.success(content.msg);
-        paymentDT.ajax.reload()
-    }
-        catch(err){
-            console.log(err);
+            ();
         }
-    })
-    ();
-}
+
     </script>
 @endsection

@@ -135,6 +135,11 @@
             <label class="font-bold w-80">activate</label>
             <input type="checkbox" class="toggle" name="active" checked />
         </div>
+        <p class="font-bold text-gray-400 arabic">ملاحظة :اذا تم تفعيل الشركة سيتم تخزين وصل دفع للشركة للباقة
+            المختارة</p>
+        <p class="font-bold text-gray-400">note : if the company is active a new payment detail will be registered with the
+            selected plan</p>
+
 
 
 

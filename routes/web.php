@@ -36,7 +36,7 @@ Route::group(
                 Route::post("/login_request", [
                     LoginController::class,
                     "sign_in",
-                ]);
+                ])->name("loginRequest");
             }
         );
         ///////////////////////////////////////////////////
@@ -83,6 +83,21 @@ Route::group(
                     ])->name("insertUserPage");
 
                     ////////////////////////////////////////////////////////
+                    ////////////////////page for updating user////////////////////////////
+                    Route::get("/update/{id}", [
+                        UsersController::class,
+                        "updatePage",
+                    ])->name("updatePage");
+
+                    Route::post("/update/{id}", [
+                        UsersController::class,
+                        "update",
+                    ])->name("updateUser");
+
+                    Route::patch("/toggle", [
+                        UsersController::class,
+                        "toggleActive",
+                    ])->name("toggleActiveUser");
                     ////////////////////////////////////////////////////////////////////////////
                     Route::post("/insert", [
                         UsersController::class,

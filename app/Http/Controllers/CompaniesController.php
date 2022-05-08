@@ -30,6 +30,12 @@ class CompaniesController extends Controller
                     "type" => "file",
                 ]);
             })
+            ->editColumn("email", function (Company $c) {
+                return view("dashboard-layouts.actions", [
+                    "email" => $c->email,
+                    "type" => "mailto",
+                ]);
+            })
             ->addColumn("user", function (Company $c) {
                 if ($c->user_id) {
                     return User::find($c->user_id)->name_en;

@@ -17,6 +17,8 @@
                     <th>Telephone 2</th>
                     <th>Telephone 3</th>
                     <th>Role(s)</th>
+                    <th>Actions</th>
+                    <th>active</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +66,12 @@
                     },
                     {
                         data: "roles"
+                    },
+                    {
+                        data: "actions"
+                    },
+                    {
+                        data: "active"
                     }
 
                 ],
@@ -73,5 +81,40 @@
             setusersDT();
         });
 
+        const toggleActivation = (event, id) => {
+            (async () => {
+                try {
+                    let checked = event.target.checked;
+
+                    const rawResponse = await fetch('{{ route('toggleActiveUser') }}', {
+                        method: 'PATCH',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            id,
+                            checked
+                        })
+                    });
+                    const content = await rawResponse.json();
+                    console.log(content);
+
+                    if (content.error) {
+                        notyf.error(content.error);
+                    } else {
+                        notyf.success(content.msg);
+                    }
+                } catch (err) {
+
+                    console.log(err);
+                }
+            })
+            ();
+
+        }
+
     </script>
+
 @endsection

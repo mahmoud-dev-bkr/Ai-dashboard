@@ -95,7 +95,7 @@
             password = $("#password").val();
 
             $.ajax({
-                url: 'login_request',
+                url: '{{ route('loginRequest') }}',
                 type: "POST",
                 data: {
                     email: email,
@@ -118,7 +118,7 @@
                         $("#password-error").text(error.responseJSON.errors.password);
                     } else if (error.status == 401) {
                         $('.error-msg').css("display", "block")
-                        $("#error-msg").text("Invalid email and Password");
+                        $("#error-msg").text(error.responseJSON.message);
                     } else if (error.status == 500) {
                         $('.error-msg').css("display", "block")
                         $("#error-msg").text("Login will be Pending for five minutes");
