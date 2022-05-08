@@ -1,5 +1,4 @@
 @extends('dashboard-layouts.app-tailwind')
-
 @section('content')
     <div class="overflow-x-auto p-7">
         {{-- <div class="my-10">
@@ -7,6 +6,8 @@
                     class="fa fa-plus"></i></a>
             <span class="mx-3 text-lg font-bold">create a new User</span>
         </div> --}}
+
+
 
         <table class="table w-full my-4 table-zebra" id="paymentDT">
             <thead>
@@ -31,13 +32,13 @@
 
         function setusersDT() {
             var url = "{{ route('getPaymentData') }}";
-            usersDT = $("#paymentDT").DataTable({
+            paymentDT = $("#paymentDT").DataTable({
                 processing: true,
                 serverSide: true,
                 pageLength: 7,
                 dom: "Bfrtip",
                 buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
-                sorting: [0, "DESC"],
+                // sorting: [0, "DESC"],
                 ajax: url,
 
                 language: {
@@ -74,29 +75,30 @@
             setusersDT();
         });
       
-        const toggleactivate = (id, type) => {
-        (async () => {
-            const rawResponse = await fetch('{{ route("toggleactivate") }}', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                
-                },
-                body: JSON.stringify({
-                    id,
-                    type
-                })
-            });
-            const content = await rawResponse.json();
-            notyf.success("Payment Method Activated");
-            requestsDatatable.ajax.reload();
-            studentRegisterDatatable.ajax.reload();
-            // $("#numRequests").text(Number($("#numRequests").text()) - 1);
-        
-        })
-        ();
+        const toggleactivate = (id, activeState) => {
+    (async () => {
+        try{const rawResponse = await fetch('{{ route("toggleactivate") }}', {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{csrf_token()}}'
+            },
+            body: JSON.stringify({
+                id,
+                active_state: activeState
+            })
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+        notyf.success(content.msg);
+        paymentDT.ajax.reload()
     }
+        catch(err){
+            console.log(err);
+        }
+    })
+    ();
+}
     </script>
 @endsection

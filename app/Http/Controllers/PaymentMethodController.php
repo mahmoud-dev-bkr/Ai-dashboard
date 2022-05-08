@@ -22,7 +22,7 @@ class PaymentMethodController extends Controller
                 $active = $pay->isActive;
                 $id = $pay->id;
                 return view("Dashboard-pages.PaymentMethod.action", [
-                    "type" => "is_active",
+                    "type" => "togglePMethodsActive",
                     "active_state" => $active,
                     "id" => $id,
                 ]);
@@ -34,14 +34,16 @@ class PaymentMethodController extends Controller
     public function toggleactivate(Request $req)
     {
         $id = $req->id;
-        $type = $req->isActive;
+        $state = $req->active_state;
 
-        $activeprocess = PaymentMethod::find($id);
-        if ($type == 1) {
-            $activeprocess->isActive = false;
-        }
-        $activeprocess->save();
-        return response()->json(['msg' => "Payment Method : " . $activeprocess->name . ' is activated now']);
+        $payment_method = PaymentMethod::find($id);
+
+        $payment_method->isActive = $state ? false : true;
+        $payment_method->save();
+        $state_text = $state ? 'not active any more' : 'active now';
+        return response()->json([
+            'msg' => 'payment method is ' .  $state_text
+        ]);
     }
 
     // public function changeStatus(Request $request)

@@ -86,7 +86,7 @@ Route::group(
                             PaymentMethodController::class,
                             "getpaymentmethoddata",
                         ])->name("getPaymentData");
-                        Route::post("/toggleactivate", [
+                        Route::patch("/toggleactivate", [
                             PaymentMethodController::class,
                             "toggleactivate",
                         ])->name("toggleactivate");
