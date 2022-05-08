@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\TermsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -122,7 +123,19 @@ Route::group(
                     ])->name("createRole");
                 });
                 // end of roles routes
-
+                // start of terms routes
+                Route::group(["prefix" => "terms"], function () {
+                    Route::get("/", [TermsController::class, "termspage"]);
+                    Route::get("/isnert", [
+                        TermsController::class,
+                        "insertTermPage",
+                    ])->name("insertTermPage");
+                    Route::post("/isnert", [
+                        TermsController::class,
+                        "insert",
+                    ])->name("insertTerm");
+                });
+                // end of terms routes
                 // logout user
                 Route::delete("/logout", [
                     LoginController::class,

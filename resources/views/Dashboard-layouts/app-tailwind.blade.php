@@ -11,6 +11,30 @@
 
     {{-- inline styles --}}
     <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+        .arabic {
+            font-family: 'Droid Arabic Kufi', serif;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #ebebeb;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: #10326e;
+        }
+
         .dataTables_empty {
             background-color: rgb(189, 61, 61);
             color: white;
@@ -85,11 +109,16 @@
 <body>
     <div class="flex flex-col md:flex-row">
         @include('dashboard-layouts.inc.sidebar')
-        <div class="w-full h-auto md:h-screen md:overflow-auto">
-            {{-- navbar --}}
+        {{-- <div class="w-full h-auto md:h-screen md:overflow-auto"> --}}
+        {{-- navbar --}}
+        <div class="flex-col w-full h-auto m-0 overflow-y-auto md:h-screen">
             @include('dashboard-layouts.inc.navbar')
-            @yield('content')
+            <div class="h-auto overflow-y-auto md:flex-1">
+                @yield('content')
+            </div>
         </div>
+
+        {{-- </div> --}}
     </div>
 
 
