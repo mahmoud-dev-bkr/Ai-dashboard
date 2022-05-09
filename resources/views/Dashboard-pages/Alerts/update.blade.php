@@ -2,7 +2,7 @@
 @section('content')
     <div class="p-7">
         <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">update Message Alert</h1>
-        {!! Form::open(['route' => 'EditAlert', 'class' => 'form-user']) !!}
+        {!! Form::open(['route' => 'EditAlert', 'class' => 'form-alert']) !!}
 
         <div class="items-center my-2 input-group">
             <label class="w-40">Message (en)</label>
@@ -49,7 +49,42 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
+<script type="module">
+    $(document).ready(function() {
+        // ////////////////////////////
+        $(".form-alert").submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('EditAlert') }}",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                type: "POST",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    // $('#loader').addClass('hidden')
 
-    </script>
+                    console.log(data);
+                    let msg = data.msg;
+                    notyf.success(msg);
+                },
+                error: function(err) {
+                    // $('#loader').addClass('hidden')
+
+                    if (err.status == 422) {
+                        // validation error
+                        let message = err.responseJSON.message.split('.')[0]
+                        notyf.error(message);
+                    } else if (err.status == 401) {
+
+                    }
+                }
+            });
+        });
+
+    });
+</script>   
+
 @endsection

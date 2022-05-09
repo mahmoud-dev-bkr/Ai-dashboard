@@ -134,6 +134,14 @@ Route::group(
                             PaymentMethodController::class,
                             "toggleactivate",
                         ])->name("toggleactivate");
+                        Route::get("addpaymentmethod", [
+                            PaymentMethodController::class,
+                            "insertpaymentmethod"
+                        ])->name("addpaymentmethod");
+                        Route::post("storepaymentmethod", [
+                            PaymentMethodController::class,
+                            "storepaymentmethod"
+                        ])->name("storepaymentmethod");
                     }
                 );
                 Route::group(["prefix" => "alerts"], function () {
@@ -267,7 +275,6 @@ Route::group(
                         ])->name("EditPlan");
                     }
                 );
-
                 Route::group(["prefix" => "profile"], function () {
                     Route::get("/", [ProfileController::class, "profilepage"]);
                     Route::get("/changepassword", [ProfileController::class, "changepassword"]);
