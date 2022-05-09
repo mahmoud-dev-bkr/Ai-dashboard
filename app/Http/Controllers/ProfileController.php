@@ -13,11 +13,16 @@ class ProfileController extends Controller
     //profile view
     public function profilepage()
     {
-        $id = Auth::id();
-        $users = DB::table("users")->where('id', $id)->first();
-        $user_role = DB::table("role_user")->select("users.name")->join("users", 'users.id', '=', 'role_user.user_id')->where('role_user.user_id', '=', $id)->first();
+        // $id = Auth::id();
+        // $users = DB::table("users")->where('id', $id)->first();
+        // $user_role = DB::table("role_user")->select("users.name")->join("users", 'users.id', '=', 'role_user.user_id')->where('role_user.user_id', '=', $id)->first();
         // dd($user_role);
-        return view('Dashboard-pages.Profile.profile', compact('users', 'user_role'));
+        $users = Auth::user();
+        $user_role = $users->role->first();
+        return view(
+            "Dashboard-pages.Profile.profile",
+            compact("users", "user_role")
+        );
     }
     public function changepassword()
     {
@@ -27,25 +32,24 @@ class ProfileController extends Controller
     {
         # Validation
         $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed',
+            "old_password" => "required",
+            "new_password" => "required|confirmed",
         ]);
         #Match The Old Password
         if (!Hash::check($request->old_password, auth()->user()->password)) {
             // return back()->with("error", "Old Password Doesn't match!");
             return response()->json([
-                'error' => "Old Password Doesn't match!"
+                "error" => "Old Password Doesn't match!",
             ]);
         }
 
-
         #Update the new Password
         User::whereId(auth()->user()->id)->update([
-            'password' => Hash::make($request->new_password)
+            "password" => Hash::make($request->new_password),
         ]);
         // return back()->with("status", "Password changed successfully!");
         return response()->json([
-            'success' => "Password changed successfully!"
+            "success" => "Password changed successfully!",
         ]);
     }
 }

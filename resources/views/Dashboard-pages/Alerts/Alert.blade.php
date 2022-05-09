@@ -18,8 +18,8 @@
                 <th>Created Date</th>
                 <th>Modify Data</th>
                 <th>Message Type</th>
-                <th>Action</th>
                 <th>Activate</th>     
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
