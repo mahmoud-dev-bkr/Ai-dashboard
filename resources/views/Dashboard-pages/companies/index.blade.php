@@ -16,6 +16,7 @@
 
                     <th>Name (en)</th>
                     <th>Name (ar)</th>
+                    <th>registration number</th>
                     <th>Tel 1</th>
                     <th>Tel 2</th>
                     <th>Tel 3</th>
@@ -63,6 +64,9 @@
                     },
                     {
                         data: "name_ar"
+                    },
+                    {
+                        data: 'registration_num'
                     },
                     {
                         data: "Tel_1"
