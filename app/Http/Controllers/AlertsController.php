@@ -52,10 +52,12 @@ class AlertsController extends Controller
                 ]);
             })
             ->addColumn("action", function (Alert $alert) {
+                $active = $alert->is_activate;
                 $id = $alert->id;
                 return view("Dashboard-pages.Alerts.action", [
                     "type" => "action",
                     "id" => $id,
+                    "active_state" => $active,
                 ]);
             })
             ->toJson();

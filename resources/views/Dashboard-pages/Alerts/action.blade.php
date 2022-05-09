@@ -14,16 +14,17 @@
     @endif
 @endif
 @if ($type == 'action')
-
     {{-- <a class="show-alert-delete-box" href="{{ url("admin/alerts/deletealert/{$id}") }}"><i class="text-2xl fa fa-trash red me-2"></i></a> --}}
     <a href="{{ url("admin/alerts/update/{$id}") }}"><i class="text-2xl fa fa-pen text-primary"></i></a>
-     <form method="POST" action="{{ route('deletealert', $id) }}">
-        @csrf
-        <input name="_method" type="hidden" value="DELETE">
-        <button type="submit" class="show-alert-delete-box" data-toggle="tooltip" title='Delete'><i class="text-2xl fa fa-trash red "></i></button>
-    </form> 
-    
-    @endif
+       
+        @if (!$active_state)
+            <form method="POST" action="{{ route('deletealert', $id) }}">
+                @csrf
+                <input name="_method" type="hidden" value="DELETE">
+                <button type="submit" class="show-alert-delete-box" data-toggle="tooltip" title='Delete'><i class="text-2xl fa fa-trash red "></i></button>
+            </form> 
+        @endif
+@endif
 @if ($type == 'alert')
     <p class="bg-{{ $msg_type }}">{{ $msg_type }}</p>
 @endif
