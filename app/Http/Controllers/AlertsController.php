@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Alert;
 use App\Models\Plan;
 use App\Models\User;
@@ -90,21 +91,24 @@ class AlertsController extends Controller
     }
     public function storealert(Request $req)
     {
-        $req->validate([
+        $validiate = $req->validate([
             "msg_en" => "required",
             "msg_ar" => "required",
             "start_date" => "required",
             "end_date" => "required",
+            "type" => "",
         ]);
         $alert = new Alert();
-        $alert->message_en = $req->msg_en;
-        $alert->message_ar = $req->msg_ar;
-        $alert->start_date = $req->start_date;
-        $alert->end_date = $req->end_date;
-        $alert->type = $req->type;
+        $alert->message_en = $validiate['msg_en'];
+        $alert->message_ar = $validiate['msg_ar'];
+        $alert->start_date = $validiate['start_date'];
+        $alert->end_date = $validiate['end_date'];
+        $alert->type = $validiate['type'];
         $alert->user_id = Auth::id();
         $alert->save();
-        return response(["msg" => "inserted"]);
+        return response()->json([
+            "msg" => "a new Alert is added successfully",
+        ]);
     }
     public function EditPage($alert_id)
     {

@@ -91,11 +91,15 @@ class PlanController extends Controller
             })
             ->addColumn("edit", function (Plan $plan) {
                 $Admin_id = $plan->update_user_id;
-                $Admin = DB::table("plans")
-                    ->join("users", "plans.create_user_id", "=", "users.id")
-                    ->where("plans.create_user_id", $Admin_id)
-                    ->get();
-                return $Admin[0]->name_en;
+                if ($Admin_id == null) {
+                    return "-";
+                } else {
+                    $Admin = DB::table("plans")
+                        ->join("users", "plans.create_user_id", "=", "users.id")
+                        ->where("plans.create_user_id", $Admin_id)
+                        ->get();
+                    return $Admin[0]->name_en;
+                }
             })
             // Here Get A Status OF This Plan 0 => Not Activated 1 => Activate
             // Note You Must To Be Migrate To => Add The Status Plan

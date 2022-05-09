@@ -3,7 +3,7 @@
     <div class="p-7">
 
         <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">Create a Payment Manually</h1>
-        {!! Form::open(['route' => 'storepaymentdetails', 'class' => 'form-user']) !!}
+        {!! Form::open(['route' => 'storepaymentdetails', 'class' => 'payment-form']) !!}
         <div class="items-center my-2 input-group">
             <label class="block w-40">Company</label>
             <select name="company" class=" select select-bordered bg-base-300/50 w-80">
@@ -62,4 +62,46 @@
     </div>
 @endsection
 @section('scripts')
+
+<script type="module">
+    $(document).ready(function() {
+        // ////////////////////////////
+
+        $(".payment-form").submit(function(e) {
+            // $('#loader').removeClass('hidden')
+
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('storepaymentdetails') }}",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                type: "POST",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    // $('#loader').addClass('hidden')
+
+                    console.log(data);
+                    let msg = data.msg;
+                    notyf.success(msg);
+                },
+                error: function(err) {
+                    // $('#loader').addClass('hidden')
+
+                    if (err.status == 422) {
+                        // validation error
+                        let message = err.responseJSON.message.split('.')[0]
+                        notyf.error(message);
+                    } else if (err.status == 401) {
+
+                    }
+                }
+            });
+        });
+
+    });
+
+</script>
 @endsection
