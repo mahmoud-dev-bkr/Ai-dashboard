@@ -2329,6 +2329,9 @@ body[dir="rtl"] .checkbox:checked,
   --tw-bg-opacity: 1;
   background-color: hsl(var(--b1) / var(--tw-bg-opacity));
 }
+.bg-neutral\/25 {
+  background-color: hsl(var(--n) / 0.25);
+}
 .bg-base-300\/50 {
   background-color: hsl(var(--b3, var(--b2)) / 0.5);
 }
@@ -2339,9 +2342,6 @@ body[dir="rtl"] .checkbox:checked,
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
-}
-.bg-neutral\/25 {
-  background-color: hsl(var(--n) / 0.25);
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
