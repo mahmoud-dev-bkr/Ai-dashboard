@@ -149,10 +149,10 @@ Route::group(
                         "toggleactivate",
                     ])->name("togglealertactivate");
 
-                    Route::get("deletealert/{id}", [
+                    Route::delete("deletealert/{id}", [
                         AlertsController::class,
                         "deletealert",
-                    ]);
+                    ])->name("deletealert");
                     Route::get("insertalert", [
                         AlertsController::class,
                         "addalert",
