@@ -391,15 +391,15 @@ html {
 }
 
 :root {
-  --p: 223 42% 27%;
-  --pf: 223 42% 22%;
+  --p: 223 42% 15%;
+  --pf: 223 42% 12%;
   --sf: 274 73% 24%;
   --af: 172 66% 40%;
   --nf: 224 64% 26%;
   --b2: 205 40% 82%;
   --b3: 205 40% 74%;
   --bc: 205 40% 18%;
-  --pc: 223 100% 85%;
+  --pc: 223 81% 83%;
   --sc: 274 100% 86%;
   --ac: 172 100% 10%;
   --nc: 224 100% 87%;
@@ -2168,6 +2168,9 @@ body[dir="rtl"] .checkbox:checked,
 .h-8 {
   height: 2rem;
 }
+.h-5 {
+  height: 1.25rem;
+}
 .h-80 {
   height: 20rem;
 }
@@ -2185,6 +2188,12 @@ body[dir="rtl"] .checkbox:checked,
 }
 .w-52 {
   width: 13rem;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-5 {
+  width: 1.25rem;
 }
 .w-40 {
   width: 10rem;
@@ -2330,6 +2339,9 @@ body[dir="rtl"] .checkbox:checked,
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+.bg-neutral\/25 {
+  background-color: hsl(var(--n) / 0.25);
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));

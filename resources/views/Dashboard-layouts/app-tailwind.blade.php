@@ -81,12 +81,15 @@
 
         .dataTables_paginate span>* {
             margin: 0 7px;
-            font-weight: bolder
+            /* font-weight: bolder */
         }
 
         .dataTables_paginate span>*:hover {}
 
-        .dataTables_paginate span>*.current {}
+        .dataTables_paginate span>*.current {
+            text-decoration: underline;
+            font-weight: bolder
+        }
 
 
         .dashboard-item-active {
@@ -106,6 +109,10 @@
 
         .table td {
             border: 1px solid rgb(209, 209, 209) !important;
+        }
+
+        .sidebar-items svg {
+            float: left;
         }
 
     </style>
@@ -128,7 +135,7 @@
 
         </div>
     </div>
-    {{--sweet alert--}}
+    {{-- sweet alert --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     {{-- jquery --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
