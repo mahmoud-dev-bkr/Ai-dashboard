@@ -104,6 +104,8 @@ class PaymentDetailsController extends Controller
 
         // $pay->user_id = Auth::id();
         $pay->save();
-        return response(["msg" => "inserted"]);
+        return response()->json([
+            "msg" => "a Payment Added successfully",
+        ]);
     }
 }

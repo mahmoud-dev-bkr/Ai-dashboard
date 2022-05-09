@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentDetailsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -148,10 +149,10 @@ Route::group(
                         "toggleactivate",
                     ])->name("togglealertactivate");
 
-                    Route::get("deletealert/{id}", [
+                    Route::delete("deletealert/{id}", [
                         AlertsController::class,
                         "deletealert",
-                    ]);
+                    ])->name("deletealert");
                     Route::get("insertalert", [
                         AlertsController::class,
                         "addalert",
@@ -267,6 +268,11 @@ Route::group(
                     }
                 );
 
+                Route::group(["prefix" => "profile"], function () {
+                    Route::get("/", [ProfileController::class, "profilepage"]);
+                    Route::get("/changepassword", [ProfileController::class, "changepassword"]);
+                    Route::post('storechangepassword', [ProfileController::class, "updatepassword"])->name("updatepassword");
+                });
                 // ----------------------------------< End Plan >--------------------------------
                 // start payment details
                 Route::group(["prefix" => "paymentdetails"], function () {

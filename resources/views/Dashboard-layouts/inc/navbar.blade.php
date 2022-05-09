@@ -13,7 +13,7 @@
     <div class="dropdown dropdown-end">
         <label tabindex="0" class="m-1 btn btn-lg btn-ghost"><i class="fa fa-bars"></i></label>
         <ul tabindex="0" class="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52">
-            <li><a href="/dashboard/profile">Profile</a></li>
+            <li><a href="{{url("admin/profile")}}">Profile</a></li>
             <li>
                 {!! Form::open(['route' => 'logout', 'method' => 'DELETE']) !!}
                 {{ Form::submit('Log out', ['class' => 'w-full rounded-0 cursor-pointer text-left']) }}
