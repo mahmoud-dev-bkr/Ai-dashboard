@@ -1948,20 +1948,6 @@ body[dir="rtl"] .checkbox:checked,
 .rounded-box {
   border-radius: var(--rounded-box, 1rem);
 }
-.btn-xs {
-  height: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  min-height: 1.5rem;
-  font-size: 0.75rem;
-}
-.btn-sm {
-  height: 2rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  min-height: 2rem;
-  font-size: 0.875rem;
-}
 .btn-md {
   height: 3rem;
   padding-left: 1rem;
@@ -1976,16 +1962,6 @@ body[dir="rtl"] .checkbox:checked,
   min-height: 4rem;
   font-size: 1.125rem;
 }
-.btn-square:where(.btn-xs) {
-  height: 1.5rem;
-  width: 1.5rem;
-  padding: 0px;
-}
-.btn-square:where(.btn-sm) {
-  height: 2rem;
-  width: 2rem;
-  padding: 0px;
-}
 .btn-square:where(.btn-md) {
   height: 3rem;
   width: 3rem;
@@ -1994,18 +1970,6 @@ body[dir="rtl"] .checkbox:checked,
 .btn-square:where(.btn-lg) {
   height: 4rem;
   width: 4rem;
-  padding: 0px;
-}
-.btn-circle:where(.btn-xs) {
-  height: 1.5rem;
-  width: 1.5rem;
-  border-radius: 9999px;
-  padding: 0px;
-}
-.btn-circle:where(.btn-sm) {
-  height: 2rem;
-  width: 2rem;
-  border-radius: 9999px;
   padding: 0px;
 }
 .btn-circle:where(.btn-md) {
@@ -2122,10 +2086,6 @@ body[dir="rtl"] .checkbox:checked,
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
-}
-.mx-8 {
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
 .mt-7 {
   margin-top: 1.75rem;
@@ -2323,9 +2283,6 @@ body[dir="rtl"] .checkbox:checked,
 }
 .border-0 {
   border-width: 0px;
-}
-.border-r {
-  border-right-width: 1px;
 }
 .border-gray-200 {
   --tw-border-opacity: 1;

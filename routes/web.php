@@ -270,8 +270,14 @@ Route::group(
 
                 Route::group(["prefix" => "profile"], function () {
                     Route::get("/", [ProfileController::class, "profilepage"]);
-                    Route::get("/changepassword", [ProfileController::class, "changepassword"]);
-                    Route::post('storechangepassword', [ProfileController::class, "updatepassword"])->name("updatepassword");
+                    Route::get("/changepassword", [
+                        ProfileController::class,
+                        "changepassword",
+                    ]);
+                    Route::post("storechangepassword", [
+                        ProfileController::class,
+                        "updatepassword",
+                    ])->name("updatepassword");
                 });
                 // ----------------------------------< End Plan >--------------------------------
                 // start payment details
