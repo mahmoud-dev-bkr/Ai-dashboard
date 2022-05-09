@@ -38,7 +38,7 @@ class RolesController extends Controller
     }
     public function insertPage()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::orderBy("name", "desc")->get();
         return view("dashboard-pages.roles.create", compact("permissions"));
     }
     public function createRole(Request $req)
@@ -74,7 +74,8 @@ class RolesController extends Controller
 
     public function updatePage($id)
     {
-        $permissions = Permission::all();
+        $permissions = Permission::orderBy("name", "desc")->get();
+
         $role = Role::find($id);
         return view(
             "dashboard-pages.roles.update",

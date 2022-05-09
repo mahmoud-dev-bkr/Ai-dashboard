@@ -5,8 +5,10 @@ use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\LandpageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PaymentDetailsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -135,14 +137,17 @@ Route::group(
                 );
                 Route::group(["prefix" => "alerts"], function () {
                     Route::get("/", [AlertsController::class, "alertpage"]);
+
                     Route::get("/data", [
                         AlertsController::class,
                         "getalertdata",
                     ])->name("getalertdata");
+
                     Route::patch("togglealertactivate", [
                         AlertsController::class,
                         "toggleactivate",
                     ])->name("togglealertactivate");
+
                     Route::get("deletealert/{id}", [
                         AlertsController::class,
                         "deletealert",
@@ -151,10 +156,21 @@ Route::group(
                         AlertsController::class,
                         "addalert",
                     ])->name("insertalertPage");
+
                     Route::post("storealert", [
                         AlertsController::class,
                         "storealert",
                     ])->name("storealert");
+
+                    Route::post("/update", [
+                        AlertsController::class,
+                        "EditAlert",
+                    ])->name("EditAlert");
+
+                    Route::get("/update/{alert_id}", [
+                        AlertsController::class,
+                        "EditPage",
+                    ]);
                 });
 
                 // start of roles routes
@@ -252,7 +268,25 @@ Route::group(
                 );
 
                 // ----------------------------------< End Plan >--------------------------------
-
+                // start payment details
+                Route::group(["prefix" => "paymentdetails"], function () {
+                    Route::get("/", [
+                        PaymentDetailsController::class,
+                        "paymentDetailspage",
+                    ]);
+                    Route::get("/data", [
+                        PaymentDetailsController::class,
+                        "getpaymentdetailsdata",
+                    ])->name("getpaymentdetailsData");
+                    Route::get("addpaymentdetails", [
+                        PaymentDetailsController::class,
+                        "addpaymentdetails",
+                    ])->name("addpaymentdetails");
+                    Route::post("storepaymentdetails", [
+                        PaymentDetailsController::class,
+                        "storepaymentdetails",
+                    ])->name("storepaymentdetails");
+                });
                 // logout user
                 Route::delete("/logout", [
                     LoginController::class,

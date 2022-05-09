@@ -20,6 +20,22 @@
 
 
 
+        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/paymentdetails') ? 'dashboard-item-active' : '' }}
+            " href=" /admin/paymentdetails">
+            Payment details</a>
+
+
+
+
+
+        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/Plan/') ? 'dashboard-item-active' : '' }}
+            " href="{{ url('admin/Plan/') }}">
+            Plans</a>
+
+
+
         @if (Auth::user() && Auth::user()->hasRole('super_admin'))
             <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
             {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/users') ? 'dashboard-item-active' : '' }}
@@ -38,10 +54,10 @@
         {{-- @if (Auth::user() && Auth::user()->hasRole('super_admin')) --}}
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
         {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/alerts') ? 'dashboard-item-active' : '' }}
-        " href="{{url('admin/alerts')}}">
+        " href="{{ url('admin/alerts') }}">
             Alert Messages</a>
         {{-- @endif --}}
-        
+
 
 
 

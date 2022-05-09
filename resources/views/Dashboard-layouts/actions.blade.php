@@ -31,6 +31,9 @@
         {{-- <a class="link"><i class="text-red-500 fa fa-trash"></i></a> --}}
     </div>
 
+@elseif ($type == "plan_profile")
+    <a href="{{ route('EditPage', $plan_id) }}"><i class="fa fa-eye" style="color: black"></i></a>
+
 @elseif($type == 'file')
     {{-- <a class="link"><i class="text-blue-500 fa fa-eye"></i></a> --}}
     <a target="_blank" href="{{ $link }}" class="link"><i class="mx-auto text-blue-800 fa fa-file"></i></a>

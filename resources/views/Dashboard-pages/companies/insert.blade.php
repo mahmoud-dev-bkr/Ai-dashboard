@@ -129,15 +129,44 @@
         </div>
 
 
-
-
-        <div class="items-center my-4 input-group">
-            <label class="font-bold w-80">activate</label>
-            <input type="checkbox" class="toggle" name="active" checked />
+        <div class="items-center my-2 input-group">
+            <label class="block font-bold w-80">current plan</label>
+            <select name="plan_id" class="select select-bordered bg-base-300/50">
+                @foreach ($plans as $p)
+                    <option value="{{ $p->id }}">{{ $p->name_en }}</option>
+                @endforeach
+            </select>
         </div>
-        <p class="font-bold text-gray-400 arabic">ملاحظة :اذا تم تفعيل الشركة سيتم تخزين وصل دفع للشركة للباقة
+
+
+        <div class="items-center my-2 input-group">
+            <label class="block font-bold w-80">payment method</label>
+            <select name="pay_method" class="select select-bordered bg-base-300/50">
+                @foreach ($methods as $m)
+                    <option value="{{ $m->id }}">{{ $m->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+
+        <div class="items-center my-2 input-group">
+            <label class="font-bold w-80">Payment Date </label>
+            <input type="date" class="w-full input bg-base-300/50" name="pay_date" />
+            <span id="startdate-error" class="text-red-700"></span>
+
+        </div>
+
+        <div class="items-center my-2 input-group">
+            <label class="font-bold w-80">Start Date </label>
+            <input type="date" class="w-full input bg-base-300/50" name="start_date" />
+            <span id="startdate-error" class="text-red-700"></span>
+
+        </div>
+
+
+        <p class="font-bold text-gray-400 arabic"> سيتم تخزين وصل دفع للشركة للباقة
             المختارة</p>
-        <p class="font-bold text-gray-400">note : if the company is active a new payment detail will be registered with the
+        <p class="font-bold text-gray-400">a new payment invoice will be registered with the
             selected plan</p>
 
 
@@ -146,6 +175,8 @@
         <button type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light"
             class="inline-block mx-3 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mt-5">Add
             Company</button>
+
+
 
         <svg role="status" id="loader"
             class="hidden inline-block w-8 h-8 my-4 mr-2 text-gray-200 hideden animate-spin dark:text-gray-600 fill-blue-600"
@@ -185,6 +216,7 @@
                     notyf.success(msg);
                 },
                 error: function(err) {
+                    console.log(err);
                     $('#loader').addClass('hidden')
                     if (err.status == 422) {
                         // validation error

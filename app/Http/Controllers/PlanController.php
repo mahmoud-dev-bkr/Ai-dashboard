@@ -56,6 +56,7 @@ class PlanController extends Controller
         $plan->coast = $validator["coast"];
         $plan->duration_days = $validator["duration_day"];
         $plan->create_user_id = $id;
+        $plan->update_user_id = $id;
         $plan->save();
         return response()->json([
             "msg" => "Plan created successfully",
@@ -72,7 +73,7 @@ class PlanController extends Controller
         $data = Datatables()
             // here Edit View But Doesn't Work
             ->eloquent($query->latest())
-            ->addColumn("edit", function (Plan $plan) {
+            ->addColumn("action", function (Plan $plan) {
                 $plan_id = $plan->id;
                 return view("dashboard-layouts.actions", [
                     "type" => "plan_profile",
@@ -82,6 +83,14 @@ class PlanController extends Controller
             // Here Get A Admin Name -> That Create This Plan
             ->addColumn("admin", function (Plan $plan) {
                 $Admin_id = $plan->create_user_id;
+                $Admin = DB::table("plans")
+                    ->join("users", "plans.create_user_id", "=", "users.id")
+                    ->where("plans.create_user_id", $Admin_id)
+                    ->get();
+                return $Admin[0]->name_en;
+            })
+            ->addColumn("edit", function (Plan $plan) {
+                $Admin_id = $plan->update_user_id;
                 $Admin = DB::table("plans")
                     ->join("users", "plans.create_user_id", "=", "users.id")
                     ->where("plans.create_user_id", $Admin_id)
@@ -119,7 +128,7 @@ class PlanController extends Controller
         */
         // dd($req);
         $plan = Plan::find($req->id);
-        $plan->name_en  = $req->name_en;
+        $plan->name_en = $req->name_en;
         // $plan->name_ar  = $req->name_ar;
         $plan->activate = $req->status;
         $plan->update();

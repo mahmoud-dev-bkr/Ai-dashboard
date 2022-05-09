@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\PaymentDetail;
+use App\Models\PaymentMethod;
+use App\Models\Plan;
 use App\Models\User;
+use Carbon\Carbon;
 use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +60,12 @@ class CompaniesController extends Controller
 
     public function inserPage()
     {
-        return view("dashboard-pages.companies.insert");
+        $plans = Plan::all();
+        $methods = PaymentMethod::all();
+        return view("dashboard-pages.companies.insert", [
+            "plans" => $plans,
+            "methods" => $methods,
+        ]);
     }
 
     public function addCompany(Request $req)
@@ -68,7 +77,7 @@ class CompaniesController extends Controller
             "tel1" => "required",
             "tel2" => "",
             "tel3" => "",
-            "website" => "url",
+            "website" => "",
             "address" => "required",
             "long" => "required",
             "lat" => "required",
@@ -76,6 +85,10 @@ class CompaniesController extends Controller
             "tax_card" => "required|url",
             "timezone" => "required",
             "note" => "",
+            "plan_id" => "required",
+            "pay_method" => "required",
+            "pay_date" => "required",
+            "start_date" => "required",
         ]);
         $company = new Company();
         $company->name_en = $validator["name_en"];
@@ -93,16 +106,30 @@ class CompaniesController extends Controller
         $company->tax_card = $validator["tax_card"];
         $company->note = $validator["note"];
         $company->timezone = $validator["timezone"];
+        $company->current_plan_id = $validator["plan_id"];
         $company->registration_num = $this->generateRandomString(12);
         $company->user_id = Auth::id();
-        if ($req->active) {
-            $company->isActive = true;
-            // create a payment details for the company
-        }
-
+        $company->isActive = true;
         $company->save();
+
+        // create a payment details for the company
+        $pay = new PaymentDetail();
+        $pay->plan_id = $validator["plan_id"];
+        $pay->company_id = $company->id;
+        $pay->paymethod_id = $validator["pay_method"];
+
+        $pay->pay_date = $req->pay_date;
+        $pay->start_date = $req->start_date;
+
+        $date = Carbon::createFromFormat("Y-m-d", $req->start_date);
+        $daysToAdd = Plan::find($validator["plan_id"])->duration_days;
+        $pay->end_date = $date->addDays($daysToAdd);
+
+        // $pay->user_id = Auth::id();
+        $pay->save();
+
         return response()->json([
-            "msg" => "company is added successfully",
+            "msg" => "company and payment are added successfully",
         ]);
     }
 
