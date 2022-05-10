@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlertsController;
+use App\Http\Controllers\AlertWithComapanyController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\LandpageController;
 use App\Http\Controllers\LoginController;
@@ -182,6 +183,10 @@ Route::group(
                     ]);
                 });
 
+                Route::group(["prefix" => "alertscompany"], function () {
+                    Route::get('/', [AlertWithComapanyController::class, "AlertCompany"]);
+                    Route::get('/data', [AlertWithComapanyController::class, "getAlertCompanyData"])->name("getAlertCompanyData");
+                });
                 // start of roles routes
                 Route::group(["prefix" => "roles"], function () {
                     Route::get("/", [RolesController::class, "viewRoles"]);

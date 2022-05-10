@@ -1,7 +1,7 @@
 @extends("Dashboard-layouts.app-tailwind");
 @section('content')
 <div class="p-7">
-    <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">Create a new Message Alert</h1>
+    <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">Create a new Payment Methods</h1>
     {!! Form::open(['route' => 'storepaymentmethod', 'class' => 'form-paymentmethod']) !!}
 
     <div class="items-center my-2 input-group">

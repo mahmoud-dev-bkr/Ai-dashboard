@@ -5,11 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class alerts_to_companies extends Model
 {
     use HasFactory;
-    public function Alerts()
-    {
-        return $this->belongsToMany(Alert::class);
-    }
+    protected $table = 'alerts_to_companies';
 }

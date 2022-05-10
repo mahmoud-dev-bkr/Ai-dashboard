@@ -13,6 +13,7 @@
             class="btn btn-primary">Active</button>
     @endif
 @endif
+
 @if ($type == 'action')
     {{-- <a class="show-alert-delete-box" href="{{ url("admin/alerts/deletealert/{$id}") }}"><i class="text-2xl fa fa-trash red me-2"></i></a> --}}
     <a href="{{ url("admin/alerts/update/{$id}") }}"><i class="text-2xl fa fa-pen text-primary"></i></a>

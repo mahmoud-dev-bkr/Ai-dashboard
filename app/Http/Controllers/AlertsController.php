@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Alert;
+use App\Models\alerts_to_companies;
 use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,6 +52,16 @@ class AlertsController extends Controller
                     "id" => $id,
                 ]);
             })
+
+            // ->addColumn("company_name", function (alerts_to_companies $alert) {
+            //     $id = $alert->id;
+            //     $company = DB::table("alerts_to_companies")
+            //         ->select("companies.name_en")
+            //         ->join("companies", "alerts_to_companies.company_id", "=", "companies.id")
+            //         ->where('alerts_to_companies', "=", $id)->get();
+            //     return $company[0]->name_en;
+            // })
+
             ->addColumn("action", function (Alert $alert) {
                 $active = $alert->is_activate;
                 $id = $alert->id;
