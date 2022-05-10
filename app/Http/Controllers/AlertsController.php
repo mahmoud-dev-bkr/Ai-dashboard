@@ -101,11 +101,11 @@ class AlertsController extends Controller
             "type" => "",
         ]);
         $alert = new Alert();
-        $alert->message_en = $validiate['msg_en'];
-        $alert->message_ar = $validiate['msg_ar'];
-        $alert->start_date = $validiate['start_date'];
-        $alert->end_date = $validiate['end_date'];
-        $alert->type = $validiate['type'];
+        $alert->message_en = $validiate["msg_en"];
+        $alert->message_ar = $validiate["msg_ar"];
+        $alert->start_date = $validiate["start_date"];
+        $alert->end_date = $validiate["end_date"];
+        $alert->type = $validiate["type"];
         $alert->user_id = Auth::id();
         $alert->save();
         return response()->json([

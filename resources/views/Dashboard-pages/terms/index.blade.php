@@ -30,7 +30,8 @@
 
 
                     <h1 class="mb-3 text-2xl text-blue-500">{{ $t->title }}</h1>
-                    <pre>{{ $t->body }}</pre>
+                    <p style="white-space: pre-wrap;">{{ $t->body }}</p>
+
                 </div>
             @endforeach
         </div>

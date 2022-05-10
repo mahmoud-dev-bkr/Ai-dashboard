@@ -253,25 +253,23 @@
     <div class="flex flex-wrap justify-center py-5 px-7 md:px-10">
         {{-- plan --}}
 
-        @for ($i = 0; $i < 5; $i++)
-
+        @foreach ($plans as $plan)
             <div data-aos="zoom-in" class="flex flex-col justify-between w-full m-4 bg-white rounded-3xl plan md:w-80">
                 <div class="text-white bg-blue-500 p-7 py-14 rounded-t-3xl">
-                    <h1 class="text-3xl font-bold">Basic plan</h1>
-                    <span class="mt-2 text-4xl font-light">20$ /Month</span>
+                    <h1 class="text-3xl font-bold">{{ $plan->name_en }}</h1>
+                    <span class="mt-2 text-4xl font-light">{{ $plan->coast }}$ /{{ $plan->duration_days }} days</span>
                 </div>
-                <ul class="flex-1 py-4 text-lg px-7">
-                    <li>Fast</li>
-                    <li>Effiecient</li>
-                    <li>Scalable</li>
-                    <li>Fast</li>
-                    <li>Effiecient</li>
-                </ul>
+                <div class="flex items-center justify-center w-40 text-2xl">
+                    {{$plan->max_emp}}
+                </div>
+                
                 <button
                     class="mx-auto text-white border-0 btn btn-lg bg-gradient-to-r my-7 from-cyan-500 to-blue-500">Order</button>
             </div>
+        @endforeach
 
-        @endfor
+
+
 
 
         <div data-aos="zoom-in"

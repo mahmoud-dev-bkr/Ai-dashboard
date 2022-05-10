@@ -70,7 +70,7 @@
                     },
                     error: function(err) {
                         $('#loader').addClass('hidden')
-
+                        console.log(err);
                         if (err.status == 422) {
                             // validation error
                             let message = err.responseJSON.message.split('.')[0]

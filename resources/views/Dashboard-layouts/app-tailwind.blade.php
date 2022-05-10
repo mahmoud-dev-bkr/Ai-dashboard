@@ -19,6 +19,10 @@
             font-family: 'Droid Arabic Kufi', serif;
         }
 
+        html {
+            font-size: 17px !important
+        }
+
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 5px;
@@ -26,7 +30,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background-color: #ebebeb;
+            background-color: #e2dff3;
             -webkit-border-radius: 10px;
             border-radius: 10px;
         }
@@ -34,7 +38,7 @@
         ::-webkit-scrollbar-thumb {
             -webkit-border-radius: 10px;
             border-radius: 10px;
-            background: #10326e;
+            background: #7362d6;
         }
 
         .dataTables_empty {
@@ -100,7 +104,9 @@
 
         .input {
             outline-offset: 0px !important;
-            outline-color: #f8f8f8
+            outline-color: #672dae !important;
+            border-radius: 15px !important;
+
         }
 
         .table thead th:first-child {
@@ -108,11 +114,22 @@
         }
 
         .table td {
-            border: 1px solid rgb(209, 209, 209) !important;
+            border: 1px solid rgb(204, 204, 204) !important;
         }
+
+
 
         .sidebar-items svg {
             float: left;
+        }
+
+        .toggle {
+            background-color: #adc9eb !important;
+            border-color: #1a75e4
+        }
+
+        .toggle:checked {
+            background-color: #1a75e4 !important;
         }
 
     </style>
@@ -130,7 +147,9 @@
             {{-- navbar --}}
             @include('dashboard-layouts.inc.navbar')
             <div class="h-auto overflow-y-auto md:flex-1">
-                @yield('content')
+                <div class="h-full bg-white rounded-lg shadow-2xl p-7">
+                    @yield('content')
+                </div>
             </div>
 
         </div>
