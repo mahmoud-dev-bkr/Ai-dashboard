@@ -1,14 +1,11 @@
 @extends('dashboard-layouts.app-tailwind')
 @section('content')
     <div class="overflow-x-auto p-7">
-        {{-- <div class="my-10">
-            <a href="{{ LaravelLocalization::localizeUrl(route('insertUserPage')) }}" class="rounded-full btn btn-info"><i
+        <div class="my-10">
+            <a href="{{ LaravelLocalization::localizeUrl(route('addpaymentmethod')) }}" class="rounded-full btn btn-info"><i
                     class="fa fa-plus"></i></a>
-            <span class="mx-3 text-lg font-bold">create a new User</span>
-        </div> --}}
-
-
-
+            <span class="mx-3 text-lg font-bold">Create a new Payment Method</span>
+        </div>
         <table class="table w-full my-4 table-zebra" id="paymentDT">
             <thead>
                 <tr>

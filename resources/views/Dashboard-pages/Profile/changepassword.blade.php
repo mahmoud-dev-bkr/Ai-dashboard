@@ -63,8 +63,15 @@
                 contentType: false,
                 success: function(data) {
                     console.log(data);
-                    let msg = data.success;
-                    notyf.success(msg);
+                       
+                    if(data.error){
+                        let message =data.error;
+                        notyf.error(message);
+                    }
+                    else{
+                        let msg = data.success;
+                        notyf.success(msg);
+                    }
                 },
                 error: function(err) {
                     console.log(err);
