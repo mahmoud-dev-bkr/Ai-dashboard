@@ -4,34 +4,34 @@
         <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">update Message Alert</h1>
         {!! Form::open(['route' => 'EditAlert', 'class' => 'form-alert']) !!}
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="w-40">Message (en)</label>
             <input type="text" class="w-full input bg-base-300/50" value="{{ $alert->message_en }}" name="msg_en" />
             <input type="text" class="w-full input bg-base-300/50" value="{{ $alert->id }}" name="alert_id" hidden />
             <span id="msgen-error" class="text-red-700"></span>
         </div>
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="w-40">Message (ar)</label>
             <input type="text" class="w-full input bg-base-300/50" value="{{ $alert->message_ar }}" name="msg_ar" />
             <span id="msgar-error" class="text-red-700"></span>
 
         </div>
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="w-40">Start Date </label>
             <input type="date" class="w-full input bg-base-300/50" value="{{ $alert->start_date }}" name="start_date" />
             <span id="startdate-error" class="text-red-700"></span>
 
         </div>
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="w-40">Start Date </label>
             <input type="date" class="w-full input bg-base-300/50" value="{{ $alert->end_date }}" name="end_date" />
             <span id="enddate-error" class="text-red-700"></span>
         </div>
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="block w-40">Message Type</label>
             <select name="type" class=" select select-bordered bg-base-300/50 w-80">
                 {{-- enum('info', 'success', 'warning', 'error') 	utf8mb4_unicode_ci --}}
@@ -49,42 +49,43 @@
     </div>
 @endsection
 @section('scripts')
-<script type="module">
-    $(document).ready(function() {
-        // ////////////////////////////
-        $(".form-alert").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "{{ route('EditAlert') }}",
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-                },
-                type: "POST",
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                success: function(data) {
-                    // $('#loader').addClass('hidden')
+    <script type="module">
+        $(document).ready(function() {
+            // ////////////////////////////
+            $(".form-alert").submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "{{ route('EditAlert') }}",
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                    type: "POST",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        // $('#loader').addClass('hidden')
 
-                    console.log(data);
-                    let msg = data.msg;
-                    notyf.success(msg);
-                },
-                error: function(err) {
-                    // $('#loader').addClass('hidden')
+                        console.log(data);
+                        let msg = data.msg;
+                        notyf.success(msg);
+                    },
+                    error: function(err) {
+                        // $('#loader').addClass('hidden')
 
-                    if (err.status == 422) {
-                        // validation error
-                        let message = err.responseJSON.message.split('.')[0]
-                        notyf.error(message);
-                    } else if (err.status == 401) {
+                        if (err.status == 422) {
+                            // validation error
+                            let message = err.responseJSON.message.split('.')[0]
+                            notyf.error(message);
+                        } else if (err.status == 401) {
 
+                        }
                     }
-                }
+                });
             });
+
         });
 
-    });
-</script>   
+    </script>
 
 @endsection

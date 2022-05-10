@@ -4,30 +4,30 @@
         <h1 class="my-3 mb-10 text-2xl font-semibold text-gray-700">Create a new Message Alert</h1>
         {!! Form::open(['route' => 'storealert', 'class' => 'form-alert']) !!}
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="w-40">Message (en)</label>
             <input type="text" id="msg_en" class="w-full input bg-base-300/50" name="msg_en" />
 
         </div>
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="w-40">Message (ar)</label>
             <input type="text" id="msg_ar" class="w-full input bg-base-300/50" name="msg_ar" />
 
         </div>
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="w-40">Start Date </label>
             <input type="date" id="start_date" class="w-full input bg-base-300/50" name="start_date" />
 
         </div>
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="w-40">End Date </label>
             <input type="date" id="end_date" class="w-full input bg-base-300/50" name="end_date" />
         </div>
 
-        <div class="items-center my-2 input-group">
+        <div class="grid items-center w-full grid-cols-3 my-2 md:w-9/12 input-group">
             <label class="block w-40">Message Type</label>
             <select name="type" id="type" class=" select select-bordered bg-base-300/50 w-80">
                 <option disabled selected>Select Type of Message</option>
@@ -44,7 +44,7 @@
     </div>
 @endsection
 @section('scripts')
-     <script type="module">
+    <script type="module">
         $(document).ready(function() {
             // ////////////////////////////
             $(".form-alert").submit(function(e) {
@@ -80,5 +80,6 @@
             });
 
         });
-    </script>   
+
+    </script>
 @endsection
