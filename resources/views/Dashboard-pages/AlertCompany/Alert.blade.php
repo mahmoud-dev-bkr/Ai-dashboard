@@ -2,7 +2,7 @@
 @section('content')
 <div class="overflow-x-auto p-7">
     <div class="my-10">
-        <a href="{{ LaravelLocalization::localizeUrl(route('insertalertPage')) }}" class="rounded-full btn btn-info"><i
+        <a href="{{ LaravelLocalization::localizeUrl(route('insertalertmessage')) }}" class="rounded-full btn btn-info"><i
                 class="fa fa-plus"></i></a>
         <span class="mx-3 text-lg font-bold">create a new Alert</span>
     </div>
@@ -65,23 +65,52 @@
                     data: "end_date"
                 },
                 {
-                    data: "created_by"
+                    data: "username"
                 },
                 {
                     data: "type"
                 },
                 {
-                    data:"compname"
+                    data:"company_name"
                 },
                 {
                     data: "isActive"
                 },
+                {
+                    data:"action"
+                }
             ],
         });
     }
     $(function() {
         setalertcomapnyDt();
     });
+    const togglealertactivate = (id, activeState) => {
+            // alert(activeState);
+    (async () => {
+        try{const rawResponse = await fetch('{{ route("togglealertcompanyactivate") }}', {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{csrf_token()}}'
+            },
+            body: JSON.stringify({
+                id,
+                active_state: activeState
+            })
+        });
+        const content = await rawResponse.json();
+        console.log(content);
+        notyf.success(content.msg);
+        alertcomapnyDt.ajax.reload()
+    }
+        catch(err){
+            console.log(err);
+        }
+    })
+    ();
+}
 
 </script>
 @endsection

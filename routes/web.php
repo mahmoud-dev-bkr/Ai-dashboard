@@ -145,6 +145,14 @@ Route::group(
                         ])->name("storepaymentmethod");
                     }
                 );
+                Route::group(["prefix" => "alertscompany"], function () {
+                    Route::get('/', [AlertWithComapanyController::class, "AlertCompany"]);
+                    Route::get('/data', [AlertWithComapanyController::class, "getAlertCompanyData"])->name("getAlertCompanyData");
+                    Route::patch('/togglealertcomapanyactivate', [AlertWithComapanyController::class, "togglealertcompanyactivate"])->name("togglealertcompanyactivate");
+                    Route::delete('/deletealertcompany/{id}', [AlertWithComapanyController::class, "deletealertcompany"])->name("deletealertcompany");
+                    Route::get('/insertalertmessage', [AlertWithComapanyController::class, "InsertAlertPage"])->name("insertalertmessage");
+                    Route::post('storealertmsg', [AlertWithComapanyController::class, 'storealertcompany'])->name("storealertmsg");
+                });
                 Route::group(["prefix" => "alerts"], function () {
                     Route::get("/", [AlertsController::class, "alertpage"]);
 

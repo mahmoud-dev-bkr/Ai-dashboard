@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alert;
 use App\Models\alerts_to_companies;
+use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class AlertWithComapanyController extends Controller
 {
@@ -14,95 +18,126 @@ class AlertWithComapanyController extends Controller
     {
         return view("Dashboard-pages.AlertCompany.Alert");
     }
-
     public function getAlertCompanyData()
     {
         $query = alerts_to_companies::query();
         $data = Datatables()
             ->eloquent($query->latest())
             ->addColumn("message_en", function (alerts_to_companies $alert) {
-                // return optional($alert->alert_id)->message_en;
-                $id = $alert->id;
-                $name_en = DB::table("alerts_to_companies")
-                    ->select("alerts.message_en")
-                    ->join("alerts", 'alerts.id', '=', 'alerts_to_companies.alert_id')
-                    ->where('alerts_to_companies.id', '=', $id)
-                    ->get();
-                return $name_en[0]->message_en;
+                if ($alert->alert_id) {
+                    return Alert::find($alert->alert_id)->message_en;
+                }
             })
             ->addColumn("message_ar", function (alerts_to_companies $alert) {
-                // return optional($alert->alert_id)->message_en;
-                $id = $alert->id;
-                $name_ar = DB::table("alerts_to_companies")
-                    ->select("alerts.message_ar")
-                    ->join("alerts", 'alerts.id', '=', 'alerts_to_companies.alert_id')
-                    ->where('alerts_to_companies.id', '=', $id)
-                    ->get();
-                return $name_ar[0]->message_ar;
+                if ($alert->alert_id) {
+                    return Alert::find($alert->alert_id)->message_ar;
+                }
             })
-            ->addColumn("start_date", function (alerts_to_companies $alert) {
-                // return optional($alert->alert_id)->message_en;
-                $id = $alert->id;
-                $start_date = DB::table("alerts_to_companies")
-                    ->select("alerts.start_date")
-                    ->join("alerts", 'alerts.id', '=', 'alerts_to_companies.alert_id')
-                    ->where('alerts_to_companies.id', '=', $id)
-                    ->get();
-                return $start_date[0]->start_date;
+            ->addColumn('start_date', function (alerts_to_companies $alert) {
+                if ($alert->alert_id) {
+                    return Alert::find($alert->alert_id)->start_date;
+                }
             })
-            ->addColumn("end_date", function (alerts_to_companies $alert) {
-                // return optional($alert->alert_id)->message_en;
-                $id = $alert->id;
-                $start_date = DB::table("alerts_to_companies")
-                    ->select("alerts.end_date")
-                    ->join("alerts", 'alerts.id', '=', 'alerts_to_companies.alert_id')
-                    ->where('alerts_to_companies.id', '=', $id)
-                    ->get();
-                return $start_date[0]->end_date;
+            ->addColumn('end_date', function (alerts_to_companies $alert) {
+                if ($alert->alert_id) {
+                    return Alert::find($alert->alert_id)->end_date;
+                }
             })
-            ->addColumn("created_by", function (alerts_to_companies $alert) {
-                // return optional($alert->alert_id)->message_en;
-                $id = $alert->id;
-                $username = DB::table("alerts_to_companies")
-                    ->select("users.name")
-                    ->join("users", 'users.id', '=', 'alerts_to_companies.user_id')
-                    ->where('alerts_to_companies.id', '=', $id)
-                    ->get();
-                return $username[0]->name;
+            ->addColumn('username', function (alerts_to_companies $alert) {
+                if ($alert->user_id) {
+                    return User::find($alert->user_id)->name;
+                }
             })
-            ->addColumn("type", function (alerts_to_companies $alert) {
-                // return optional($alert->alert_id)->message_en;
-                $id = $alert->id;
-                $type = DB::table("alerts_to_companies")
-                    ->select("alerts.type")
-                    ->join("alerts", 'alerts.id', '=', 'alerts_to_companies.alert_id')
-                    ->where('alerts_to_companies.id', '=', $id)
-                    ->get();
-                return $type[0]->type;
+            ->addColumn('', function (alerts_to_companies $alert) {
+                if ($alert->user_id) {
+                    return User::find($alert->user_id)->name;
+                }
             })
-            ->addColumn("compname", function (alerts_to_companies $alert) {
-                // return optional($alert->alert_id)->message_en;
-                $id = $alert->id;
-                $companyname = DB::table("alerts_to_companies")
-                    ->select("companies.name_en")
-                    ->join("companies", 'companies.id', '=', 'alerts_to_companies.company_id')
-                    ->where('alerts_to_companies.id', '=', $id)
-                    ->get();
-                return $companyname[0]->name_en;
+            ->addColumn('type', function (alerts_to_companies $alert) {
+                if ($alert->alert_id) {
+                    return Alert::find($alert->alert_id)->type;
+                }
             })
-
+            ->addColumn('company_name', function (alerts_to_companies $alert) {
+                if ($alert->company_id) {
+                    return Company::find($alert->company_id)->name_en;
+                }
+            })
             ->addColumn("isActive", function (alerts_to_companies $alert) {
-                $active = DB::table("alerts_to_companies")
-                    ->select("alerts.is_activate")
-                    ->join("alerts", "alerts.id", "=", "alerts_to_companies.alert_id")->get();
-                $id = $alert->id;
+                // $active = null;
+                if ($alert->alert_id) {
+                    $active = Alert::find($alert->alert_id)->is_activate;
+                }
+                $id = $alert->alert_id;
                 return view("Dashboard-pages.AlertCompany.action", [
                     "type" => "togglealertActive",
-                    "active_state" => $active[0]->is_activate,
+                    "active_state" => $active,
+                    "id" => $id,
+                ]);
+            })
+
+            ->addColumn("action", function (alerts_to_companies $alert) {
+                $active = null;
+                if ($alert->alert_id) {
+                    $active = Alert::find($alert->alert_id)->is_activate;
+                }
+                $id = $alert->id;
+                return view("Dashboard-pages.AlertCompany.action", [
+                    "type" => "action",
+                    "active_state" => $active,
                     "id" => $id,
                 ]);
             })
             ->toJson();
         return $data;
+    }
+
+    public function togglealertactivate(Request $req)
+    {
+        $id = $req->id;
+        $state = $req->active_state;
+
+        $isavtive = Alert::find($id);
+
+        $isavtive->is_activate = $state ? false : true;
+        $isavtive->save();
+        $state_text = $state ? "not active any more" : "active now";
+        return response()->json([
+            "msg" => "Alert is " . $state_text,
+        ]);
+    }
+
+    public function deletealertcompany($id)
+    {
+        DB::table("alerts_to_companies")->delete($id);
+        return redirect()->back();
+    }
+
+    public function InsertAlertPage()
+    {
+        $company = Company::all();
+        $message = Alert::all();
+        return view("Dashboard-pages.AlertCompany.insert", compact('company', 'message'));
+    }
+    public function storealertcompany(Request $req)
+    {
+        $req->validate([
+            'company' => 'required',
+            "alert" => "required",
+        ]);
+        $getcompanydata = $req->company;
+        $getalertdata = $req->alert;
+
+        $companyreq = implode(',', $getcompanydata);
+        $alertreq = implode(',', $getalertdata);
+
+        $company = new alerts_to_companies();
+        $company->alert_id = $alertreq;
+        $company->company_id = $companyreq;
+        $company->user_id = Auth::id();
+        $company->save();
+        return response()->json([
+            "msg" => "Message Send Succsfully",
+        ]);
     }
 }
