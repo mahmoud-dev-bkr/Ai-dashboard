@@ -253,29 +253,50 @@
     <div class="flex flex-wrap justify-center py-5 px-7 md:px-10">
         {{-- plan --}}
 
-        @foreach ($plans as $plan)
+        {{-- @foreach ($plans as $plan)
             <div data-aos="zoom-in" class="flex flex-col justify-between w-full m-4 bg-white rounded-3xl plan md:w-80">
                 <div class="text-white bg-blue-500 p-7 py-14 rounded-t-3xl">
                     <h1 class="text-3xl font-bold">{{ $plan->name_en }}</h1>
                     <span class="mt-2 text-4xl font-light">{{ $plan->coast }}$ /{{ $plan->duration_days }} days</span>
                 </div>
-                <div class="flex items-center justify-center w-40 text-2xl">
-                    {{$plan->max_emp}}
+                <div class="flex items-center justify-center flex-1 text-4xl text-center">
+                    {{ $plan->max_emp }} Employees
                 </div>
-                
+
                 <button
                     class="mx-auto text-white border-0 btn btn-lg bg-gradient-to-r my-7 from-cyan-500 to-blue-500">Order</button>
             </div>
-        @endforeach
+        @endforeach --}}
+
+
+
+        @for ($i = 0; $i < 3; $i++)
+            <div data-aos="zoom-in" class="flex flex-col justify-between w-full m-4 bg-white rounded-3xl plan md:w-80"
+                style="min-height: 600px">
+                <div class="text-white bg-blue-500 p-7 py-14 rounded-t-3xl">
+                    <h1 class="text-3xl font-bold">Golden</h1>
+                    <span class="mt-2 text-4xl font-light">50$ / 3 days</span>
+                </div>
+                <div class="flex items-center justify-center flex-1 text-4xl text-center">
+                    200 Employees
+                </div>
+
+                <button
+                    class="mx-auto text-white border-0 btn btn-lg bg-gradient-to-r my-7 from-cyan-500 to-blue-500">Order</button>
+            </div>
+        @endfor
 
 
 
 
 
         <div data-aos="zoom-in"
-            class="flex flex-col items-center justify-center w-full m-4 bg-primary rounded-3xl plan md:w-80">
+            class="flex flex-col items-center justify-center w-full m-4 bg-secondary rounded-3xl plan md:w-80"
+            style="min-height: 600px">
             <h1 class="my-4 text-xl font-bold text-white">More than 100 employees ?</h1>
-            <button class="text-gray-900 bg-white border-0 btn btn-lg">Contact us</button>
+            <a href="mailto:info@ai-attend.com"
+                class="text-gray-900 bg-white border-0 hover:bg-primary/25 hover:text-white btn btn-lg">Contact
+                us</a>
         </div>
 
     </div>

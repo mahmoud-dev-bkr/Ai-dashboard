@@ -63,8 +63,7 @@
     <nav class="fixed inset-x-0 px-2 py-4 bg-white border-gray-200 shadow-lg sm:px-4">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <a href="/" class="flex items-center">
-                <img src="https://www.availo.app/Content/images/AvailoLogo.png" class="h-6 mx-3 sm:h-9"
-                    alt="Flowbite Logo" />
+                <img src="/images/logo.png" class="h-6 mx-3 sm:h-9" alt="ai attend" />
                 <span class="self-center text-3xl font-semibold whitespace-nowrap"><span class="text-primary">Ai</span>
                     Attend</span>
             </a>

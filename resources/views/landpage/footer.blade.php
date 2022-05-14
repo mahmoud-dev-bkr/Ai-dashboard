@@ -7,11 +7,14 @@
             <div class="Contact-con">
                 <div class="Contact-text">
                     <h4>Contact Info</h4>
+                    <a class="font-bold text-white " href="mailto:info@ai-attend.com">info@ai-attend.com</a>
+
                     <p>King Faisal Street, Cairo, CA 94123</p>
                     <p>+2010 0012 2247</p>
                     <p>+2011 2018 8886</p>
                     <p>+2011 5558 3730</p>
-                    <p>Dr_HamdiMahmoud@yahoo.com</p>
+
+                    {{-- <p>Dr_HamdiMahmoud@yahoo.com</p> --}}
                 </div>
             </div>
             <div class="Contact-con">
