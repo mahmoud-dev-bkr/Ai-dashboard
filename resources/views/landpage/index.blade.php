@@ -162,7 +162,7 @@
 @endsection
 @section('content')
     {{-- header section --}}
-    <div class="relative h-auto pb-40 md:h-screen md:pb-4 bg-primary" id="header"
+    <div class="relative h-auto pt-40 pb-40 md:h-screen md:pb-4 bg-primary" id="header"
         style="{{ LaravelLocalization::getCurrentLocale() == 'ar' ? 'clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);' : 'clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);' }}">
 
         {{-- <svg viewBox="0 0 480 235" fill="none" id="banner">
