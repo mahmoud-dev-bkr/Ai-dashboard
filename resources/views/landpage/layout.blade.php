@@ -63,7 +63,7 @@
     <nav class="fixed inset-x-0 px-2 py-4 bg-white border-gray-200 shadow-lg sm:px-4">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <a href="/" class="flex items-center">
-                <img src="/images/logo.png" class="w-20 h-20 mx-3 rounded-lg" alt="ai attend" />
+                <img src="/images/logo.png" width="80px" height="80px" class="mx-3 rounded-lg" alt="ai attend" />
                 <span class="self-center text-3xl font-semibold whitespace-nowrap"><span class="text-primary">Ai</span>
                     Attend</span>
             </a>
