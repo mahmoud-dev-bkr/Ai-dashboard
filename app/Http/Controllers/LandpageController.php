@@ -10,13 +10,13 @@ class LandpageController extends Controller
 {
     function HomePage()
     {
-        $plans = Plan::where("activate", 1)->get();
+        // $plans = Plan::where("activate", 1)->get();
         return view("landpage.index", compact("plans"));
     }
 
     function TermsPage()
     {
-        $terms = Term::where("isActive", 1)->get();
+        // $terms = Term::where("isActive", 1)->get();
         return view("landpage.terms", compact("terms"));
     }
 }

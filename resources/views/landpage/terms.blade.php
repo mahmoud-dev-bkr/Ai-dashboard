@@ -16,10 +16,11 @@
     <div class="p-10 m-2 mt-20 text-3xl leading-loose text-gray-500 bg-white rounded-xl md:mx-10">
         <h1 class="text-3xl font-bold mb-7">Terms and Conditions</h1>
 
-        @foreach ($terms as $term)
+        {{-- @foreach ($terms as $term)
             <h2 class="text-2xl font-bold text-primary">{{ $term->title }}</h2>
             <p style="white-space: pre-wrap;">{{ $term->body }}</p>
-        @endforeach
+        @endforeach --}}
+
 
     </div>
 @endsection
