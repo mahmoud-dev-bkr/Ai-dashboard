@@ -65,7 +65,7 @@
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <a href="/" class="flex items-center">
 
-                <img src="/images/logo.jpg" class="mx-2 rounded-lg w-14 h-14" alt="ai attend" />
+                <img src="/images/logo.jpg" id="logo" alt="ai attend" />
 
 
                 <span class="self-center text-3xl font-semibold whitespace-nowrap"><span class="text-primary">Ai</span>
