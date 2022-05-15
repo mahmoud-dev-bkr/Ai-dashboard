@@ -61,7 +61,7 @@
 
 
 <body>
-    <nav class="fixed inset-x-0 px-2 py-2 bg-white border-gray-200 shadow-lg sm:px-4">
+    {{-- <nav class="fixed inset-x-0 px-2 py-2 bg-white border-gray-200 shadow-lg sm:px-4">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <a href="/" class="flex items-center">
 
@@ -101,9 +101,6 @@
                             class="after:content-[''] after:block after:mt-1 after:w-0 hover:after:w-full after:ease-in-out after:transition-all after:duration-400 after:h-0.5 after:bg-primary after:z-20">Contact</a>
                     </li>
 
-
-
-                    {{-- lang --}}
                     <li class="text-info">
                         @if (LaravelLocalization::getCurrentLocale() == 'en')
                             <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}"
@@ -122,14 +119,66 @@
                 </ul>
             </div>
         </div>
+    </nav> --}}
+
+
+    <nav class="nav">
+        <div class="relative flex space-x-2 logo">
+            <img class="w-16 h-16" src="{{ asset('/images/logo.png') }}" />
+            <a href="/">Ai Attend</a>
+        </div>
+        <div id="mainListDiv" class="main_list">
+            <ul class="navlinks">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <span class="navTrigger">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
     </nav>
 
 
     @yield('content')
+
+    {{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
     <script>
         const showMobileMenue = () => {
             document.getElementById('mobile-menu').classList.toggle('hidden')
         }
+
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $('.nav').addClass('affix');
+                console.log("OK");
+            } else {
+                $('.nav').removeClass('affix');
+            }
+        });
+
+
+        $(".navTrigger").click(function() {
+            $(this).toggleClass("active");
+            console.log("Clicked menu");
+            $("#mainListDiv").toggleClass("show_list");
+            $("#mainListDiv").fadeIn();
+        });
+
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $(".nav").addClass("affix");
+                console.log("OK");
+            } else {
+                $(".nav").removeClass("affix");
+            }
+        });
 
     </script>
     @yield('scripts')
