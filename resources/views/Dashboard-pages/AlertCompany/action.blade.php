@@ -1,14 +1,7 @@
 @if ($type == 'togglealertActive')
-    @if ($active_state)
-        <button onclick="togglealertactivate('{{ $id }}','{{ $active_state }}')"
-            class="btn btn-error">Disactive</button>
-    @else
-        <button onclick="togglealertactivate('{{ $id }}', '{{ $active_state }}')"
-            class="btn btn-primary">Active</button>
-    @endif
-
-    @endif
-
+<input type="checkbox" onchange="toggleActivation(event , '{{ $id }}')" class="toggle" name="active"
+{{ $active_state ? 'checked' : '' }} />
+@endif
 @if ($type == 'action')
     {{-- <a class="show-alert-delete-box" href="{{ url("admin/alerts/deletealert/{$id}") }}"><i class="text-2xl fa fa-trash red me-2"></i></a> --}}     
         @if (!$active_state)
