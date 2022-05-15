@@ -86,6 +86,8 @@
 
         .dataTables_paginate span>* {
             margin: 0 7px;
+            cursor: pointer;
+            padding: 5px 7px;
             /* font-weight: bolder */
         }
 
@@ -105,7 +107,7 @@
 
         .input {
             outline-offset: 0px !important;
-            outline-color: #672dae !important;
+            outline-color: #45369e !important;
             border-radius: 15px !important;
 
         }
@@ -114,9 +116,27 @@
             position: relative !important;
         }
 
-        .table td {
-            border: 1px solid rgb(204, 204, 204) !important;
+        .table th {
+            background: #45369e;
+            color: white
         }
+
+        .table td {
+            background: transparent !important;
+        }
+
+        .table td.dataTables_empty {
+            background-color: rgb(189, 61, 61) !important;
+            color: white;
+            padding: 5px 10px;
+            display: inline;
+            text-align: center;
+        }
+
+        .table tr {
+            border-bottom: .5px solid #e9ecef !important;
+        }
+
 
 
 
