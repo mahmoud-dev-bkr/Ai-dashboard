@@ -121,16 +121,15 @@ class AlertWithComapanyController extends Controller
     }
     public function storealertcompany(Request $req)
     {
+
         $req->validate([
             'company' => 'required',
             "alert" => "required",
         ]);
         $getcompanydata = $req->company;
         $getalertdata = $req->alert;
-
         $companyreq = implode(',', $getcompanydata);
         $alertreq = implode(',', $getalertdata);
-
         $company = new alerts_to_companies();
         $company->alert_id = $alertreq;
         $company->company_id = $companyreq;

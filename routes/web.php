@@ -223,6 +223,13 @@ Route::group(
                         "createRole",
                     ])->name("createRole");
                 });
+                Route::group(['prefix' => 'header'], function () {
+                    Route::get('/', [LandpageController::class, "headerpage"]);
+                    Route::get('/data', [LandpageController::class, "GetHeaderData"])->name('GetHeaderData');
+                    Route::get('/view/{id}', [LandpageController::class, "view_header"]);
+                    Route::get('/update/{id}/', [LandpageController::class, 'update_header']);
+                    Route::post('/edit', [LandpageController::class, "edit_header"])->name("edit_header");
+                });
                 // end of roles routes
                 // start of terms routes
                 Route::group(["prefix" => "terms"], function () {
