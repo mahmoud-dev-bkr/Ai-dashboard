@@ -30,46 +30,53 @@ class LandpageController extends Controller
     }
     public function view_header($id)
     {
-        $headers  = DB::table('header')->select()->where('id', '=', $id)->get();
+        $headers = DB::table("header")
+            ->select()
+            ->where("id", "=", $id)
+            ->get();
         // $headers = Headers::find($id);
         // dd($headers);
-        return view("Dashboard-pages.Headers.view", compact('headers'));
+        return view("Dashboard-pages.Headers.view", compact("headers"));
     }
     public function update_header($id)
     {
-        $headers  = DB::table('header')->select()->where('id', '=', $id)->first();
+        $headers = DB::table("header")
+            ->select()
+            ->where("id", "=", $id)
+            ->first();
         //dd($headers);
-        return view('Dashboard-pages.Headers.update', compact('headers'));
+        return view("Dashboard-pages.Headers.update", compact("headers"));
     }
     public function edit_header(Request $req)
     {
-        $image = $req->file('img');
+        $image = $req->file("img");
         $req->validate([
-            'title_en' => 'required',
-            'title_ar' => "required",
-            'content_en' => "required",
-            'content_ar' => "required",
-            'body_en' => "required",
-            'body_ar' => "required",
-            'img' => 'required'
+            "title_en" => "required",
+            "title_ar" => "required",
+            "content_en" => "required",
+            "content_ar" => "required",
+            "body_en" => "required",
+            "body_ar" => "required",
+            "img" => "required",
         ]);
 
-        Headers::where('id', $req->id)->update([
-            'title' => $req->title_en,
-            'title_ar' => $req->title_ar,
-            'content' => $req->content_en,
-            'content_ar' => $req->content_ar,
-            'paragraph' => $req->body_en,
-            'paragraph_ar' => $req->body_ar,
-            'img' => 'banner.png'
+        Headers::where("id", $req->id)->update([
+            "title" => $req->title_en,
+            "title_ar" => $req->title_ar,
+            "content" => $req->content_en,
+            "content_ar" => $req->content_ar,
+            "paragraph" => $req->body_en,
+            "paragraph_ar" => $req->body_ar,
+            "img" => "banner.png",
         ]);
-        $imageName = Str::random(30) . '.' . $image->getClientOriginalExtension();;
-        $image->move(public_path('/uploads'), $imageName);
-        Headers::where('id', $req->id)->update([
-            'img' => $imageName,
+        $imageName =
+            Str::random(30) . "." . $image->getClientOriginalExtension();
+        $image->move(public_path("/uploads"), $imageName);
+        Headers::where("id", $req->id)->update([
+            "img" => $imageName,
         ]);
         return response()->json([
-            "msg" => "Header Updated Succsfully"
+            "msg" => "Header Updated Succsfully",
         ]);
     }
     public function GetHeaderData()
@@ -77,20 +84,21 @@ class LandpageController extends Controller
         $query = Headers::query();
         $data = Datatables()
             ->eloquent($query->latest())
-            ->addColumn('content_img', function (Headers $head) {
+            ->addColumn("content_img", function (Headers $head) {
                 $img = $head->img;
-                $id = $head->id;
+                // $id = $head->id;
+
                 return view("Dashboard-pages.Headers.action", [
-                    'type' => "header_img",
-                    'img' => $img,
-                    'id' => $id
+                    "type" => "header_img",
+                    "img" => $img,
+                    // "id" => $id,
                 ]);
             })
-            ->addColumn('action', function (Headers $head) {
+            ->addColumn("action", function (Headers $head) {
                 $id = $head->id;
-                return view('Dashboard-pages.Headers.action', [
-                    'type' => "action",
-                    'id' => $id,
+                return view("Dashboard-pages.Headers.action", [
+                    "type" => "action",
+                    "id" => $id,
                 ]);
             })
             ->toJson();

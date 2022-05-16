@@ -1,10 +1,10 @@
-<div class="flex flex-col h-auto py-4 overflow-auto border-0 md:h-screen bg-primary md:w-1/4">
+<div class="flex flex-col h-auto py-4 overflow-auto border-0 bg-primary md:h-screen drop-shadow-md md:w-1/5">
     <div class="flex items-center mx-auto my-4 text-2xl font-bold">
-        <span class="flex items-center justify-center w-10 h-10 p-2 mr-2 bg-white rounded-2xl text-secondary">AI</span>
-        <h1 class="text-white">Attend</h1>
+        <span class="flex items-center justify-center w-10 h-10 p-2 mr-2 bg-white text-secondary rounded-2xl">AI</span>
+        <h1 class="font-bold text-white">Attend</h1>
     </div>
 
-    <div class="flex flex-col my-5 space-y-4 text-lg font-bold sidebar-items">
+    <div class="flex flex-col my-5 space-y-4 font-bold text-md sidebar-items">
 
 
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
@@ -104,7 +104,7 @@
                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             Send Notification</a>
-            
+
 
 
 
@@ -126,8 +126,11 @@
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
         {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/header') ? 'dashboard-item-active bg-neutral/25' : '' }}
         " href=" /admin/header">
-        <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"/>
-        </svg>Header</a>
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512">
+                <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                    d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z" />
+            </svg>Header</a>
 
 
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25

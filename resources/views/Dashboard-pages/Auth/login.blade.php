@@ -121,7 +121,8 @@
                         $("#error-msg").text(error.responseJSON.message);
                     } else if (error.status == 500) {
                         $('.error-msg').css("display", "block")
-                        $("#error-msg").text("Login will be Pending for five minutes");
+                        $("#error-msg").text(
+                            "There is a problem with the login right now come back later");
                         $("#email").prop('disabled', true);
                         $("#password").prop('disabled', true);
 

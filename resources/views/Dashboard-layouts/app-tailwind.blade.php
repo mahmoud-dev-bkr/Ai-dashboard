@@ -39,11 +39,14 @@
         ::-webkit-scrollbar-thumb {
             -webkit-border-radius: 10px;
             border-radius: 10px;
-            background: #7362d6;
+            background: rgb(2, 132, 199);
+            ;
+
         }
 
         .dataTables_empty {
-            background-color: rgb(189, 61, 61);
+            background-color: rgb(55, 48, 163);
+
             color: white;
             padding: 5px 10px;
             display: inline;
@@ -117,7 +120,7 @@
         }
 
         .table th {
-            background: #45369e;
+            background: rgb(79, 70, 229);
             color: white
         }
 
@@ -283,15 +286,13 @@
 <body>
     <div class="flex flex-col md:flex-row">
         @include('dashboard-layouts.inc.sidebar')
-        <div class="w-full h-auto md:h-screen md:overflow-auto">
+        <div class="w-full h-auto bg-blue-100/50 md:h-screen md:overflow-auto">
             {{-- navbar --}}
             @include('dashboard-layouts.inc.navbar')
-            <div class="h-auto overflow-y-auto md:flex-1">
-                <div class="h-full bg-white rounded-lg shadow-2xl p-7">
-                    @yield('content')
-                </div>
+            <div class="h-40 " style="z-index: -1"></div>
+            <div class="relative h-auto m-4 bg-white rounded-lg shadow-2xl md:flex-1 p-7 drop-shadow-lg -top-20">
+                @yield('content')
             </div>
-
         </div>
     </div>
     {{-- sweet alert --}}
