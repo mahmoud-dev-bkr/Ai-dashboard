@@ -350,3 +350,8 @@
         padding: 2%;
     }
 }
+
+#content-view,
+#sidebar {
+    transition: opacity 0.6s ease-in-out;
+}

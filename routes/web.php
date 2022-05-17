@@ -13,8 +13,28 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\UsersController;
+use App\Models\Permission;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+Route::get("/test", function () {
+    Permission::create([
+        "name" => "payment_details_add",
+        "display_name" => "add payment details", // optional
+    ]);
+
+    Permission::create([
+        "name" => "payment_details_view",
+        "display_name" => "view payment details", // optional
+    ]);
+
+    Permission::create([
+        "name" => "payment_details_edit",
+        "display_name" => "edit a payment detail", // optional
+        "description" => "create new blog posts", // optional
+    ]);
+    // /////////////////////////////////////////////////////////////////////
+});
 
 Route::group(
     [
@@ -50,6 +70,35 @@ Route::group(
             function () {
                 // main admin page
                 Route::get("/", [PagesController::class, "mainAdminPage"]);
+
+                // fag
+                Route::group(["prefix" => "faq"], function () {
+                    Route::get("/", [LandpageController::class, "view_faq"]);
+                    Route::get("/data", [
+                        LandpageController::class,
+                        "getfaqData",
+                    ])->name("getfaqData");
+                    Route::get("/delete/{id}", [
+                        LandpageController::class,
+                        "deletefaq",
+                    ]);
+                    Route::get("/create", [
+                        LandpageController::class,
+                        "createFaq",
+                    ])->name("createFaq");
+                    Route::post("/store", [
+                        LandpageController::class,
+                        "storeFaQ",
+                    ])->name("storeFaQ");
+                    Route::get("/update/{id}", [
+                        LandpageController::class,
+                        "update",
+                    ]);
+                    Route::post("/edit", [
+                        LandpageController::class,
+                        "editfaq",
+                    ])->name("editfaq");
+                });
 
                 // companies routes
                 Route::group(["prefix" => "company"], function () {
@@ -137,21 +186,39 @@ Route::group(
                         ])->name("toggleactivate");
                         Route::get("addpaymentmethod", [
                             PaymentMethodController::class,
-                            "insertpaymentmethod"
+                            "insertpaymentmethod",
                         ])->name("addpaymentmethod");
                         Route::post("storepaymentmethod", [
                             PaymentMethodController::class,
-                            "storepaymentmethod"
+                            "storepaymentmethod",
                         ])->name("storepaymentmethod");
                     }
                 );
                 Route::group(["prefix" => "alertscompany"], function () {
-                    Route::get('/', [AlertWithComapanyController::class, "AlertCompany"]);
-                    Route::get('/data', [AlertWithComapanyController::class, "getAlertCompanyData"])->name("getAlertCompanyData");
-                    Route::patch('/togglealertcomapanyactivate', [AlertWithComapanyController::class, "togglealertcompanyactivate"])->name("togglealertcompanyactivate");
-                    Route::delete('/deletealertcompany/{id}', [AlertWithComapanyController::class, "deletealertcompany"])->name("deletealertcompany");
-                    Route::get('/insertalertmessage', [AlertWithComapanyController::class, "InsertAlertPage"])->name("insertalertmessage");
-                    Route::post('storealertmsg', [AlertWithComapanyController::class, 'storealertcompany'])->name("storealertmsg");
+                    Route::get("/", [
+                        AlertWithComapanyController::class,
+                        "AlertCompany",
+                    ]);
+                    Route::get("/data", [
+                        AlertWithComapanyController::class,
+                        "getAlertCompanyData",
+                    ])->name("getAlertCompanyData");
+                    Route::patch("/togglealertcomapanyactivate", [
+                        AlertWithComapanyController::class,
+                        "togglealertcompanyactivate",
+                    ])->name("togglealertcompanyactivate");
+                    Route::delete("/deletealertcompany/{id}", [
+                        AlertWithComapanyController::class,
+                        "deletealertcompany",
+                    ])->name("deletealertcompany");
+                    Route::get("/insertalertmessage", [
+                        AlertWithComapanyController::class,
+                        "InsertAlertPage",
+                    ])->name("insertalertmessage");
+                    Route::post("storealertmsg", [
+                        AlertWithComapanyController::class,
+                        "storealertcompany",
+                    ])->name("storealertmsg");
                 });
                 Route::group(["prefix" => "alerts"], function () {
                     Route::get("/", [AlertsController::class, "alertpage"]);
@@ -192,8 +259,14 @@ Route::group(
                 });
 
                 Route::group(["prefix" => "alertscompany"], function () {
-                    Route::get('/', [AlertWithComapanyController::class, "AlertCompany"]);
-                    Route::get('/data', [AlertWithComapanyController::class, "getAlertCompanyData"])->name("getAlertCompanyData");
+                    Route::get("/", [
+                        AlertWithComapanyController::class,
+                        "AlertCompany",
+                    ]);
+                    Route::get("/data", [
+                        AlertWithComapanyController::class,
+                        "getAlertCompanyData",
+                    ])->name("getAlertCompanyData");
                 });
                 // start of roles routes
                 Route::group(["prefix" => "roles"], function () {
@@ -223,12 +296,24 @@ Route::group(
                         "createRole",
                     ])->name("createRole");
                 });
-                Route::group(['prefix' => 'header'], function () {
-                    Route::get('/', [LandpageController::class, "headerpage"]);
-                    Route::get('/data', [LandpageController::class, "GetHeaderData"])->name('GetHeaderData');
-                    Route::get('/view/{id}', [LandpageController::class, "view_header"]);
-                    Route::get('/update/{id}/', [LandpageController::class, 'update_header']);
-                    Route::post('/edit', [LandpageController::class, "edit_header"])->name("edit_header");
+                Route::group(["prefix" => "header"], function () {
+                    Route::get("/", [LandpageController::class, "headerpage"]);
+                    Route::get("/data", [
+                        LandpageController::class,
+                        "GetHeaderData",
+                    ])->name("GetHeaderData");
+                    Route::get("/view/{id}", [
+                        LandpageController::class,
+                        "view_header",
+                    ]);
+                    Route::get("/update/{id}/", [
+                        LandpageController::class,
+                        "update_header",
+                    ]);
+                    Route::post("/edit", [
+                        LandpageController::class,
+                        "edit_header",
+                    ])->name("edit_header");
                 });
                 // end of roles routes
                 // start of terms routes

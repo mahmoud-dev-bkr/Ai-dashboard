@@ -2164,6 +2164,9 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$("#content-view").removeClass("opacity-0");
+$("#sidebar").removeClass("opacity-0");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

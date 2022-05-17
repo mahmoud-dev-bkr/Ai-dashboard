@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use App\Models\Headers;
 use App\Models\Plan;
 use App\Models\Term;
@@ -104,5 +105,65 @@ class LandpageController extends Controller
             ->toJson();
 
         return $data;
+    }
+
+    public function view_faq()
+    {
+        $faq = Faq::all();
+        return view("Dashboard-pages.FAQ.faq", compact("faq"));
+    }
+    public function deletefaq($id)
+    {
+        DB::table("faq")->delete($id);
+        return redirect()->back();
+    }
+    public function createFaq()
+    {
+        return view("Dashboard-pages.FAQ.create");
+    }
+    public function storeFaQ(Request $req)
+    {
+        $req->validate([
+            "q1" => "required",
+            "s1" => "required",
+            "q2" => "required",
+            "s2" => "required",
+        ]);
+        $faq = new Faq();
+        $faq->title = $req->q1;
+        $faq->paragraph = $req->s1;
+        $faq->title_ar = $req->q2;
+        $faq->paragraph_ar = $req->s2;
+        $faq->save();
+        return response()->json([
+            "msg" => "a Faq Added successfully",
+        ]);
+    }
+    public function update($id)
+    {
+        $faq = DB::table("faq")
+            ->select()
+            ->where("id", "=", $id)
+            ->first();
+        return view("Dashboard-pages.FAQ.update", compact("faq"));
+    }
+    public function editfaq(Request $req)
+    {
+        $req->validate([
+            "title_en" => "required",
+            "title_ar" => "required",
+            "body_en" => "required",
+            "body_ar" => "required",
+        ]);
+
+        Faq::where("id", $req->id)->update([
+            "title" => $req->title_en,
+            "title_ar" => $req->title_ar,
+            "paragraph" => $req->body_en,
+            "paragraph_ar" => $req->body_ar,
+        ]);
+        return response()->json([
+            "msg" => "FAQ Updated Succsfully",
+        ]);
     }
 }

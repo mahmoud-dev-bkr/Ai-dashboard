@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Elaxo App and Software Template</title>
+    <title>Ai Attend</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="Elaxo App and Software Template" name="description" />
     <meta content="" name="keywords" />
@@ -62,9 +62,10 @@
                             <div class="de-flex-col">
                                 <!-- logo begin -->
                                 <div id="logo">
-                                    <a href="index.html">
+                                    <a href="index.html" class="d-flex align-items-center">
                                         <img alt="" class="logo" src="images/logo.png" />
                                         <img alt="" class="logo-2" src="images/logo.png" />
+                                        <span class="logo-text"><span>Ai</span> Attend</span>
                                     </a>
                                 </div>
                                 <!-- logo close -->
@@ -818,9 +819,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2">
-                        <div class="widget">
+                        {{-- <div class="widget">
                             <a href="index.html"><img alt="" class="logo" src="images/logo.png"></a>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="col-lg-2">
