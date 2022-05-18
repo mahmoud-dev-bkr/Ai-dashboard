@@ -59,7 +59,7 @@
 
 
 
-        @if (Auth::user() && Auth::user()->hasRole('super_admin'))
+        {{-- @if (Auth::user() && Auth::user()->hasRole('super_admin')) --}}
             <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
             {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/users') ? 'dashboard-item-active bg-neutral/25' : '' }}
             " href=" /admin/users">
@@ -69,7 +69,7 @@
                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
                 Users</a>
-        @endif
+        {{-- @endif --}}
 
         {{-- @if (Auth::user() && Auth::user()->hasRole('super_admin')) --}}
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
@@ -126,6 +126,16 @@
                     fill="white" />
             </svg>Header</a>
 
+            <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/sentance') ? 'dashboard-item-active bg-neutral/25' : '' }}
+            " href="/admin/sentance">
+                <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512">
+                    <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"
+                        fill="white" />
+                </svg>Sentance</a>
+    
 
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
             {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/faq') ? 'dashboard-item-active bg-neutral/25' : '' }}

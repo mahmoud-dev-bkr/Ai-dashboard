@@ -126,20 +126,31 @@ class AlertWithComapanyController extends Controller
     {
         $req->validate([
             "company" => "required",
-            "alerts" => "required",
+            "alert" => "required",
         ]);
         $getcompanydata = $req->company;
-        $getalertdata = $req->alerts;
+        $getalertdata = $req->alert;
 
         // return $getcompanydata;
         // $companyreq = implode(",", $getcompanydata);
         // $alertreq = implode(",", $getalertdata);
 
-        $company = new alerts_to_companies();
-        $company->alert_id = $getalertdata;
-        $company->company_id = $getcompanydata;
-        $company->user_id = Auth::id();
-        $company->save();
+        $alerts_companies = [];
+        foreach ($getcompanydata as $c_id) {
+            array_push($alerts_companies, [
+                'user_id' => Auth::id(),
+                'alert_id' => $getalertdata,
+                'company_id' => $c_id
+            ]);
+        }
+
+        // $company = new alerts_to_companies();
+        // $company->alert_id = $getalertdata;
+        // $company->company_id = $getcompanydata;
+        // $company->user_id = Auth::id();
+        // $company->save();
+
+        alerts_to_companies::insert($alerts_companies);
         return response()->json([
             "msg" => "Message Send Succsfully",
         ]);

@@ -1,71 +1,38 @@
 @extends('Dashboard-layouts.app-tailwind')
 @section('content')
-<table class="table w-full my-4 table-zebra" id="headerDT">
-    <thead>
-        <tr>
-            <th>Title English</th>
-            <th>Title Arabic</th>
-            <th>Content English</th>
-            <th>Content Arabic</th>
-            <th>img</th>
-            <th>Action</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="p-7">
+    <h1 class="my-3 text-3xl font-bold text-priamry">Terms and conditions</h1>
 
-    </tbody>
-</table>
+    <div class="mt-5 terms">
+        @foreach ($header as $t)
+
+            <div class="p-4 my-4 overflow-x-auto bg-white rounded-lg shadow-lg">
+                <div class="flex items-center justify-between">
+                    <a href="{{ route('update_header', ['id' => $t->id]) }}"><i class="fa fa-pen"></i></a>
+                    {{-- <a href="{{ route('') }}"><i class="fa fa-pen"></i></a> --}}
+                </div>
+                <div class="mb-3">
+                    <h1 class="text-2xl text-blue-500">{{ $t->title }}</h1>
+                    <h3 class="text-2xl ">{{ $t->content }}</h3>
+                    <p style="white-space: pre-wrap;">{{ $t->paragraph }}</p>
+                </div>
+                <div class="mb-3">
+                    <h1 class="text-2xl text-blue-500">{{ $t->title_ar }}</h1>
+                    <h3 class="text-2xl ">{{ $t->content_ar }}</h3>
+                    <p style="white-space: pre-wrap;">{{ $t->paragraph_ar }}</p>
+                </div>
+
+                <div class="flex items-center text-center">
+                    <img class="p-2 w-32" src="{{asset("uploads/$t->img")}}"  alt="">
+                    <img class="p-2 w-32" src="{{asset("uploads/$t->image_2")}}" alt="">    
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
 @endsection
 @section('scripts')
 <script>
-       let headertDT = null;
 
-function setheaderDT() {
-
-    var url = "{{ route('GetHeaderData') }}";
-    headertDT = $("#headerDT").DataTable({
-        processing: true,
-        serverSide: true,
-        pageLength: 7,
-        dom: "Bfrtip",
-        buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
-        sorting: [0, "DESC"],
-        ajax: url,
-        language: {
-            paginate: {
-                "previous": "<i class='text-lg cursor-pointer fa text-secondary fa-caret-left'></i>",
-                "next": "<i class='text-lg cursor-pointer fa text-secondary fa-caret-right'></i>",
-            },
-        },
-        columns: [{
-                data: "title"
-            },
-            {
-                data: "title_ar"
-            },
-            {
-                data: "content"
-            },
-            {
-                data: "content_ar"
-            },
-            {
-                data: "content_img"
-            },
-            {
-                data: "action"
-            },
-            {
-                data: "updated_at"
-            },
-            
-            
-        ],
-    });
-}
-$(function() {
-    setheaderDT();
-});
 </script>
 @endsection

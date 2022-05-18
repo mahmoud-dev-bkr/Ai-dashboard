@@ -147,26 +147,24 @@
                     <div class="row align-items-center">
                         <div class="col-lg-5 wow fadeInRight" data-wow-delay=".5s">
                             <div class="spacer-10"></div>
-                            <div class="h1 text-light">Help to improve focus<br>
+                            <div class="h1 text-light">{{$headers->title}}<br>
                                 for more
                                 <div class="typed-strings">
-                                    <p>productive</p>
-                                    <p>creative</p>
-                                    <p>relax</p>
-                                    <p>confidence</p>
+                                    @foreach ($sentance as $s )
+                                    <p>{{$s->sentence_en}}</p>    
+                                    @endforeach
                                 </div>
                                 <div class="typed"></div>
                             </div>
-                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua ut enim.</p>
+                            <p class="lead">{{$headers->paragraph}}</p>
                             <div class="spacer-20"></div>
-                            <a class="btn-custom" href="features.html">Learn More</a>&nbsp;
-                            <a class="btn-border" href="download.html">Download</a>
+                            <a class="btn-custom" href="{{$headers->learn_more}}">Learn More</a>&nbsp;
+                            <a class="btn-border" href="{{$headers->download}}">Download</a>
                             <div class="mb-sm-30"></div>
                         </div>
 
                         <div class="text-center col-lg-6 offset-lg-1 wow fadeInLeft" data-wow-delay=".5s">
-                            <img src="images/misc/1.png" class="img-fluid" alt="" />
+                            <img src="{{asset("uploads/$headers->img")}}" class="img-fluid" alt="" />
                         </div>
                     </div>
                 </div>

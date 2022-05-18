@@ -14,13 +14,22 @@
     </div>
 
     <div class="items-center my-2 input-group">
-        <label class="font-bold w-80">content (en)</label>
+        <label class="font-bold w-80">Sub Title (en)</label>
         <input type="text" value="{{$headers->content}}" class="w-full input bg-base-300/50 arabic" name="content_en" />
     </div>
 
     <div class="items-center my-2 input-group">
-        <label class="font-bold w-80">content (ar)</label>
+        <label class="font-bold w-80">Sub Title (en)</label>
         <input type="text" value="{{$headers->content_ar}}" class="w-full input bg-base-300/50 arabic" name="content_ar" />
+    </div>
+
+    <div class="items-center my-2 input-group">
+        <label class="font-bold w-80">Download Link</label>
+        <input type="text" value="{{$headers->download}}" class="w-full input bg-base-300/50 arabic" name="download" />
+    </div>
+    <div class="items-center my-2 input-group">
+        <label class="font-bold w-80">learn More</label>
+        <input type="text" value="{{$headers->learn_more}}" class="w-full input bg-base-300/50 arabic" name="learn_more" />
     </div>
 
     <div class="items-center my-2 input-group">
@@ -35,8 +44,14 @@
 
     
     <div class="items-center my-2 input-group">
-        <label class="font-bold w-80">IMG</label>
-        <input type="file" class="w-full input bg-base-300/50 arabic" name="img" />
+        <label class="font-bold w-80">First IMG</label>
+        <input type="file" class="w-full input bg-base-300/50 arabic" value="{{$headers->img}}" name="img" />
+    </div>
+
+    
+    <div class="items-center my-2 input-group">
+        <label class="font-bold w-80">Secound IMG</label>
+        <input type="file" class="w-full input bg-base-300/50 arabic" value="{{$headers->image_2}}" name="img2" />
     </div>
 
     <button type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light"
@@ -63,7 +78,7 @@
         // ////////////////////////////
 
         $(".form-header").submit(function(e) {
-            // $('#loader').removeClass('hidden')
+            $('#loader').removeClass('hidden')
 
             e.preventDefault();
             $.ajax({
@@ -76,14 +91,14 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    // $('#loader').addClass('hidden')
+                    $('#loader').addClass('hidden')
 
                     console.log(data);
                     let msg = data.msg;
                     notyf.success(msg);
                 },
                 error: function(err) {
-                    // $('#loader').addClass('hidden')
+                    $('#loader').addClass('hidden')
                     console.log(err);
                     if (err.status == 422) {
                         // validation error

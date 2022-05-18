@@ -17,24 +17,138 @@ use App\Models\Permission;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-Route::get("/test", function () {
-    Permission::create([
-        "name" => "payment_details_add",
-        "display_name" => "add payment details", // optional
-    ]);
+// Route::get("/test", function () {
+//     Permission::create([
+//         "name" => "payment_details_add",
+//         "display_name" => "add payment details", // optional
+//     ]);
 
-    Permission::create([
-        "name" => "payment_details_view",
-        "display_name" => "view payment details", // optional
-    ]);
+//     Permission::create([
+//         "name" => "payment_details_view",
+//         "display_name" => "view payment details", // optional
+//     ]);
+//     // //////////////////////////////////////////////
+//     Permission::create([
+//         "name" => "plans_add",
+//         "display_name" => "add a new plan", // optional
+//     ]);
 
-    Permission::create([
-        "name" => "payment_details_edit",
-        "display_name" => "edit a payment detail", // optional
-        "description" => "create new blog posts", // optional
-    ]);
-    // /////////////////////////////////////////////////////////////////////
-});
+//     Permission::create([
+//         "name" => "plans_edit",
+//         "display_name" => "edit a plan", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "plans_view",
+//         "display_name" => "view plans", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "plans_delete",
+//         "display_name" => "delete plans", // optional
+//     ]);
+//     // /////////////////////////////////////////////////////////////////////
+//     Permission::create([
+//         "name" => "users_add",
+//         "display_name" => "add users", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "users_edit",
+//         "display_name" => "edit users", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "users_view",
+//         "display_name" => "view users", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "users_activate",
+//         "display_name" => "active/disactive users", // optional
+//     ]);
+//     // ////////////////////////////////////////////////////////////
+//     Permission::create([
+//         "name" => "payment_method_add",
+//         "display_name" => "add payment method", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "payment_method_view",
+//         "display_name" => "view payment methods", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "payment_method_edit",
+//         "display_name" => "edit payment method", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "payment_method_activate",
+//         "display_name" => "active/disactive payment methods", // optional
+//     ]);
+//     // ////////////////////////////////////////////////////////////
+//     Permission::create([
+//         "name" => "alerts_add",
+//         "display_name" => "add a new alert", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "alerts_view",
+//         "display_name" => "view alerts", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "alerts_edit",
+//         "display_name" => "edit alerts", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "alerts_activate",
+//         "display_name" => "active/disactive alerts", // optional
+//     ]);
+//     // ////////////////////////////////////////////////////////////
+//     Permission::create([
+//         "name" => "notifications_add",
+//         "display_name" => "add a new notification", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "notifications_view",
+//         "display_name" => "view notifications", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "notifications_activate",
+//         "display_name" => "active/disactive notifications", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "notifications_delete",
+//         "display_name" => "delete notifications", // optional
+//     ]);
+//     // ////////////////////////////////////////////////////////////
+
+//     Permission::create([
+//         "name" => "roles_permissions_add",
+//         "display_name" => "add a new role", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "roles_permissions_view",
+//         "display_name" => "view roles", // optional
+//     ]);
+
+//     Permission::create([
+//         "name" => "roles_permissions_update",
+//         "display_name" => "update roles", // optional
+//     ]);
+//     // ////////////////////////////////////////////////////////////
+//     Permission::create([
+//         "name" => "manage_landpage",
+//         "display_name" => "manage landpage data", // optional
+//     ]);
+// });
 
 Route::group(
     [
@@ -298,23 +412,34 @@ Route::group(
                 });
                 Route::group(["prefix" => "header"], function () {
                     Route::get("/", [LandpageController::class, "headerpage"]);
-                    Route::get("/data", [
-                        LandpageController::class,
-                        "GetHeaderData",
-                    ])->name("GetHeaderData");
-                    Route::get("/view/{id}", [
-                        LandpageController::class,
-                        "view_header",
-                    ]);
+                    // Route::get("/data", [
+                    //     LandpageController::class,
+                    //     "GetHeaderData",
+                    // ])->name("GetHeaderData");
+                    // Route::get("/view/{id}", [
+                    //     LandpageController::class,
+                    //     "view_header",
+                    // ]);
                     Route::get("/update/{id}/", [
                         LandpageController::class,
                         "update_header",
-                    ]);
+                    ])->name("update_header");
                     Route::post("/edit", [
                         LandpageController::class,
                         "edit_header",
                     ])->name("edit_header");
                 });
+                Route::group(['prefix' => "sentance"], function () {
+                    Route::get('/', [LandpageController::class, "Sentancepage"]);
+                    Route::get('/data', [LandpageController::class, 'GetSentaceData'])->name('GetSentaceData');
+                    Route::get('/create', [LandpageController::class, 'createSentance'])->name('createSentance');
+                    Route::post('/store', [LandpageController::class, 'storeSentance'])->name('storeSentance');
+                    Route::delete("deletesentace/{id}", [
+                        LandpageController::class,
+                        "deletesentace",
+                    ])->name("deletesentace");
+                });
+
                 // end of roles routes
                 // start of terms routes
                 Route::group(["prefix" => "terms"], function () {

@@ -52,7 +52,7 @@ class RolesController extends Controller
             ],
             [
                 "permissions.required" =>
-                    "you should select at least on permission",
+                "you should select at least on permission",
             ]
         );
         $permissions = $req->permissions;
@@ -74,12 +74,33 @@ class RolesController extends Controller
 
     public function updatePage($id)
     {
-        $permissions = Permission::orderBy("name", "desc")->get();
+        $permissions_data = [];
+
+        $permissions = Permission::all();
+
+        $current_name = null;
+        $collection = [];
+
+        foreach ($permissions as $p) {
+
+            if (!$current_name) {
+                // first loob
+                array_push($collection, $p);
+            } else if (substr($p->name, 0, 4) == $current_name) {
+                array_push($collection, $p);
+            } else if (substr($p->name, 0, 4) != $current_name) {
+                array_push($permissions_data, $collection);
+                $collection = [];
+                array_push($collection, $p);
+            }
+
+            $current_name = substr($p->name, 0, 4);
+        }
 
         $role = Role::find($id);
         return view(
             "dashboard-pages.roles.update",
-            compact("permissions", "role")
+            compact("permissions_data", "role")
         );
     }
     public function update(Request $req, $id)
@@ -93,7 +114,7 @@ class RolesController extends Controller
             ],
             [
                 "permissions.required" =>
-                    "you should select at least on permission",
+                "you should select at least on permission",
             ]
         );
         $role = Role::find($id);

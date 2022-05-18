@@ -4,7 +4,7 @@
             src='/images/avatar.jpg' alt="profile picture" />
         <div class="flex flex-col p-5">
             <h1 class="font-bold text-gray-500 ">{{ Auth::user()->name_en }}</h1>
-            <p class="text-sm text-gray-300">{{ Auth::user()->role->first()->display_name }}</p>
+            {{-- <p class="text-sm text-gray-300">{{ Auth::user()->role->first()->display_name }}</p> --}}
         </div>
     </div>
 
