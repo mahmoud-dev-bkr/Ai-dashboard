@@ -355,3 +355,7 @@
 #sidebar {
     transition: opacity 0.6s ease-in-out;
 }
+
+#sidebar > a {
+    float: left;
+}

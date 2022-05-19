@@ -18,10 +18,12 @@ class LandpageController extends Controller
     function HomePage()
     {
         // $headers = Headers::all();
-        $headers = DB::table('header')->select()->first();
+        $headers = DB::table("header")
+            ->select()
+            ->first();
         $sentance = Sentence::all();
         // $plans = Plan::where("activate", 1)->get();
-        return view("landpage.index", compact('headers', 'sentance'));
+        return view("landpage.index", compact("headers", "sentance"));
     }
 
     function TermsPage()
@@ -33,7 +35,7 @@ class LandpageController extends Controller
     {
         $header = Headers::all();
         // dd($header);
-        return view("Dashboard-pages.Headers.header", compact('header'));
+        return view("Dashboard-pages.Headers.header", compact("header"));
     }
     public function update_header($id)
     {
@@ -46,7 +48,6 @@ class LandpageController extends Controller
     }
     public function edit_header(Request $req)
     {
-
         $image = $req->file("img");
         $image2 = $req->file("img2");
 
@@ -57,11 +58,10 @@ class LandpageController extends Controller
             "content_ar" => "required",
             "body_en" => "required",
             "body_ar" => "required",
-            "img" => "required",
-            'img2' => 'required',
-            'learn_more' => "required",
-            'download' => 'required|url',
-
+            // "img" => "required",
+            // 'img2' => 'required',
+            "learn_more" => "required",
+            "download" => "required",
         ]);
 
         Headers::where("id", $req->id)->update([
@@ -72,24 +72,26 @@ class LandpageController extends Controller
             "paragraph" => $req->body_en,
             "paragraph_ar" => $req->body_ar,
             "img" => "banner.png",
-            'image_2' => 'banner.png',
-            'download' => $req->download,
-            'learn_more' => $req->learn_more,
-        ]);
-        $imageName =
-            Str::random(30) . "." . $image->getClientOriginalExtension();
-
-        $imageName2 =
-            Str::random(30) . "." . $image->getClientOriginalExtension();
-
-        Headers::where("id", $req->id)->update([
-            "img" => $imageName,
-            "image_2" => $imageName2,
-
+            "image_2" => "banner.png",
+            "download" => $req->download,
+            "learn_more" => $req->learn_more,
         ]);
 
-        $image->move(public_path("/uploads"), $imageName);
-        $image2->move(public_path("/uploads"), $imageName2);
+        if ($req->file("img")) {
+            $imageName = "banner" . "." . $image->getClientOriginalExtension();
+
+            // $imageName2 =
+            //     Str::random(30) . "." . $image->getClientOriginalExtension();
+
+            Headers::where("id", $req->id)->update([
+                "img" => $imageName,
+                // "image_2" => $imageName2,
+            ]);
+
+            $image->move(public_path("/uploads"), $imageName);
+            // $image2->move(public_path("/uploads"), $imageName2);
+        }
+
         return response()->json([
             "msg" => "Header Updated Succsfully",
         ]);
@@ -183,7 +185,7 @@ class LandpageController extends Controller
     }
     public function Sentancepage()
     {
-        return view('Dashboard-pages.sentance.sentance');
+        return view("Dashboard-pages.sentance.sentance");
     }
 
     public function GetSentaceData()
@@ -222,7 +224,7 @@ class LandpageController extends Controller
     }
     public function deletesentace($id)
     {
-        DB::table('sentence')->delete($id);
+        DB::table("sentence")->delete($id);
         return redirect()->back();
     }
 }
