@@ -257,61 +257,50 @@
                     <div class="row align-items-center">
                         <div class="text-center col-lg-6 d-none d-lg-block d-xl-block wow fadeInRight"
                             data-wow-delay="0s">
-                            <img class="relative img-fluid" src="images/misc/5.png" alt="" />
+                            <img class="relative img-fluid" src="{{asset("uploads/$profile->img")}}" alt="" />
                         </div>
 
                         <div class="col-lg-5 offset-md-1 wow fadeInLeft" data-wow-delay="0s">
-                            <span class="p-title">Profile</span><br>
+                            <span class="p-title">{{$profile->span}}</span><br>
                             <h2>
-                                Select a profile or create new one.
-                                You deciced!
+                                {{$profile->title}}
                             </h2>
                             <ul class="mb-3 nav nav-pills" id="pills-tab" role="tablist">
+                             
+                                @foreach ($profile_features as $index=>$p)
+                                @if ($index ==0)
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
-                                        role="tab" aria-controls="pills-home" aria-selected="true">Sleep</a>
-                                </li>
+                                    <a class="nav-link active" id="pills-{{$p->title}}-tab" data-toggle="pill" href="#pills-{{$p->title}}"
+                                        role="tab" aria-controls="pills-{{$p->title}}" aria-selected="false">{{$p->title}}</a>
+                                </li>        
+                                @else
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
-                                        role="tab" aria-controls="pills-profile" aria-selected="false">Focus</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
-                                        role="tab" aria-controls="pills-contact" aria-selected="false">Relax</a>
-                                </li>
+                                    <a class="nav-link" id="pills-{{$p->title}}-tab" data-toggle="pill" href="#pills-{{$p->title}}"
+                                        role="tab" aria-controls="pills-{{$p->title}}" aria-selected="false">{{$p->title}}</a>
+                                </li>  
+                                @endif  
+                                @endforeach
+                                
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                    aria-labelledby="pills-home-tab">
-                                    <p>Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est
-                                        duis anim sunt officia. Fugiat velit proident aliquip nisi incididunt nostrud
-                                        exercitation proident est nisi. Irure magna elit commodo anim ex veniam culpa
-                                        eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing
-                                        minim anim aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation
-                                        irure Lorem incididunt nostrud.</p>
+                              
+                                @foreach ($profile_features as $index=>$p )
+                                @if ($index==0)
+                                    <div class="tab-pane fade active show" id="pills-{{$p->title}}" role="tabpanel"
+                                        aria-labelledby="pills-{{$p->title}}-tab">
+                                        <p>{{$p->content}}</p>
+                                        </div>    
+                                @else
+                                <div class="tab-pane fade" id="pills-{{$p->title}}" role="tabpanel"
+                                aria-labelledby="pills-{{$p->title}}-tab">
+                                <p>{{$p->content}}</p>
                                 </div>
-                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                                    aria-labelledby="pills-profile-tab">
-                                    <p>Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit
-                                        ex. Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do.
-                                        Aliquip ex eiusmod voluptate exercitation cillum id incididunt elit sunt. Qui
-                                        minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt.
-                                        Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor
-                                        duis.</p>
-                                </div>
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                    aria-labelledby="pills-contact-tab">
-                                    <p>Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip
-                                        dolor aliqua irure ex. Nulla ut duis ipsum nisi elit fugiat commodo sunt
-                                        reprehenderit laborum veniam eu veniam. Eiusmod minim exercitation fugiat irure
-                                        ex labore incididunt do fugiat commodo aliquip sit id deserunt reprehenderit
-                                        aliquip nostrud. Amet ex cupidatat excepteur aute veniam incididunt mollit
-                                        cupidatat esse irure officia elit do ipsum ullamco Lorem.</p>
-                                </div>
+                                @endif
+                                @endforeach
                             </div>
                             <div class="spacer-half"></div>
-                            <a class="btn-custom" href="features.html">Learn More</a>&nbsp;
-                            <a class="btn-border btn-invert" href="download.html">Download</a>
+                            <a class="btn-custom" href="{{$profile->learn_more}}">Learn More</a>&nbsp;
+                            <a class="btn-border btn-invert" href="{{$profile->download}}">Download</a>
                         </div>
                     </div>
                 </div>
@@ -450,68 +439,25 @@
                             <!-- Accordion -->
                             <div id="accordion-1" class="accordion">
 
+
+                                @foreach ($according1 as $a)
                                 <!-- Accordion item 1 -->
                                 <div class="card">
-                                    <div id="heading-a1" class="bg-white border-0 shadow-sm card-header">
+                                    <div id="heading-a{{$a->id}}" class="bg-white border-0 shadow-sm card-header">
                                         <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                                data-target="#collapse-a1" aria-expanded="false"
-                                                aria-controls="collapse-a1"
-                                                class="py-2 d-block position-relative text-dark collapsible-link">How do
-                                                i get the app for my phone?</a></h6>
+                                                data-target="#collapse-a{{$a->id}}" aria-expanded="false"
+                                                aria-controls="collapse-a{{$a->id}}"
+                                                class="py-2 d-block position-relative text-dark collapsible-link">{{$a->title}}?</a></h6>
                                     </div>
-                                    <div id="collapse-a1" aria-labelledby="heading-a1" data-parent="#accordion-1"
+                                    <div id="collapse-a{{$a->id}}" aria-labelledby="heading-a{{$a->id}}" data-parent="#accordion-1"
                                         class="collapse">
                                         <div class="p-4 card-body">
-                                            <p class="m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                single-origin coffee nulla assumenda shoreditch et.</p>
+                                            <p class="m-0">{{$a->paragraph}}</p>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Accordion item 2 -->
-                                <div class="card">
-                                    <div id="heading-a2" class="bg-white border-0 shadow-sm card-header">
-                                        <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                                data-target="#collapse-a2" aria-expanded="false"
-                                                aria-controls="collapse-a2"
-                                                class="py-2 d-block position-relative collapsed text-dark collapsible-link">What
-                                                plan I should choose?</a></h6>
-                                    </div>
-                                    <div id="collapse-a2" aria-labelledby="heading-a2" data-parent="#accordion-1"
-                                        class="collapse">
-                                        <div class="p-4 card-body">
-                                            <p class="m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                single-origin coffee nulla assumenda shoreditch et.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Accordion item 3 -->
-                                <div class="card">
-                                    <div id="heading-a3" class="bg-white border-0 shadow-sm card-header">
-                                        <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                                data-target="#collapse-a3" aria-expanded="false"
-                                                aria-controls="collapse-a3"
-                                                class="py-2 d-block position-relative collapsed text-dark collapsible-link">What
-                                                happen to my app if I stop paying?</a></h6>
-                                    </div>
-                                    <div id="collapse-a3" aria-labelledby="heading-a3" data-parent="#accordion-1"
-                                        class="collapse">
-                                        <div class="p-4 card-body">
-                                            <p class="m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                single-origin coffee nulla assumenda shoreditch et.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                    
+                                @endforeach
 
                             </div>
                         </div>
@@ -519,70 +465,28 @@
 
                         <div class="col-md-6">
                             <!-- Accordion -->
-                            <div id="accordion-2" class="accordion">
+                        
 
+
+                            <div id="accordion-2" class="accordion">
+                                @foreach ($according2 as $a)
                                 <!-- Accordion item 1 -->
                                 <div class="card">
-                                    <div id="heading-b1" class="bg-white border-0 shadow-sm card-header">
+                                    <div id="heading-a{{$a->id}}" class="bg-white border-0 shadow-sm card-header">
                                         <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                                data-target="#collapse-b1" aria-expanded="false"
-                                                aria-controls="collapse-b1"
-                                                class="py-2 d-block position-relative text-dark collapsible-link">Does
-                                                it have in-app purchases?</a></h6>
+                                                data-target="#collapse-a{{$a->id}}" aria-expanded="false"
+                                                aria-controls="collapse-a{{$a->id}}"
+                                                class="py-2 d-block position-relative text-dark collapsible-link">{{$a->title}}?</a></h6>
                                     </div>
-                                    <div id="collapse-b1" aria-labelledby="heading-b1" data-parent="#accordion-2"
+                                    <div id="collapse-a{{$a->id}}" aria-labelledby="heading-a{{$a->id}}" data-parent="#accordion-2"
                                         class="collapse">
                                         <div class="p-4 card-body">
-                                            <p class="m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                single-origin coffee nulla assumenda shoreditch et.</p>
+                                            <p class="m-0">{{$a->paragraph}}</p>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Accordion item 2 -->
-                                <div class="card">
-                                    <div id="heading-b2" class="bg-white border-0 shadow-sm card-header">
-                                        <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                                data-target="#collapse-b2" aria-expanded="false"
-                                                aria-controls="collapse-b2"
-                                                class="py-2 d-block position-relative collapsed text-dark collapsible-link">Can
-                                                I use this app on multiple devices?</a></h6>
-                                    </div>
-                                    <div id="collapse-b2" aria-labelledby="heading-b2" data-parent="#accordion-2"
-                                        class="collapse">
-                                        <div class="p-4 card-body">
-                                            <p class="m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                single-origin coffee nulla assumenda shoreditch et.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Accordion item 3 -->
-                                <div class="card">
-                                    <div id="heading-b3" class="bg-white border-0 shadow-sm card-header">
-                                        <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                                data-target="#collapse-b3" aria-expanded="false"
-                                                aria-controls="collapse-b3"
-                                                class="py-2 d-block position-relative collapsed text-dark collapsible-link">Is
-                                                my phone supported for this app?</a></h6>
-                                    </div>
-                                    <div id="collapse-b3" aria-labelledby="heading-b3" data-parent="#accordion-2"
-                                        class="collapse">
-                                        <div class="p-4 card-body">
-                                            <p class="m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                                                cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                single-origin coffee nulla assumenda shoreditch et.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                    
+                                @endforeach
 
                             </div>
                         </div>
@@ -602,150 +506,22 @@
                                 <div class="small-border"></div>
                             </div>
                             <div class="owl-carousel owl-theme wow fadeInUp" id="testimonial-carousel">
-                                <div class="item">
-                                    <div class="de_testi opt-2 review">
-                                        <blockquote>
+                              @foreach ($reviews as $rev )
+                              <div class="item">
+                                <div class="de_testi opt-2 review">
+                                        <blockquote style="height:450px">
                                             <div class="p-rating">
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star"></i>
+                                                @for ($i=0;$i<$rev->rate;$i++)
+                                                    <i class="fa fa-star checked"></i> 
+                                                @endfor            
                                             </div>
-                                            <h3>Pretty Awesome!</h3>
-                                            <p>Great app, like i have never seen before. Thanks to the support team,
-                                                they are very helpfull. This company provide customers great solution,
-                                                that makes them best.</p>
-                                            <div class="de_testi_by"><span>John, Pixar Studio</span></div>
+                                            <h3>{{$rev->title}}</h3>
+                                            <p>{{$rev->paragraph}}</p>
+                                            <div class="de_testi_by mt-auto"><span>{{$rev->owner}}, {{$rev->supporter}}</span></div>
                                         </blockquote>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="de_testi opt-2 review">
-                                        <blockquote>
-                                            <div class="p-rating">
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <h3>Excellent!</h3>
-                                            <p>Great app, like i have never seen before. Thanks to the support team,
-                                                they are very helpfull. This company provide customers great solution,
-                                                that makes them best.</p>
-                                            <div class="de_testi_by"><span>Sarah, Microsoft</span></div>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="de_testi opt-2 review">
-                                        <blockquote>
-                                            <div class="p-rating">
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <h3>Unbelievable!</h3>
-                                            <p>Great app, like i have never seen before. Thanks to the support team,
-                                                they are very helpfull. This company provide customers great solution,
-                                                that makes them best.</p>
-                                            <div class="de_testi_by"><span>Michael, Apple</span></div>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="de_testi opt-2 review">
-                                        <blockquote>
-                                            <div class="p-rating">
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <h3>Fantastic!</h3>
-                                            <p>Great app, like i have never seen before. Thanks to the support team,
-                                                they are very helpfull. This company provide customers great solution,
-                                                that makes them best.</p>
-                                            <div class="de_testi_by"><span>Thomas, Samsung</span></div>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="de_testi opt-2 review">
-                                        <blockquote>
-                                            <div class="p-rating">
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <h3>Easy to use!</h3>
-                                            <p>Great app, like i have never seen before. Thanks to the support team,
-                                                they are very helpfull. This company provide customers great solution,
-                                                that makes them best.</p>
-                                            <div class="de_testi_by"><span>John, Pixar Studio</span></div>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="de_testi opt-2 review">
-                                        <blockquote>
-                                            <div class="p-rating">
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <h3>Beauty Interface!</h3>
-                                            <p>Great app, like i have never seen before. Thanks to the support team,
-                                                they are very helpfull. This company provide customers great solution,
-                                                that makes them best.</p>
-                                            <div class="de_testi_by"><span>Sarah, Microsoft</span></div>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="de_testi opt-2 review">
-                                        <blockquote>
-                                            <div class="p-rating">
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <h3>Great App!</h3>
-                                            <p>Great app, like i have never seen before. Thanks to the support team,
-                                                they are very helpfull. This company provide customers great solution,
-                                                that makes them best.</p>
-                                            <div class="de_testi_by"><span>Michael, Apple</span></div>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="de_testi opt-2 review">
-                                        <blockquote>
-                                            <div class="p-rating">
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star checked"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <h3>Love It!</h3>
-                                            <p>Great app, like i have never seen before. Thanks to the support team,
-                                                they are very helpfull. This company provide customers great solution,
-                                                that makes them best.</p>
-                                            <div class="de_testi_by"><span>Thomas, Samsung</span></div>
-                                        </blockquote>
-                                    </div>
-                                </div>
+                              @endforeach
                             </div>
                         </div>
                     </div>

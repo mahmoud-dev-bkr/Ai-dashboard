@@ -135,6 +135,26 @@
                         d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"
                         fill="white" />
                 </svg>Sentance</a>
+
+                <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+                {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/profile_land') ? 'dashboard-item-active bg-neutral/25' : '' }}
+                " href="/admin/profile_land">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512">
+                        <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"
+                            fill="white" />
+                    </svg>Profile</a>
+                    
+                <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+                {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/features_land') ? 'dashboard-item-active bg-neutral/25' : '' }}
+                " href="/admin/features_land">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512">
+                        <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"
+                            fill="white" />
+                    </svg>Profile Features</a>
     
 
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
@@ -147,6 +167,17 @@
             </svg>
             FAQ</a>
 
+
+            
+        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
+        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/reviews') ? 'dashboard-item-active bg-neutral/25' : '' }}
+        " href=" /admin/reviews">
+        <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Reviews</a>
 
         <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
             {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/terms') ? 'dashboard-item-active bg-neutral/25' : '' }}
