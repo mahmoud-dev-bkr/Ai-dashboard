@@ -557,6 +557,14 @@ Route::group(
                         PaymentDetailsController::class,
                         "storepaymentdetails",
                     ])->name("storepaymentdetails");
+                    Route::get("updatepaymentdetails/{id}", [
+                        PaymentDetailsController::class,
+                        "update_paymentdetails",
+                    ])->name("update_paymentdetails");
+                    Route::post('edit_paymentdetials', [
+                        PaymentDetailsController::class,
+                        "edit_paymentdetails",
+                    ])->name("edit_paymentdetails");
                 });
                 // logout user
                 Route::delete("/logout", [

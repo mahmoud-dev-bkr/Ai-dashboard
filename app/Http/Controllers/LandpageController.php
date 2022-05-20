@@ -24,8 +24,7 @@ class LandpageController extends Controller
         $headers = DB::table('header')->select()->first();
         $sentance = Sentence::all();
         $faq = Faq::all();
-        // $plans = Plan::where("activate", 1)->get();
-
+        $plans = Plan::where("activate", 1)->get();
         // get fag data
         $fagCount = Faq::count();
         $according1 = Faq::limit($fagCount / 2)->get();
@@ -35,7 +34,17 @@ class LandpageController extends Controller
         $profile = DB::table('profile_land')->select()->first();
         $profile_features = features_land::all();
         // dd($reviews);
-        return view("landpage.index", compact('headers', 'sentance', 'faq', 'according1', 'according2', 'reviews', 'profile_features', 'profile'));
+        return view("landpage.index", compact(
+            'headers',
+            'sentance',
+            'faq',
+            'according1',
+            'plans',
+            'according2',
+            'reviews',
+            'profile_features',
+            'profile'
+        ));
     }
 
     function TermsPage()

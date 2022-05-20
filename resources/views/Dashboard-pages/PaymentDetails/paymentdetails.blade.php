@@ -16,6 +16,8 @@
                     <th>Payment Date</th>
                     <th>Start Date</th>
                     <th>End Date</th>
+                    <th>Action</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -62,6 +64,10 @@
                     },
                     {
                         data: "end_date"
+                    }
+                    ,
+                    {
+                        data: "action"
                     }
                 ],
             });

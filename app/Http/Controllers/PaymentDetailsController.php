@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\PaymentDetail;
+use App\Models\PaymentMethod;
 use App\Models\Plan;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -59,6 +62,16 @@ class PaymentDetailsController extends Controller
                     ->get();
                 return $paymentmthod[0]->name;
             })
+            ->addColumn('action', function (PaymentDetail $payment) {
+                $id = $payment->paymethod_id;
+                return view(
+                    "dashboard-pages.PaymentDetails.action",
+                    [
+                        'type' => "action",
+                        'id' => $id,
+                    ]
+                );
+            })
             ->toJson();
         return $data;
     }
@@ -107,5 +120,45 @@ class PaymentDetailsController extends Controller
         return response()->json([
             "msg" => "a Payment Added successfully",
         ]);
+    }
+    public function update_paymentdetails($id)
+    {
+        $paymentdetails = PaymentDetail::find($id);
+        $company = Company::all();
+        $plan = Plan::all();
+        $paymentmethod = PaymentMethod::all();
+        return view(
+            "dashboard-pages.PaymentDetails.update",
+            compact(
+                'paymentdetails',
+                'company',
+                'paymentmethod',
+                'plan',
+
+            )
+        );
+    }
+
+    public function edit_paymentdetails(Request $req)
+    {
+        try {
+            $req->validate([
+                "company" => "required",
+                "plan" => "required",
+                "paymentmethod" => "required",
+                "pay_date" => "required",
+            ]);
+            DB::table('payment_details')->where("id", $req->id)->update([
+                "plan_id" => $req->plan,
+                "company_id" => $req->company,
+                "paymethod_id" => $req->paymentmethod,
+                "pay_date" => $req->pay_date,
+            ]);
+            return response()->json([
+                "msg" => "a Payment Details Updated successfully",
+            ]);
+        } catch (Exception $e) {
+            return $e;
+        }
     }
 }

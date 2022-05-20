@@ -8,11 +8,17 @@
 
             <div class="p-4 my-4 overflow-x-auto bg-white rounded-lg shadow-lg">
                 <div class="my-4">
-                    <a href="{{ LaravelLocalization::localizeUrl(route('createFaq')) }}" class="rounded-lg btn btn-info">
-                        <i class="fa fa-plus"></i>
-                        <span class="mx-3 text-lg font-bold">write a new FAQ</span>
+                    <a href="{{ LaravelLocalization::localizeUrl(url('admin/features_land')) }}" class="rounded-lg btn btn-info">
+                        <span class="mx-3 text-lg font-bold">View Fetures</span>
                     </a>
                 </div>
+                <div class="my-4">
+                    <a href="{{ LaravelLocalization::localizeUrl(route('insert_feature_land')) }}" class="rounded-lg btn btn-info">
+                        <i class="fa fa-plus"></i>
+                        <span class="mx-3 text-lg font-bold">write a new Feature</span>
+                    </a>
+                </div>
+                
                 <div class="flex items-center justify-between">
                     <a href="{{ route('update_land_page', ['id' => $p->id]) }}"><i class="fa fa-pen"></i></a>
                     {{-- <a href="{{ route('') }}"><i class="fa fa-pen"></i></a> --}}

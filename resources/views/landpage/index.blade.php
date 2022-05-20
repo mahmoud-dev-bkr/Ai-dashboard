@@ -315,41 +315,37 @@
                             <h2>Pricing Plans</h2>
                             <div class="small-border"></div>
 
-                            <div class="switch-set">
+                            {{-- <div class="switch-set">
                                 <div>Monthly</div>
                                 <div><input id="sw-1" class="switch" type="checkbox" /></div>
                                 <div>Yearly</div>
                                 <div class="spacer-20"></div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
 
                     <div class="row sequence">
+                        @foreach ($plans as $plan )
                         <div class="col-lg-4 col-md-6 col-sm-12 sq-item wow">
                             <div class="pricing-s1 mb30">
                                 <div class="top">
-                                    <h2>Free</h2>
-                                    <p class="plan-tagline">Basic</p>
+                                    <h2>{{$plan->name_en}}</h2>
+                                    {{-- <p class="plan-tagline">Basic</p> --}}
                                 </div>
                                 <div class="mid text-light bg-color">
                                     <p class="price">
                                         <span class="currency">$</span>
-                                        <span class="m opt-1">0</span>
-                                        <span class="y opt-2">0</span>
-                                        <span class="month">p/mo</span>
+                                        <span class="m opt-1">{{$plan->coast}}</span>
                                     </p>
                                 </div>
 
                                 <div class="bottom">
 
                                     <ul>
-                                        <li><i class="fa fa-check"></i>1 device</li>
-                                        <li><i class="fa fa-check"></i>Daily reminder</li>
-                                        <li><i class="fa fa-check"></i>Simple reporting</li>
-                                        <li><i class="fa fa-check"></i>Standart dashboard</li>
-                                        <li><i class="fa fa-check"></i>Email Notification</li>
-                                        <li><i class="fa fa-check"></i>Email Support</li>
+                                        <li><i class="fa fa-check"></i>{{$plan->duration_days}} Days</li>
+                                        <li><i class="fa fa-check"></i>{{$plan->max_emp}} Employees</li>
+                                        
                                     </ul>
                                 </div>
 
@@ -358,67 +354,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 sq-item wow">
-                            <div class="pricing-s1 mb30">
-                                <div class="top">
-                                    <h2>Pro</h2>
-                                    <p class="plan-tagline">For Individuals
-                                </div>
-                                <div class="mid text-light bg-color">
-                                    <p class="price">
-                                        <span class="currency">$</span>
-                                        <span class="m opt-1">9.59</span>
-                                        <span class="y opt-2">7.46</span>
-                                        <span class="month">p/mo</span>
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <ul>
-                                        <li><i class="fa fa-check"></i>Up to 2 devices</li>
-                                        <li><i class="fa fa-check"></i>Daily reminder</li>
-                                        <li><i class="fa fa-check"></i>Detailed reporting</li>
-                                        <li><i class="fa fa-check"></i>Interactive dashboard</li>
-                                        <li><i class="fa fa-check"></i>Email and SMS notification</li>
-                                        <li><i class="fa fa-check"></i>24/7 Customer Support</li>
-                                    </ul>
-                                </div>
-
-                                <div class="action">
-                                    <a href="register.html" class="btn-custom">Sign Up Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 sq-item wow">
-                            <div class="pricing-s1 mb30">
-                                <div class="top">
-                                    <h2>For Teams</h2>
-                                    <p class="plan-tagline">Best for organization</p>
-                                </div>
-                                <div class="mid text-light bg-color">
-                                    <p class="price">
-                                        <span class="currency">$</span>
-                                        <span class="m opt-1">24.99</span>
-                                        <span class="y opt-2">16.49</span>
-                                        <span class="month">p/mo</span>
-                                    </p>
-                                </div>
-                                <div class="bottom">
-                                    <ul>
-                                        <li><i class="fa fa-check"></i>Up to 10 devices</li>
-                                        <li><i class="fa fa-check"></i>Daily reminder</li>
-                                        <li><i class="fa fa-check"></i>Detailed reporting</li>
-                                        <li><i class="fa fa-check"></i>Interactive dashboard</li>
-                                        <li><i class="fa fa-check"></i>Email and SMS notification</li>
-                                        <li><i class="fa fa-check"></i>24/7 Customer Support</li>
-                                    </ul>
-                                </div>
-
-                                <div class="action">
-                                    <a href="register.html" class="btn-custom">Sign Up Now</a>
-                                </div>
-                            </div>
-                        </div>
-
+    
+                        @endforeach
+                        
 
                         <div class="text-center col-lg-6 offset-lg-3">
                             <small>Price shown are in USD and VAT inclusive.</small>
