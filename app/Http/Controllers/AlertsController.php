@@ -62,11 +62,20 @@ class AlertsController extends Controller
             //     return $company[0]->name_en;
             // })
 
-            ->addColumn("action", function (Alert $alert) {
+            ->addColumn("edit", function (Alert $alert) {
                 $active = $alert->is_activate;
                 $id = $alert->id;
-                return view("Dashboard-pages.Alerts.action", [
-                    "type" => "action",
+                return view("dashboard-pages.alerts.action", [
+                    "type" => "edit",
+                    "id" => $id,
+                    "active_state" => $active,
+                ]);
+            })
+            ->addColumn("delete", function (Alert $alert) {
+                $active = $alert->is_activate;
+                $id = $alert->id;
+                return view("dashboard-pages.alerts.action", [
+                    "type" => "delete",
                     "id" => $id,
                     "active_state" => $active,
                 ]);

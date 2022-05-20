@@ -147,24 +147,24 @@
                     <div class="row align-items-center">
                         <div class="col-lg-5 wow fadeInRight" data-wow-delay=".5s">
                             <div class="spacer-10"></div>
-                            <div class="h1 text-light">{{$headers->title}}<br>
+                            <div class="h1 text-light">{{ $headers->title }}<br>
                                 for more
                                 <div class="typed-strings">
-                                    @foreach ($sentance as $s )
-                                    <p>{{$s->sentence_en}}</p>    
+                                    @foreach ($sentance as $s)
+                                        <p>{{ $s->sentence_en }}</p>
                                     @endforeach
                                 </div>
                                 <div class="typed"></div>
                             </div>
-                            <p class="lead">{{$headers->paragraph}}</p>
+                            <p class="lead">{{ $headers->paragraph }}</p>
                             <div class="spacer-20"></div>
-                            <a class="btn-custom" href="{{$headers->learn_more}}">Learn More</a>&nbsp;
-                            <a class="btn-border" href="{{$headers->download}}">Download</a>
+                            <a class="btn-custom" href="{{ $headers->learn_more }}">Learn More</a>&nbsp;
+                            <a class="btn-border" href="{{ $headers->download }}">Download</a>
                             <div class="mb-sm-30"></div>
                         </div>
 
                         <div class="text-center col-lg-6 offset-lg-1 wow fadeInLeft" data-wow-delay=".5s">
-                            <img src="{{asset("uploads/$headers->img")}}" class="img-fluid" alt="" />
+                            <img src="{{ asset("uploads/$headers->img") }}" class="img-fluid" alt="" />
                         </div>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                 </div>
             </section>
 
-            <section id="section-banner">
+            {{-- <section id="section-banner">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="text-center col-lg-6 d-none d-lg-block d-xl-block wow fadeInRight"
@@ -267,8 +267,8 @@
                             </h2>
                             <ul class="mb-3 nav nav-pills" id="pills-tab" role="tablist">
                              
-                                @foreach ($profile_features as $index=>$p)
-                                @if ($index ==0)
+                                @foreach ($profile_features as $index => $p)
+                                @if ($index == 0)
                                 <li class="nav-item">
                                     <a class="nav-link active" id="pills-{{$p->title}}-tab" data-toggle="pill" href="#pills-{{$p->title}}"
                                         role="tab" aria-controls="pills-{{$p->title}}" aria-selected="false">{{$p->title}}</a>
@@ -284,8 +284,8 @@
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
                               
-                                @foreach ($profile_features as $index=>$p )
-                                @if ($index==0)
+                                @foreach ($profile_features as $index => $p)
+                                @if ($index == 0)
                                     <div class="tab-pane fade active show" id="pills-{{$p->title}}" role="tabpanel"
                                         aria-labelledby="pills-{{$p->title}}-tab">
                                         <p>{{$p->content}}</p>
@@ -304,7 +304,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
 
             <!-- section begin -->
             <section data-bgcolor="#f0f4fd">
@@ -379,22 +379,25 @@
 
 
                                 @foreach ($according1 as $a)
-                                <!-- Accordion item 1 -->
-                                <div class="card">
-                                    <div id="heading-a{{$a->id}}" class="bg-white border-0 shadow-sm card-header">
-                                        <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                                data-target="#collapse-a{{$a->id}}" aria-expanded="false"
-                                                aria-controls="collapse-a{{$a->id}}"
-                                                class="py-2 d-block position-relative text-dark collapsible-link">{{$a->title}}?</a></h6>
-                                    </div>
-                                    <div id="collapse-a{{$a->id}}" aria-labelledby="heading-a{{$a->id}}" data-parent="#accordion-1"
-                                        class="collapse">
-                                        <div class="p-4 card-body">
-                                            <p class="m-0">{{$a->paragraph}}</p>
+                                    <!-- Accordion item 1 -->
+                                    <div class="card">
+                                        <div id="heading-a{{ $a->id }}"
+                                            class="bg-white border-0 shadow-sm card-header">
+                                            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
+                                                    data-target="#collapse-a{{ $a->id }}" aria-expanded="false"
+                                                    aria-controls="collapse-a{{ $a->id }}"
+                                                    class="py-2 d-block position-relative text-dark collapsible-link">{{ $a->title }}?</a>
+                                            </h6>
+                                        </div>
+                                        <div id="collapse-a{{ $a->id }}"
+                                            aria-labelledby="heading-a{{ $a->id }}" data-parent="#accordion-1"
+                                            class="collapse">
+                                            <div class="p-4 card-body">
+                                                <p class="m-0">{{ $a->paragraph }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                    
+
                                 @endforeach
 
                             </div>
@@ -403,27 +406,30 @@
 
                         <div class="col-md-6">
                             <!-- Accordion -->
-                        
+
 
 
                             <div id="accordion-2" class="accordion">
                                 @foreach ($according2 as $a)
-                                <!-- Accordion item 1 -->
-                                <div class="card">
-                                    <div id="heading-a{{$a->id}}" class="bg-white border-0 shadow-sm card-header">
-                                        <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
-                                                data-target="#collapse-a{{$a->id}}" aria-expanded="false"
-                                                aria-controls="collapse-a{{$a->id}}"
-                                                class="py-2 d-block position-relative text-dark collapsible-link">{{$a->title}}?</a></h6>
-                                    </div>
-                                    <div id="collapse-a{{$a->id}}" aria-labelledby="heading-a{{$a->id}}" data-parent="#accordion-2"
-                                        class="collapse">
-                                        <div class="p-4 card-body">
-                                            <p class="m-0">{{$a->paragraph}}</p>
+                                    <!-- Accordion item 1 -->
+                                    <div class="card">
+                                        <div id="heading-a{{ $a->id }}"
+                                            class="bg-white border-0 shadow-sm card-header">
+                                            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
+                                                    data-target="#collapse-a{{ $a->id }}" aria-expanded="false"
+                                                    aria-controls="collapse-a{{ $a->id }}"
+                                                    class="py-2 d-block position-relative text-dark collapsible-link">{{ $a->title }}?</a>
+                                            </h6>
+                                        </div>
+                                        <div id="collapse-a{{ $a->id }}"
+                                            aria-labelledby="heading-a{{ $a->id }}" data-parent="#accordion-2"
+                                            class="collapse">
+                                            <div class="p-4 card-body">
+                                                <p class="m-0">{{ $a->paragraph }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                    
+
                                 @endforeach
 
                             </div>
@@ -444,22 +450,23 @@
                                 <div class="small-border"></div>
                             </div>
                             <div class="owl-carousel owl-theme wow fadeInUp" id="testimonial-carousel">
-                              @foreach ($reviews as $rev )
-                              <div class="item">
-                                <div class="de_testi opt-2 review">
-                                        <blockquote style="height:450px">
-                                            <div class="p-rating">
-                                                @for ($i=0;$i<$rev->rate;$i++)
-                                                    <i class="fa fa-star checked"></i> 
-                                                @endfor            
-                                            </div>
-                                            <h3>{{$rev->title}}</h3>
-                                            <p>{{$rev->paragraph}}</p>
-                                            <div class="de_testi_by mt-auto"><span>{{$rev->owner}}, {{$rev->supporter}}</span></div>
-                                        </blockquote>
+                                @foreach ($reviews as $rev)
+                                    <div class="item">
+                                        <div class="de_testi opt-2 review">
+                                            <blockquote style="height:450px">
+                                                <div class="p-rating">
+                                                    @for ($i = 0; $i < $rev->rate; $i++)
+                                                        <i class="fa fa-star checked"></i>
+                                                    @endfor
+                                                </div>
+                                                <h3>{{ $rev->title }}</h3>
+                                                <p>{{ $rev->paragraph }}</p>
+                                                <div class="mt-auto de_testi_by"><span>{{ $rev->owner }},
+                                                        {{ $rev->supporter }}</span></div>
+                                            </blockquote>
+                                        </div>
                                     </div>
-                                </div>
-                              @endforeach
+                                @endforeach
                             </div>
                         </div>
                     </div>

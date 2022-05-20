@@ -107,6 +107,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 //         "name" => "alerts_activate",
 //         "display_name" => "active/disactive alerts", // optional
 //     ]);
+//     Permission::create([
+//         "name" => "alerts_delete",
+//         "display_name" => "delete alerts", // optional
+//     ]);
 //     // ////////////////////////////////////////////////////////////
 //     Permission::create([
 //         "name" => "notifications_add",
@@ -336,25 +340,64 @@ Route::group(
                 });
 
                 Route::group(["prefix" => "reviews"], function () {
-                    Route::get('/', [LandpageController::class, 'reviews_pages']);
-                    Route::get('/data', [LandpageController::class, 'GetReviewsData'])->name('GetReviewsData');
-                    Route::delete("/delete/{id}", [LandpageController::class, 'deletereviews'])->name("deletereviews");
-                    Route::get('/insert', [LandpageController::class, 'insertreviews'])->name("insertreviews");
-                    Route::post('/store', [LandpageController::class, "storeReviews"])->name("storeReviews");
+                    Route::get("/", [
+                        LandpageController::class,
+                        "reviews_pages",
+                    ]);
+                    Route::get("/data", [
+                        LandpageController::class,
+                        "GetReviewsData",
+                    ])->name("GetReviewsData");
+                    Route::delete("/delete/{id}", [
+                        LandpageController::class,
+                        "deletereviews",
+                    ])->name("deletereviews");
+                    Route::get("/insert", [
+                        LandpageController::class,
+                        "insertreviews",
+                    ])->name("insertreviews");
+                    Route::post("/store", [
+                        LandpageController::class,
+                        "storeReviews",
+                    ])->name("storeReviews");
                 });
 
                 Route::group(["prefix" => "profile_land"], function () {
-                    Route::get('/', [LandpageController::class, "profile_landpage"]);
-                    Route::get('/update/{id}', [LandpageController::class, "update_land_page"])->name('update_land_page');
-                    Route::post("/edit", [LandpageController::class, "edit_land_page"])->name('edit_land_page');
+                    Route::get("/", [
+                        LandpageController::class,
+                        "profile_landpage",
+                    ]);
+                    Route::get("/update/{id}", [
+                        LandpageController::class,
+                        "update_land_page",
+                    ])->name("update_land_page");
+                    Route::post("/edit", [
+                        LandpageController::class,
+                        "edit_land_page",
+                    ])->name("edit_land_page");
                 });
 
                 Route::group(["prefix" => "features_land"], function () {
-                    Route::get('/', [LandpageController::class, "feature_land"]);
-                    Route::get('/data', [LandpageController::class, "GetProfile_featureData"])->name('GetProfile_featureData');
-                    Route::delete('/delete/{id}', [LandpageController::class, 'delete_feature_land'])->name("delete_feature_land");
-                    Route::get('/insert', [LandpageController::class, "insert_feature_land"])->name("insert_feature_land");
-                    Route::post('/store', [LandpageController::class, 'store_feature_land'])->name("store_feature_land");
+                    Route::get("/", [
+                        LandpageController::class,
+                        "feature_land",
+                    ]);
+                    Route::get("/data", [
+                        LandpageController::class,
+                        "GetProfile_featureData",
+                    ])->name("GetProfile_featureData");
+                    Route::delete("/delete/{id}", [
+                        LandpageController::class,
+                        "delete_feature_land",
+                    ])->name("delete_feature_land");
+                    Route::get("/insert", [
+                        LandpageController::class,
+                        "insert_feature_land",
+                    ])->name("insert_feature_land");
+                    Route::post("/store", [
+                        LandpageController::class,
+                        "store_feature_land",
+                    ])->name("store_feature_land");
                 });
                 Route::group(["prefix" => "alerts"], function () {
                     Route::get("/", [AlertsController::class, "alertpage"]);
@@ -451,11 +494,23 @@ Route::group(
                         "edit_header",
                     ])->name("edit_header");
                 });
-                Route::group(['prefix' => "sentance"], function () {
-                    Route::get('/', [LandpageController::class, "Sentancepage"]);
-                    Route::get('/data', [LandpageController::class, 'GetSentaceData'])->name('GetSentaceData');
-                    Route::get('/create', [LandpageController::class, 'createSentance'])->name('createSentance');
-                    Route::post('/store', [LandpageController::class, 'storeSentance'])->name('storeSentance');
+                Route::group(["prefix" => "sentance"], function () {
+                    Route::get("/", [
+                        LandpageController::class,
+                        "Sentancepage",
+                    ]);
+                    Route::get("/data", [
+                        LandpageController::class,
+                        "GetSentaceData",
+                    ])->name("GetSentaceData");
+                    Route::get("/create", [
+                        LandpageController::class,
+                        "createSentance",
+                    ])->name("createSentance");
+                    Route::post("/store", [
+                        LandpageController::class,
+                        "storeSentance",
+                    ])->name("storeSentance");
                     Route::delete("deletesentace/{id}", [
                         LandpageController::class,
                         "deletesentace",

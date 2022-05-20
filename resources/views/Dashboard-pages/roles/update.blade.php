@@ -23,19 +23,18 @@
         </div>
 
         <h1 class="font-bold">Permissions</h1>
-<div class="grid grid-cols-2 gap-5">
+        <div class="grid grid-cols-2 gap-5">
 
-
-        @foreach ($permissions_data as $collection)
-        <div class="bg-gray-50 p-4 rounded-md">
-        @foreach ($collection as $p)
-            <div class="flex items-center my-2">
-                <input type="checkbox" class="mx-3 checkbox" value="{{ $p->id }}" name="permissions[]"
-                    {{ $role->hasPermission($p->name) ? 'checked' : '' }} />
-                <label>{{ $p->display_name }}</label>
-            </div>
-            @endforeach
-        </div>
+            @foreach ($permissions_data as $collection)
+                <div class="p-4 rounded-md bg-gray-50">
+                    @foreach ($collection as $p)
+                        <div class="flex items-center my-2">
+                            <input type="checkbox" class="mx-3 checkbox" value="{{ $p->id }}" name="permissions[]"
+                                {{ $role->hasPermission($p->name) ? 'checked' : '' }} />
+                            <label>{{ $p->display_name }}</label>
+                        </div>
+                    @endforeach
+                </div>
             @endforeach
         </div>
 

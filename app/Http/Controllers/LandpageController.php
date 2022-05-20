@@ -21,30 +21,40 @@ class LandpageController extends Controller
     function HomePage()
     {
         // $headers = Headers::all();
-        $headers = DB::table('header')->select()->first();
+        $headers = DB::table("header")
+            ->select()
+            ->first();
         $sentance = Sentence::all();
         $faq = Faq::all();
         $plans = Plan::where("activate", 1)->get();
         // get fag data
         $fagCount = Faq::count();
         $according1 = Faq::limit($fagCount / 2)->get();
-        $according2 = Faq::offset($fagCount / 2)->limit($fagCount / 2)->get();
+        $according2 = Faq::offset($fagCount / 2)
+            ->limit($fagCount / 2)
+            ->get();
         // $reviews = Reviews::all();
-        $reviews = DB::table('reviews')->select()->get();
-        $profile = DB::table('profile_land')->select()->first();
+        $reviews = DB::table("reviews")
+            ->select()
+            ->get();
+        $profile = DB::table("profile_land")
+            ->select()
+            ->first();
         $profile_features = features_land::all();
         // dd($reviews);
-        return view("landpage.index", compact(
-            'headers',
-            'sentance',
-            'faq',
-            'according1',
-            'plans',
-            'according2',
-            'reviews',
-            'profile_features',
-            'profile'
-        ));
+        return view(
+            "landpage.index",
+            compact(
+                "headers",
+                "sentance",
+                "faq",
+                "according1",
+                "according2",
+                "reviews",
+                "profile_features",
+                "profile"
+            )
+        );
     }
 
     function TermsPage()
@@ -56,7 +66,7 @@ class LandpageController extends Controller
     {
         $header = Headers::all();
         // dd($header);
-        return view("Dashboard-pages.Headers.header", compact('header'));
+        return view("Dashboard-pages.Headers.header", compact("header"));
     }
     public function update_header($id)
     {
@@ -69,9 +79,8 @@ class LandpageController extends Controller
     }
     public function edit_header(Request $req)
     {
-
         $image = $req->file("img");
-        $image2 = $req->file("img2");
+        // $image2 = $req->file("img2");
 
         $req->validate([
             "title_en" => "required",
@@ -80,8 +89,8 @@ class LandpageController extends Controller
             "content_ar" => "required",
             "body_en" => "required",
             "body_ar" => "required",
-            'learn_more' => "required",
-            'download' => 'required',
+            "learn_more" => "required",
+            "download" => "required",
         ]);
 
         Headers::where("id", $req->id)->update([
@@ -92,24 +101,26 @@ class LandpageController extends Controller
             "paragraph" => $req->body_en,
             "paragraph_ar" => $req->body_ar,
             "img" => "banner.png",
-            'image_2' => 'banner.png',
-            'download' => $req->download,
-            'learn_more' => $req->learn_more,
-        ]);
-        $imageName =
-            Str::random(30) . "." . $image->getClientOriginalExtension();
-
-        $imageName2 =
-            Str::random(30) . "." . $image->getClientOriginalExtension();
-
-        Headers::where("id", $req->id)->update([
-            "img" => $imageName,
-            "image_2" => $imageName2,
-
+            "image_2" => "banner.png",
+            "download" => $req->download,
+            "learn_more" => $req->learn_more,
         ]);
 
-        $image->move(public_path("/uploads"), $imageName);
-        $image2->move(public_path("/uploads"), $imageName2);
+        if ($req->file("img")) {
+            $imageName = "banner" . "." . $image->getClientOriginalExtension();
+
+            // $imageName2 =
+            //     Str::random(30) . "." . $image->getClientOriginalExtension();
+
+            Headers::where("id", $req->id)->update([
+                "img" => $imageName,
+                // "image_2" => $imageName2,
+            ]);
+
+            $image->move(public_path("/uploads"), $imageName);
+            // $image2->move(public_path("/uploads"), $imageName2);
+        }
+
         return response()->json([
             "msg" => "Header Updated Succsfully",
         ]);
@@ -213,7 +224,7 @@ class LandpageController extends Controller
     }
     public function Sentancepage()
     {
-        return view('Dashboard-pages.sentance.sentance');
+        return view("Dashboard-pages.sentance.sentance");
     }
 
     public function GetSentaceData()
@@ -252,7 +263,7 @@ class LandpageController extends Controller
     }
     public function deletesentace($id)
     {
-        DB::table('sentence')->delete($id);
+        DB::table("sentence")->delete($id);
         return redirect()->back();
     }
     //////////////reviews///////////////////////
@@ -266,7 +277,7 @@ class LandpageController extends Controller
         $query = Reviews::query();
         $data = Datatables()
             ->eloquent($query->latest())
-            ->editColumn('paragraph', function (Reviews $review) {
+            ->editColumn("paragraph", function (Reviews $review) {
                 return view("Dashboard-pages.reviews.action", [
                     "type" => "paragraph",
                     "p" => $review->paragraph,
@@ -292,13 +303,13 @@ class LandpageController extends Controller
             $req->validate([
                 "rate" => "required|numeric",
                 "title_en" => "required",
-                'body_en' => "required",
-                'owner_en' => "required",
-                'company_en' => "required",
-                'title_ar' => "required",
-                'body_ar' => "required",
-                'owner_ar' => "required",
-                'company_ar' => "required"
+                "body_en" => "required",
+                "owner_en" => "required",
+                "company_en" => "required",
+                "title_ar" => "required",
+                "body_ar" => "required",
+                "owner_ar" => "required",
+                "company_ar" => "required",
             ]);
             $review = new Reviews();
             $review->rate = $req->rate;
@@ -321,14 +332,17 @@ class LandpageController extends Controller
     }
     public function deletereviews($id)
     {
-        DB::table('reviews')->delete($id);
+        DB::table("reviews")->delete($id);
         return redirect()->back();
     }
 
     public function profile_landpage()
     {
         $profile = profile_land::all();
-        return view("Dashboard-pages.profile_land.profile_land", compact('profile'));
+        return view(
+            "Dashboard-pages.profile_land.profile_land",
+            compact("profile")
+        );
     }
     public function update_land_page($id)
     {
@@ -336,7 +350,10 @@ class LandpageController extends Controller
             ->select()
             ->where("id", "=", $id)
             ->first();
-        return view('Dashboard-pages.profile_land.profile_land_update', compact('profile_land'));
+        return view(
+            "Dashboard-pages.profile_land.profile_land_update",
+            compact("profile_land")
+        );
     }
     public function edit_land_page(Request $req)
     {
@@ -354,8 +371,8 @@ class LandpageController extends Controller
             "title_ar" => $req->title_ar,
             "span_ar" => $req->span_ar,
             "img" => "banner.png",
-            'download' => $req->download,
-            'learn_more' => $req->learn_more,
+            "download" => $req->download,
+            "learn_more" => $req->learn_more,
         ]);
         $imageName =
             Str::random(30) . "." . $image->getClientOriginalExtension();
@@ -378,13 +395,13 @@ class LandpageController extends Controller
         $query = features_land::query();
         $data = Datatables()
             ->eloquent($query->latest())
-            ->editColumn('content', function (features_land $feature) {
+            ->editColumn("content", function (features_land $feature) {
                 return view("Dashboard-pages.feature_land.action", [
                     "type" => "content",
                     "p" => $feature->content,
                 ]);
             })
-            ->editColumn('content_ar', function (features_land $feature) {
+            ->editColumn("content_ar", function (features_land $feature) {
                 return view("Dashboard-pages.feature_land.action", [
                     "type" => "content_ar",
                     "p" => $feature->content_ar,
@@ -403,7 +420,7 @@ class LandpageController extends Controller
     }
     public function delete_feature_land($id)
     {
-        DB::table('feature_land')->delete($id);
+        DB::table("feature_land")->delete($id);
         return redirect()->back();
     }
     public function insert_feature_land()
@@ -414,9 +431,9 @@ class LandpageController extends Controller
     {
         $req->validate([
             "title_en" => "required",
-            'body_en' => "required",
-            'title_ar' => "required",
-            'body_ar' => "required",
+            "body_en" => "required",
+            "title_ar" => "required",
+            "body_ar" => "required",
         ]);
         $features = new features_land();
         $features->title = $req->title_en;

@@ -76,7 +76,7 @@ class AlertWithComapanyController extends Controller
                 ]);
             })
 
-            ->addColumn("action", function (alerts_to_companies $alert) {
+            ->addColumn("delete", function (alerts_to_companies $alert) {
                 $active = null;
                 if ($alert->alert_id) {
                     $active = Alert::find($alert->alert_id)->is_activate;
@@ -138,9 +138,9 @@ class AlertWithComapanyController extends Controller
         $alerts_companies = [];
         foreach ($getcompanydata as $c_id) {
             array_push($alerts_companies, [
-                'user_id' => Auth::id(),
-                'alert_id' => $getalertdata,
-                'company_id' => $c_id
+                "user_id" => Auth::id(),
+                "alert_id" => $getalertdata,
+                "company_id" => $c_id,
             ]);
         }
 

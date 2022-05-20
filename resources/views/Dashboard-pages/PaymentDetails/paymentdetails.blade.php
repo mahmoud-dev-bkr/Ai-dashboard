@@ -1,29 +1,33 @@
 @extends('dashboard-layouts.app-tailwind')
 @section('content')
     <div class="overflow-x-auto p-7">
-        <div class="my-10">
-            <a href="{{ LaravelLocalization::localizeUrl(route('addpaymentdetails')) }}"
-                class="rounded-full btn btn-info"><i class="fa fa-plus"></i></a>
-            <span class="mx-3 text-lg font-bold">create Payment Manually</span>
-        </div>
+        @if (Auth::user()->hasPermission('payment_details_add'))
+            <div class="my-10">
+                <a href="{{ LaravelLocalization::localizeUrl(route('addpaymentdetails')) }}"
+                    class="rounded-full btn btn-info"><i class="fa fa-plus"></i></a>
+                <span class="mx-3 text-lg font-bold">create Payment Manually</span>
+            </div>
+        @endif
 
-        <table class="table w-full my-4 table-zebra" id="paymentdetailstDT">
-            <thead>
-                <tr>
-                    <th>Company Name</th>
-                    <th>Plan Name</th>
-                    <th>Payment Method</th>
-                    <th>Payment Date</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Action</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
+        @if (Auth::user()->hasPermission('payment_details_view'))
 
-            </tbody>
-        </table>
+            <table class="table w-full my-4 table-zebra" id="paymentdetailstDT">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Plan Name</th>
+                        <th>Payment Method</th>
+                        <th>Payment Date</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        @endif
+
     </div>
 @endsection
 @section('scripts')
