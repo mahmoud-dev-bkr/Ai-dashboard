@@ -2054,9 +2054,6 @@ body[dir="rtl"] .checkbox:checked,
 .rounded-box {
   border-radius: var(--rounded-box, 1rem);
 }
-.artboard.phone {
-  width: 320px;
-}
 .btn-lg {
   height: 4rem;
   padding-left: 1.5rem;
@@ -2195,6 +2192,9 @@ body[dir="rtl"] .checkbox:checked,
 }
 .mb-0 {
   margin-bottom: 0px;
+}
+.mt-auto {
+  margin-top: auto;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -2386,6 +2386,9 @@ body[dir="rtl"] .checkbox:checked,
 .whitespace-nowrap {
   white-space: nowrap;
 }
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -2442,13 +2445,13 @@ body[dir="rtl"] .checkbox:checked,
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
-.bg-red-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
-}
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));

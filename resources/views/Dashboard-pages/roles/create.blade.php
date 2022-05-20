@@ -24,13 +24,20 @@
 
         <h1 class="font-bold">Permissions</h1>
 
-        @foreach ($permissions as $p)
-            <div class="flex items-center my-2">
-                <input type="checkbox" class="mx-3 checkbox" value="{{ $p->id }}" name="permissions[]" />
-                <label>{{ $p->display_name }}</label>
-            </div>
-        @endforeach
 
+        <div class="grid grid-cols-2 gap-5">
+
+            @foreach ($permissions_data as $collection)
+                <div class="p-4 rounded-md bg-gray-50">
+                    @foreach ($collection as $p)
+                        <div class="flex items-center my-2">
+                            <input type="checkbox" class="mx-3 checkbox" value="{{ $p->id }}" name="permissions[]" />
+                            <label>{{ $p->display_name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            @endforeach
+        </div>
 
 
         <button type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light"

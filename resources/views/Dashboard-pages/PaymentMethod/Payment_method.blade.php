@@ -1,26 +1,35 @@
 @extends('dashboard-layouts.app-tailwind')
 @section('content')
     <div class="overflow-x-auto p-7">
-        <div class="my-10">
-            <a href="{{ LaravelLocalization::localizeUrl(route('addpaymentmethod')) }}" class="rounded-full btn btn-info"><i
-                    class="fa fa-plus"></i></a>
-            <span class="mx-3 text-lg font-bold">Create a new Payment Method</span>
-        </div>
-        <table class="table w-full my-4 table-zebra" id="paymentDT">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Account number</th>
-                    <th>Note</th>
-                    <th>Added date</th>
-                    <th>Modified date</th>
-                    <th>Activate</th>
-                </tr>
-            </thead>
-            <tbody>
 
-            </tbody>
-        </table>
+        @if (Auth::user()->hasPermission('payment_method_add'))
+            <div class="my-10">
+                <a href="{{ LaravelLocalization::localizeUrl(route('addpaymentmethod')) }}"
+                    class="rounded-full btn btn-info"><i class="fa fa-plus"></i></a>
+                <span class="mx-3 text-lg font-bold">Create a new Payment Method</span>
+            </div>
+        @endif
+        @if (Auth::user()->hasPermission('payment_method_view'))
+            <table class="table w-full my-4 table-zebra" id="paymentDT">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Account number</th>
+                        <th>Note</th>
+                        <th>Added date</th>
+                        <th>Modified date</th>
+                        @if (Auth::user()->hasPermission('payment_method_activate'))
+                            <th>Activate</th>
+                        @endif
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        @endif
+
     </div>
 @endsection
 @section('scripts')
@@ -58,9 +67,11 @@
                     {
                         data: "updated_at"
                     },
-                    {
+                    @if (Auth::user()->hasPermission('payment_method_activate'))
+                        {
                         data: "isActive"
-                    },
+                        },
+                    @endif
                 ],
             });
         }

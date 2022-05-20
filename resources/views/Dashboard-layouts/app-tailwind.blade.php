@@ -288,8 +288,8 @@
         <div class="w-full h-auto opacity-0 bg-blue-100/50 md:h-screen md:overflow-auto" id="content-view">
             {{-- navbar --}}
             @include('dashboard-layouts.inc.navbar')
-            <div class="h-40 bg-gradient-to-r from-sky-500 to-indigo-500" style="z-index: -1"></div>
-            <div class="relative h-auto m-4 bg-white rounded-lg shadow-2xl md:flex-1 p-7 drop-shadow-lg -top-20">
+            {{-- <div class="h-40 bg-gradient-to-r from-sky-500 to-indigo-500" style="z-index: -1"></div> --}}
+            <div class="h-auto m-4 bg-white rounded-lg shadow-2xl md:flex-1 p-7 drop-shadow-lg ">
                 @yield('content')
             </div>
         </div>

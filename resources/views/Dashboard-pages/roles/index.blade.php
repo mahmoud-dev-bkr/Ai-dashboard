@@ -6,24 +6,32 @@
 
 
 
-        <div class="my-10">
-            <a href="{{ LaravelLocalization::localizeUrl(route('insertRolePage')) }}" class="rounded-lg btn btn-info">
-                <i class="fa fa-plus"></i>
-                <span class="mx-3 text-lg font-bold">create a new Role</span>
-            </a>
-        </div>
+        @if (Auth::user()->hasPermission('roles_permissions_add'))
+            <div class="my-10">
+                <a href="{{ LaravelLocalization::localizeUrl(route('insertRolePage')) }}" class="rounded-lg btn btn-info">
+                    <i class="fa fa-plus"></i>
+                    <span class="mx-3 text-lg font-bold">create a new Role</span>
+                </a>
+            </div>
+        @endif
+        @if (Auth::user()->hasPermission('roles_permissions_view'))
 
-        <table class="table w-full my-4 table-zebra" id="rolesDt">
-            <thead>
-                <tr>
-                    <th>Role</th>
-                    <th>users</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+            <table class="table w-full my-4" id="rolesDt">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>users</th>
+                        @if (Auth::user()->hasPermission('roles_permissions_update'))
+                            <th>actions</th>
+                        @endif
+
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        @endif
+
     </div>
 @endsection
 @section('scripts')
@@ -54,9 +62,12 @@
                     {
                         data: "users"
                     },
-                    {
+                    @if (Auth::user()->hasPermission('roles_permissions_update'))
+                    
+                        {
                         data: "actions"
-                    }
+                        }
+                    @endif
                 ],
             });
         }

@@ -38,8 +38,36 @@ class RolesController extends Controller
     }
     public function insertPage()
     {
-        $permissions = Permission::orderBy("name", "desc")->get();
-        return view("dashboard-pages.roles.create", compact("permissions"));
+        $permissions_data = [];
+
+        $permissions = Permission::all();
+
+        $current_name = null;
+        $collection = [];
+
+        $numItems = count($permissions);
+        $i = 0;
+        foreach ($permissions as $p) {
+            if (!$current_name) {
+                // first loob
+                array_push($collection, $p);
+            } elseif (substr($p->name, 0, 4) == $current_name) {
+                array_push($collection, $p);
+            } elseif (substr($p->name, 0, 4) != $current_name) {
+                array_push($permissions_data, $collection);
+                $collection = [];
+                array_push($collection, $p);
+            }
+            if (++$i === $numItems) {
+                array_push($permissions_data, $collection);
+            }
+
+            $current_name = substr($p->name, 0, 4);
+        }
+        return view(
+            "dashboard-pages.roles.create",
+            compact("permissions_data")
+        );
     }
     public function createRole(Request $req)
     {
@@ -52,7 +80,7 @@ class RolesController extends Controller
             ],
             [
                 "permissions.required" =>
-                "you should select at least on permission",
+                    "you should select at least on permission",
             ]
         );
         $permissions = $req->permissions;
@@ -81,17 +109,21 @@ class RolesController extends Controller
         $current_name = null;
         $collection = [];
 
+        $numItems = count($permissions);
+        $i = 0;
         foreach ($permissions as $p) {
-
             if (!$current_name) {
                 // first loob
                 array_push($collection, $p);
-            } else if (substr($p->name, 0, 4) == $current_name) {
+            } elseif (substr($p->name, 0, 4) == $current_name) {
                 array_push($collection, $p);
-            } else if (substr($p->name, 0, 4) != $current_name) {
+            } elseif (substr($p->name, 0, 4) != $current_name) {
                 array_push($permissions_data, $collection);
                 $collection = [];
                 array_push($collection, $p);
+            }
+            if (++$i === $numItems) {
+                array_push($permissions_data, $collection);
             }
 
             $current_name = substr($p->name, 0, 4);
@@ -114,7 +146,7 @@ class RolesController extends Controller
             ],
             [
                 "permissions.required" =>
-                "you should select at least on permission",
+                    "you should select at least on permission",
             ]
         );
         $role = Role::find($id);

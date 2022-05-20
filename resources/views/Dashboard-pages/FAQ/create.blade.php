@@ -4,24 +4,46 @@
         <h1 class="my-4 text-2xl font-bold text-gray-600">Create A new FAQ</h1>
         {!! Form::open(['route' => 'createFaq', 'class' => 'form-faq']) !!}
         <div class="items-center my-2 input-group">
-            <label class="font-bold w-80">Question (en)</label>
+            <label class="font-bold w-80">Question1 (en)</label>
             <input type="text" class="w-full input bg-base-300/50" name="q1" />
         </div>
 
         <div class="items-center my-2 input-group">
-            <label class="font-bold w-80">Answer (en)</label>
+            <label class="font-bold w-80">Answer1 (en)</label>
             <textarea name="s1" class="w-full textarea h-80 bg-base-300/50"></textarea>
         </div>
 
         <div class="items-center my-2 input-group">
-            <label class="font-bold w-80">Question (ar)</label>
+            <label class="font-bold w-80">Question1 (ar)</label>
             <input type="text" class="w-full input bg-base-300/50 arabic" name="q2" />
         </div>
 
 
         <div class="items-center my-2 input-group">
-            <label class="font-bold w-80">Answer (ar)</label>
+            <label class="font-bold w-80">Answer1 (ar)</label>
             <textarea name="s2" class="w-full textarea h-80 bg-base-300/50 arabic"></textarea>
+        </div>
+
+
+        <div class="items-center my-2 input-group">
+            <label class="font-bold w-80">Question2 (en)</label>
+            <input type="text" class="w-full input bg-base-300/50" name="q3" />
+        </div>
+
+        <div class="items-center my-2 input-group">
+            <label class="font-bold w-80">Answer2 (en)</label>
+            <textarea name="s3" class="w-full textarea h-80 bg-base-300/50"></textarea>
+        </div>
+
+        <div class="items-center my-2 input-group">
+            <label class="font-bold w-80">Question2 (ar)</label>
+            <input type="text" class="w-full input bg-base-300/50 arabic" name="q4" />
+        </div>
+
+
+        <div class="items-center my-2 input-group">
+            <label class="font-bold w-80">Answer2 (ar)</label>
+            <textarea name="s4" class="w-full textarea h-80 bg-base-300/50 arabic"></textarea>
         </div>
 
 

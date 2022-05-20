@@ -53,7 +53,7 @@
             </div>
             <div class="mb-3">
                 <label for="password">Password</label>
-                <input type="text" id="password" class="form-control" name="password">
+                <input type="password" id="password" class="form-control" name="password">
                 <span id="password-error" class="text-danger" class="form-control"></span>
             </div>
 

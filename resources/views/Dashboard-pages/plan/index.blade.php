@@ -2,29 +2,37 @@
 
 @section('content')
     <div class="overflow-x-auto p-7">
-        <div class="my-10">
-            <a href="{{ LaravelLocalization::localizeUrl(route('insertPlanPage')) }}" class="rounded-full btn btn-info"><i
-                    class="fa fa-plus"></i></a>
-            <span class="mx-3 text-lg font-bold">create a new Plan</span>
-        </div>
+        @if (Auth::user()->hasPermission('plans_add'))
+            <div class="my-10">
+                <a href="{{ LaravelLocalization::localizeUrl(route('insertPlanPage')) }}"
+                    class="rounded-full btn btn-info"><i class="fa fa-plus"></i></a>
+                <span class="mx-3 text-lg font-bold">create a new Plan</span>
+            </div>
+        @endif
 
-        <table class="table w-full my-4 table-zebra" id="usersDT">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Max Employee</th>
-                    <th>Cost</th>
-                    <th>Duration Day</th>
-                    <th>Status</th>
-                    <th>Added by</th>
-                    <th>Last edit by</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
+        @if (Auth::user()->hasPermission('plans_view'))
 
-            </tbody>
-        </table>
+            <table class="table w-full my-4 table-zebra" id="usersDT">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Max Employee</th>
+                        <th>Cost</th>
+                        <th>Duration Day</th>
+                        <th>Status</th>
+                        <th>Added by</th>
+                        <th>Last edit by</th>
+                        @if (Auth::user()->hasPermission('plans_edit'))
+                            <th>Action</th>
+                        @endif
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+            </table>
+        @endif
     </div>
 @endsection
 @section('scripts')
@@ -70,9 +78,13 @@
                     {
                         data: "edit"
                     },
-                    {
+                    @if (Auth::user()->hasPermission('plans_edit'))
+                    
+                        {
                         data: 'action'
-                    }
+                        }
+                    @endif
+
                 ],
             });
         }
@@ -81,5 +93,5 @@
         });
 
     </script>
-    
+
 @endsection

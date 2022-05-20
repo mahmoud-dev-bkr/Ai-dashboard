@@ -2,29 +2,39 @@
 
 @section('content')
     <div class="overflow-x-auto p-7">
-        <div class="my-10">
-            <a href="{{ LaravelLocalization::localizeUrl(route('insertUserPage')) }}" class="rounded-full btn btn-info"><i
-                    class="fa fa-plus"></i></a>
-            <span class="mx-3 text-lg font-bold">create a new User</span>
-        </div>
+        @if (Auth::user()->hasPermission('users_add'))
+            <div class="my-10">
+                <a href="{{ LaravelLocalization::localizeUrl(route('insertUserPage')) }}"
+                    class="rounded-full btn btn-info"><i class="fa fa-plus"></i></a>
+                <span class="mx-3 text-lg font-bold">create a new User</span>
+            </div>
+        @endif
+        @if (Auth::user()->hasPermission('users_view'))
 
-        <table class="table w-full my-4 table-zebra" id="usersDT">
-            <thead>
-                <tr>
-                    <th>name</th>
-                    <th>email</th>
-                    <th>Telephone 1</th>
-                    <th>Telephone 2</th>
-                    <th>Telephone 3</th>
-                    <th>Role(s)</th>
-                    <th>Actions</th>
-                    <th>active</th>
-                </tr>
-            </thead>
-            <tbody>
+            <table class="table w-full my-4 table-zebra" id="usersDT">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>email</th>
+                        <th>Telephone 1</th>
+                        <th>Telephone 2</th>
+                        <th>Telephone 3</th>
+                        <th>Role(s)</th>
+                        @if (Auth::user()->hasPermission('users_edit'))
+                            <th>Actions</th>
+                        @endif
 
-            </tbody>
-        </table>
+                        @if (Auth::user()->hasPermission('users_activate'))
+                            <th>active</th>
+                        @endif
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        @endif
+
     </div>
 @endsection
 @section('scripts')
@@ -67,13 +77,18 @@
                     {
                         data: "roles"
                     },
-                    {
+                    @if (Auth::user()->hasPermission('users_edit'))
+                    
+                        {
                         data: "actions"
-                    },
-                    {
+                        },
+                    @endif
+                    @if (Auth::user()->hasPermission('users_activate'))
+                    
+                        {
                         data: "active"
-                    }
-
+                        }
+                    @endif
                 ],
             });
         }
