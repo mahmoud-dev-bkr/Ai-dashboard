@@ -3,7 +3,7 @@
 <div class="p-7">
     <h1 class="my-3 text-3xl font-bold text-priamry">Profile</h1>
 
-    <div class="mt-5 terms">
+    <div class="mt-5">
         @foreach ($profile as $p)
 
             <div class="p-4 my-4 overflow-x-auto bg-white rounded-lg shadow-lg">
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="flex items-center text-center">
-                    <img class="p-2 w-32" src="{{asset("uploads/$p->img")}}"  alt="">
+                    <img class="w-32 p-2" src="{{asset("uploads/$p->img")}}"  alt="">
                 </div>
             </div>
         @endforeach

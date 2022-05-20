@@ -20,6 +20,9 @@
                         <th>Payment Date</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        @if (Auth::user()->hasPermission('payment_details_edit'))
+                            <th>Action</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -68,11 +71,13 @@
                     },
                     {
                         data: "end_date"
-                    }
-                    ,
-                    {
+                    },
+                    @if (Auth::user()->hasPermission('payment_details_edit'))
+                    
+                        {
                         data: "action"
-                    }
+                        }
+                    @endif
                 ],
             });
         }

@@ -11,7 +11,6 @@ use App\Models\Reviews;
 use App\Models\Sentence;
 use App\Models\Term;
 use Exception;
-use GuzzleHttp\Psr7\Header;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -52,7 +51,8 @@ class LandpageController extends Controller
                 "according2",
                 "reviews",
                 "profile_features",
-                "profile"
+                "profile",
+                'plans'
             )
         );
     }
@@ -65,8 +65,9 @@ class LandpageController extends Controller
     public function headerpage()
     {
         $header = Headers::all();
+        $sentences = Sentence::all();
         // dd($header);
-        return view("Dashboard-pages.Headers.header", compact("header"));
+        return view("Dashboard-pages.Headers.header", compact("header" , "sentences"));
     }
     public function update_header($id)
     {

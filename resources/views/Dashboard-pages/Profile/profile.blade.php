@@ -1,10 +1,7 @@
 @extends("Dashboard-layouts.app-tailwind")
 @section('content')
 <style>
-    .profile-img{
-        margin-top:30px; 
-        padding-left:20px; 
-    }
+
     .profile-img img{
         border-radius:50%;
         border: 4px solid #1c3140 ; 
@@ -24,11 +21,9 @@
     }
 </style>
 
-    <div class="profile-img">
-        <img class="" src="{{asset("images/avatar.jpg")}}" alt="">
-    </div>
-    <div class="profile-content inline-block mx-auto">
-        <div class="content container">
+    <img class="object-cover w-40 h-40 mx-auto my-5 rounded-full" src="{{asset("images/avatar.jpg")}}" alt="">
+    <div class="inline-block mx-auto profile-content">
+        <div class="container content">
             
             <div class="items-center my-2 input-group">
                 <label class="w-40">Name (en)</label>
@@ -62,7 +57,7 @@
                 <input type="text" disabled class="w-full input bg-base-300/50" value="{{$users->Tel_3}}" name="pay_date" />
             </div>
 
-            <div class="items-center my-2 input-group mb-3">
+            <div class="items-center my-2 mb-3 input-group">
                 <label class="w-40">Role </label>
                 <input type="text" disabled class="w-full input bg-base-300/50" value="{{$user_role->name}}" name="pay_date" />
             </div>

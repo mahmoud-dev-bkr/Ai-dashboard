@@ -23,12 +23,22 @@
                 </div>
 
                 <div class="flex items-center text-center">
-                    <img class="p-2 w-32" src="{{asset("uploads/$t->img")}}"  alt="">
-                    <img class="p-2 w-32" src="{{asset("uploads/$t->image_2")}}" alt="">    
+                    <img class="w-32 p-2" src="{{asset("uploads/$t->img")}}"  alt="">
+                    <img class="w-32 p-2" src="{{asset("uploads/$t->image_2")}}" alt="">    
                 </div>
             </div>
         @endforeach
     </div>
+
+    <h1 class="my-4 text-3xl font-bold">Sentences</h1>
+   <a href="/admin/sentance" class="link">Sentences page</a>
+    <div class="my-5 bg-white">
+        @foreach ($sentences as $sentence)
+            <div class="p-5 my-4 text-2xl rounded-md bg-gray-50">{{$sentence->sentence_en}}</div>
+        @endforeach
+    </div>
+
+
 </div>
 @endsection
 @section('scripts')

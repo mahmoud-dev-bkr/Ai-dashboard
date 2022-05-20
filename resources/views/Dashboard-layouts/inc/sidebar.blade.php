@@ -1,196 +1,153 @@
 <div class="flex flex-col h-auto py-4 overflow-auto border-0 opacity-0 bg-primary md:h-screen drop-shadow-md md:w-1/5"
     id="sidebar">
     <div class="flex items-center mx-auto my-4 text-2xl font-bold">
-        <span class="flex items-center justify-center w-10 h-10 p-2 mr-2 bg-white text-secondary rounded-2xl">AI</span>
-        <h1 class="font-bold text-white">Attend</h1>
+       <img src="/images/logo.png" class="w-10 h-10"/>
+        <h1 class="font-bold text-white">Ai Attend</h1>
+    </div>
+    <div>
+
+
+        <nav class="">
+            
+            @if(Auth::user()->hasPermission('manage_landpage'))
+            <div x-data="{ open: false }">
+                <button @click="open = !open"
+                    class="flex items-center justify-between w-full px-6 py-3 text-gray-200 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
+                    <span class="flex items-center">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19 11H5M19 11C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11M19 11V9C19 7.89543 18.1046 7 17 7M5 11V9C5 7.89543 5.89543 7 7 7M7 7V5C7 3.89543 7.89543 3 9 3H15C16.1046 3 17 3.89543 17 5V7M7 7H17"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                        </svg>
+
+                        <span class="mx-4 font-medium text-left">Landpage</span>
+                    </span>
+
+                    <span>
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" style="display: none;"></path>
+                            <path x-show="open" d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </span>
+                </button>
+
+                <div x-show="open" class="bg-violet-900">
+                    <a class="block px-16 py-2 text-sm text-left text-gray-200 hover:bg-violet-900 hover:text-white"
+                        href=" /admin/header">
+                        Header</a>
+                    <a class="block px-16 py-2 text-sm text-gray-200 hover:bg-violet-900 hover:text-white"
+                        href="/admin/sentance">sentances</a>
+
+                    <a class="block px-16 py-2 text-sm text-gray-200 hover:bg-violet-900 hover:text-white"
+                    href="/admin/profile_land">Profile</a>
+
+                    <a class="block px-16 py-2 text-sm text-gray-200 hover:bg-violet-900 hover:text-white"
+                    href="/admin/features_land">profile sections</a>
+
+                    <a class="block px-16 py-2 text-sm text-gray-200 hover:bg-violet-900 hover:text-white"
+                    href="/admin/faq">FAQ</a>
+
+                    <a class="block px-16 py-2 text-sm text-gray-200 hover:bg-violet-900 hover:text-white"
+                    href="/admin/reviews">reviews</a>
+                  
+                    <a class="block px-16 py-2 text-sm text-gray-200 hover:bg-violet-900 hover:text-white"
+                    href="/admin/terms">Terms and conditions</a>
+                </div>
+            </div>
+            @endif
+            {{-- users and roles --}}
+
+            <div x-data="{ open: false }">
+            <button @click="open = !open"
+                class="flex items-center justify-between w-full px-6 py-3 text-gray-200 cursor-pointer hover:bg-gray-100 hover:text-gray-700 focus:outline-none">
+                <span class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 " viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                      </svg>
+
+                    <span class="mx-4 font-medium text-left">Users and roles</span>
+                </span>
+
+                <span>
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" style="display: none;"></path>
+                        <path x-show="open" d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </button>
+
+            <div x-show="open" class="bg-violet-900">
+                <a class="block px-16 py-2 text-sm text-left text-gray-200 hover:bg-violet-900 hover:text-white"
+                    href=" /admin/users">
+                    Users</a>
+                <a class="block px-16 py-2 text-sm text-gray-200 hover:bg-violet-900 hover:text-white"
+                    href="/admin/roles">Roles</a>
+            </div>
+        </div>
+
+
+
+        </nav>
+
     </div>
 
-    <div class="flex flex-col my-5 space-y-4 font-bold text-md sidebar-items">
-
-
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin') ? 'dashboard-item-active bg-neutral/25' : '' }}
-        " href=" /admin">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            Home
-        </a>
-
-
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/company') ? 'dashboard-item-active bg-neutral/25' : '' }}
-            " href=" /admin/company">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-            Companies</a>
-
-
-
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/paymentdetails') ? 'dashboard-item-active bg-neutral/25' : '' }}
-            " href=" /admin/paymentdetails">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Payment details</a>
+    <a class="w-full py-4 mx-3 font-bold text-left text-gray-100 duration-300 ease-in-out hover:bg-neutral/25 " href=" /admin/company">
+    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+    </svg>
+    Companies</a>
 
 
 
 
+    <a class="w-full py-4 mx-3 font-bold text-left text-gray-100 duration-300 ease-in-out hover:bg-neutral/25 " href="{{ url('admin/Plan/') }}">
 
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/Plan/') ? 'dashboard-item-active bg-neutral/25' : '' }}
-            " href="{{ url('admin/Plan/') }}">
+    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+    </svg>
+    Plans</a>
 
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            Plans</a>
-
-
-
-        {{-- @if (Auth::user() && Auth::user()->hasRole('super_admin')) --}}
-            <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/users') ? 'dashboard-item-active bg-neutral/25' : '' }}
-            " href=" /admin/users">
-                <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                Users</a>
-        {{-- @endif --}}
-
-        {{-- @if (Auth::user() && Auth::user()->hasRole('super_admin')) --}}
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/paymentsmethods/') ? 'dashboard-item-active bg-neutral/25' : '' }}
-        " href="{{ url('admin/paymentsmethods/') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            Payment Methods</a>
-        {{-- @endif --}}
+    <a class="w-full py-4 mx-3 font-bold text-left text-gray-100 duration-300 ease-in-out hover:bg-neutral/25 " href=" /admin/paymentdetails">
+    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    Payment details</a>
 
 
-        {{-- @if (Auth::user() && Auth::user()->hasRole('super_admin')) --}}
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/alerts') ? 'dashboard-item-active bg-neutral/25' : '' }}
-        " href="{{ url('admin/alerts') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-            Alert Messages</a>
-        {{-- @endif --}}
-
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/alertscompany') ? 'dashboard-item-active bg-neutral/25' : '' }}
-        " href="{{ url('admin/alertscompany') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-            Send Notification</a>
-
-
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/roles') ? 'dashboard-item-active bg-neutral/25' : '' }}
-        " href=" /admin/roles">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                    d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-            </svg>
-            Roles</a>
-
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/header') ? 'dashboard-item-active bg-neutral/25' : '' }}
-        " href=" /admin/header">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512">
-                <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                <path
-                    d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"
-                    fill="white" />
-            </svg>Header</a>
-
-            <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/sentance') ? 'dashboard-item-active bg-neutral/25' : '' }}
-            " href="/admin/sentance">
-                <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512">
-                    <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                    <path
-                        d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"
-                        fill="white" />
-                </svg>Sentance</a>
-
-                <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-                {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/profile_land') ? 'dashboard-item-active bg-neutral/25' : '' }}
-                " href="/admin/profile_land">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512">
-                        <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                        <path
-                            d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"
-                            fill="white" />
-                    </svg>Profile</a>
-                    
-                <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-                {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/features_land') ? 'dashboard-item-active bg-neutral/25' : '' }}
-                " href="/admin/features_land">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" viewBox="0 0 448 512">
-                        <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                        <path
-                            d="M448 448c0 17.69-14.33 32-32 32h-96c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-144h-224v144H128c17.67 0 32 14.31 32 32s-14.33 32-32 32H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h16v-320H32c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32H112v112h224v-112H320c-17.67 0-32-14.31-32-32s14.33-32 32-32h96c17.67 0 32 14.31 32 32s-14.33 32-32 32h-16v320H416C433.7 416 448 430.3 448 448z"
-                            fill="white" />
-                    </svg>Profile Features</a>
-    
-
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/faq') ? 'dashboard-item-active bg-neutral/25' : '' }}
-            " href=" /admin/faq">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            FAQ</a>
-
-
-            
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-        {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/reviews') ? 'dashboard-item-active bg-neutral/25' : '' }}
-        " href=" /admin/reviews">
-        <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5 mx-2" fill="none" viewBox="0 0 24 24"
+    <a class="w-full py-4 mx-3 font-bold text-left text-gray-100 duration-300 ease-in-out hover:bg-neutral/25 " href="{{ url('admin/paymentsmethods/') }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
             stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round"
-                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
-        Reviews</a>
+        Payment Methods</a>
 
-        <a class="w-full py-4 font-bold text-center text-gray-100 duration-300 ease-in-out hover:bg-neutral/25
-            {{ LaravelLocalization::getNonLocalizedURL(Request::path()) == url('admin/terms') ? 'dashboard-item-active bg-neutral/25' : '' }}
-            " href=" /admin/terms">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
-            </svg>
-            Terms and Conditions</a>
+        
+<a class="w-full py-4 mx-3 font-bold text-left text-gray-100 duration-300 ease-in-out hover:bg-neutral/25 " href="{{ url('admin/alerts') }}">
+    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+    </svg>
+    Alert Messages</a>
 
-    </div>
-
-
+<a class="w-full py-4 mx-3 font-bold text-left text-gray-100 duration-300 ease-in-out hover:bg-neutral/25 " href="{{ url('admin/alertscompany') }}">
+    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-6 h-6 mx-2" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+    </svg>
+    Send Notification</a>
 
 </div>

@@ -119,7 +119,7 @@
         }
 
         .table th {
-            background: rgb(79, 70, 229);
+            background: #5843AA;
             color: white
         }
 
@@ -289,11 +289,11 @@
             {{-- navbar --}}
             @include('dashboard-layouts.inc.navbar')
             {{-- <div class="h-40 bg-gradient-to-r from-sky-500 to-indigo-500" style="z-index: -1"></div> --}}
-            <div class="h-auto m-4 bg-white rounded-lg shadow-2xl md:flex-1 p-7 drop-shadow-lg ">
                 @yield('content')
-            </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
     {{-- sweet alert --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     {{-- jquery --}}

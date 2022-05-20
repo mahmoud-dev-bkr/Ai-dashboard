@@ -27,6 +27,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 //         "name" => "payment_details_view",
 //         "display_name" => "view payment details", // optional
 //     ]);
+
+//     Permission::create([
+//         "name" => "payment_details_edit",
+//         "display_name" => "edit payment details", // optional
+//     ]);
+
 //     // //////////////////////////////////////////////
 //     Permission::create([
 //         "name" => "plans_add",
@@ -616,7 +622,7 @@ Route::group(
                         PaymentDetailsController::class,
                         "update_paymentdetails",
                     ])->name("update_paymentdetails");
-                    Route::post('edit_paymentdetials', [
+                    Route::post("edit_paymentdetials", [
                         PaymentDetailsController::class,
                         "edit_paymentdetails",
                     ])->name("edit_paymentdetails");

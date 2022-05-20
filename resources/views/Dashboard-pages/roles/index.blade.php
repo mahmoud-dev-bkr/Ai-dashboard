@@ -6,7 +6,7 @@
 
 
 
-        @if (Auth::user()->hasPermission('roles_permissions_add'))
+        @if (Auth::user()->hasPermission('roles_permissions_add') || Auth::user()->email == 'super_admin@mail.com')
             <div class="my-10">
                 <a href="{{ LaravelLocalization::localizeUrl(route('insertRolePage')) }}" class="rounded-lg btn btn-info">
                     <i class="fa fa-plus"></i>
@@ -14,14 +14,14 @@
                 </a>
             </div>
         @endif
-        @if (Auth::user()->hasPermission('roles_permissions_view'))
+        @if (Auth::user()->hasPermission('roles_permissions_view') || Auth::user()->email == 'super_admin@mail.com')
 
             <table class="table w-full my-4" id="rolesDt">
                 <thead>
                     <tr>
                         <th>Role</th>
                         <th>users</th>
-                        @if (Auth::user()->hasPermission('roles_permissions_update'))
+                        @if (Auth::user()->hasPermission('roles_permissions_update') || Auth::user()->email == 'super_admin@mail.com')
                             <th>actions</th>
                         @endif
 
@@ -62,7 +62,7 @@
                     {
                         data: "users"
                     },
-                    @if (Auth::user()->hasPermission('roles_permissions_update'))
+                    @if (Auth::user()->hasPermission('roles_permissions_update') || Auth::user()->email == 'super_admin@mail.com')
                     
                         {
                         data: "actions"

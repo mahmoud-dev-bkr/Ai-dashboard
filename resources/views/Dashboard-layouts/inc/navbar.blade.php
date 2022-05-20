@@ -6,11 +6,13 @@
             <h1 class="font-bold text-gray-500 ">{{ Auth::user()->name_en }}</h1>
             {{-- <p class="text-sm text-gray-300">{{ Auth::user()->role->first()->display_name }}</p> --}}
         </div>
+
+    <a href="/admin/alertscompany" class="btn btn-ghost"><i class="mx-2 fa fa-bell"></i> Send notifications</a>
+
     </div>
 
-
-
     <div class="dropdown dropdown-end">
+
         <label tabindex="0" class="m-1 btn btn-lg btn-ghost"><i class="fa fa-bars"></i></label>
         <ul tabindex="0" class="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52">
             <li><a href="{{ url('admin/profile') }}">Profile</a></li>
@@ -21,7 +23,5 @@
             </li>
         </ul>
     </div>
-
-
 
 </div>
